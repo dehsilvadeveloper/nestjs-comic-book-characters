@@ -41,7 +41,12 @@ tmp/*
 
 # Environment files
 .env
+.env.backup
+.env.production
 
 # Prisma
 prisma/*.db
 prisma/*.db-journal
+
+# Docker
+.docker/mysql/dbdata
