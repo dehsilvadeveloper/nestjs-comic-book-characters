@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  main:
+    container_name: "${APP_NAME}-main"
+    build:
+      context: .
+      target: development
+    volumes:
+      # Allows changes made in the project directory to be accessed by the container and persist.
+      - .:/usr/src/app
+      # Using anonymous volume to prevent the node_modules existing in the container to be overridden by the local version
+      - /usr/src/app/node_modules
+    ports:
+      - ${APP_PORT_EXTERNAL}:${APP_PORT}
+      - 9229:9229
+    command: yarn run start:dev
+    environment:
+      TZ: "${APP_TIMEZONE}"
+    env_file:
+      - .env
+    restart: unless-stopped
+    networks:
+      - nestjs-comics-characters-network
+    depends_on:
+    - mysql
+
+  mysql:
+    container_name: "${APP_NAME}-mysql"
+    build: .docker/mysql
+    platform: linux/amd64
+    restart: unless-stopped
+    tty: true
+    ports:
+      - ${DB_PORT_EXTERNAL}:${DB_PORT}
+    volumes:
+      - ./.docker/mysql/dbdata:/var/lib/mysql
+      - ./.docker/mysql/scripts:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: ${DB_DATABASE}
+    networks:
+      - nestjs-comics-characters-network
+
+networks:
+  nestjs-comics-characters-network:
+    driver: bridge
