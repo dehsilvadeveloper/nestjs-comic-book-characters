@@ -59,11 +59,11 @@ The project was created for refinement of NestJS knowledge. It also work as a sk
 ## Docs
 
 * [Getting Started](./docs/getting_started.md)
+* [Getting Started (For Windows users)](./docs/getting_started_for_windows.md)
 * [Database Structure](./docs/database_structure.md)
 * [CORS](./docs/cors.md)
-* [Prisma](./docs/prisma.md)
-* [Prisma Studio](./docs/prisma_studio.md)
 * [Running Tests](./docs/running_tests.md)
+* [Available Make Scripts](./docs/available_make_scripts.md)
 * [Available YARN Scripts](./docs/available_yarn_scripts.md)
 
 <!-- Badge Shields -->
