@@ -13,6 +13,7 @@ async function bootstrap() {
   // Getting app config data
   const appUrl: string = configService.getOrThrow<string>('app.http.url');
   const appPort: number = configService.getOrThrow<number>('app.http.port');
+  const appPortExternal: number = configService.getOrThrow<number>('app.http.portExternal');
   const appGlobalPrefix: string = configService.getOrThrow<string>('app.globalPrefix');
   const appVersioningEnable: boolean = configService.getOrThrow<boolean>('app.versioning.enable');
   const appVersionPrefix: string = configService.getOrThrow<string>('app.versioning.prefix');
@@ -22,7 +23,7 @@ async function bootstrap() {
   const corsEnabled: boolean = configService.getOrThrow<boolean>('cors.enabled');
 
   // Defining app full base url
-  let appFullBaseUrl = `${appUrl}:${appPort}/${appGlobalPrefix}`;
+  let appFullBaseUrl = `${appUrl}:${appPortExternal}/${appGlobalPrefix}`;
 
   // API global prefix
   app.setGlobalPrefix(appGlobalPrefix);

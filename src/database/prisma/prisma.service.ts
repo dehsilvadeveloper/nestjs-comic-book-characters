@@ -16,8 +16,7 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     super({
       datasources: {
         db: {
-          url: `${type}://${username}:${password}@${host}/${database}`,
-          //url: `${type}://${username}:${password}@${host}:${port}/${database}`,
+          url: `${type}://${username}:${password}@${host}:${port}/${database}`,
         },
       },
     });

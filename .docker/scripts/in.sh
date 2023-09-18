@@ -16,7 +16,7 @@ do
     for item in "${options[@]}"; do
         if [[ $item == $opt ]]; then
             echo $YELLOW_COLOR"Entering $opt..."$RESET_COLOR
-            docker exec -it $opt bash
+            docker exec -it $opt /bin/sh
             break 2;
         fi
     done

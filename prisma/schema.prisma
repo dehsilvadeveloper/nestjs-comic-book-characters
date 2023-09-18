@@ -7,5 +7,159 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL")
+  url      = env("DB_URL")
+}
+
+// MODELS
+
+model Alignment {
+  id         Int         @id @default(autoincrement())
+  name       String      @db.VarChar(20)
+  characters Character[]
+
+  @@map(name: "alignment")
+}
+
+model Character {
+  id                  Int                 @id @default(autoincrement())
+  name                String              @db.VarChar(100)
+  civilName           String?             @db.VarChar(100)
+  gender              Gender
+  alignment           Alignment           @relation(fields: [alignmentTypeId], references: [id])
+  alignmentTypeId     Int
+  maritalStatus       MaritalStatus       @relation(fields: [maritalStatusTypeId], references: [id])
+  maritalStatusTypeId Int
+  livingStatus        LivingStatus        @relation(fields: [livingStatusTypeId], references: [id])
+  livingStatusTypeId  Int
+  createdAt           DateTime            @default(now())
+  updatedAt           DateTime            @updatedAt
+  powers              CharacterPower[]
+  teams               CharacterTeam[]
+  allies              CharacterAlly[]     @relation("allied_with")
+  allyOf              CharacterAlly[]     @relation("allied_to")
+  enemies             CharacterEnemy[]    @relation("enemy_of")
+  enemyOf             CharacterEnemy[]    @relation("enemy_to")
+  relatives           CharacterRelative[] @relation("relative_of")
+  relativeOf          CharacterRelative[] @relation("relative_to")
+
+  @@index([alignmentTypeId])
+  @@index([maritalStatusTypeId])
+  @@index([livingStatusTypeId])
+  @@map(name: "character")
+}
+
+model CharacterAlly {
+  id          Int        @id @default(autoincrement())
+  character   Character? @relation("allied_with", fields: [characterId], references: [id])
+  characterId Int?
+  ally        Character? @relation("allied_to", fields: [allyId], references: [id])
+  allyId      Int?
+  addedAt     DateTime   @default(now())
+
+  @@index([characterId])
+  @@index([allyId])
+  @@map(name: "character_ally")
+}
+
+model CharacterEnemy {
+  id          Int        @id @default(autoincrement())
+  character   Character? @relation("enemy_of", fields: [characterId], references: [id])
+  characterId Int?
+  enemy       Character? @relation("enemy_to", fields: [enemyId], references: [id])
+  enemyId     Int?
+  addedAt     DateTime   @default(now())
+
+  @@index([characterId])
+  @@index([enemyId])
+  @@map(name: "character_enemy")
+}
+
+model CharacterRelative {
+  id          Int        @id @default(autoincrement())
+  character   Character? @relation("relative_of", fields: [characterId], references: [id])
+  characterId Int?
+  relative    Character? @relation("relative_to", fields: [relativeId], references: [id])
+  relativeId  Int?
+  addedAt     DateTime   @default(now())
+
+  @@index([characterId])
+  @@index([relativeId])
+  @@map(name: "character_relative")
+}
+
+model CharacterPower {
+  character   Character @relation(fields: [characterId], references: [id])
+  characterId Int
+  power       Power     @relation(fields: [powerId], references: [id])
+  powerId     Int
+  addedAt     DateTime  @default(now())
+
+  @@id([characterId, powerId])
+  @@map(name: "character_power")
+}
+
+model CharacterTeam {
+  character   Character        @relation(fields: [characterId], references: [id])
+  characterId Int
+  team        Team             @relation(fields: [teamId], references: [id])
+  teamId      Int
+  status      TeamMemberStatus
+  role        TeamMemberRole
+  addedAt     DateTime         @default(now())
+
+  @@id([characterId, teamId])
+  @@map(name: "character_team")
+}
+
+model LivingStatus {
+  id         Int         @id @default(autoincrement())
+  name       String      @db.VarChar(30)
+  characters Character[]
+
+  @@map(name: "living_status")
+}
+
+model MaritalStatus {
+  id         Int         @id @default(autoincrement())
+  name       String      @db.VarChar(30)
+  characters Character[]
+
+  @@map(name: "marital_status")
+}
+
+model Power {
+  id         Int              @id @default(autoincrement())
+  name       String           @db.VarChar(100)
+  createdAt  DateTime         @default(now())
+  updatedAt  DateTime         @updatedAt
+  characters CharacterPower[]
+
+  @@map(name: "power")
+}
+
+model Team {
+  id          Int             @id @default(autoincrement())
+  name        String          @db.VarChar(100)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+  memberships CharacterTeam[]
+
+  @@map(name: "team")
+}
+
+// ENUMS
+
+enum Gender {
+  MALE
+  FEMALE
+}
+
+enum TeamMemberStatus {
+  CURRENT
+  FORMER
+}
+
+enum TeamMemberRole {
+  LEADER
+  MEMBER
 }

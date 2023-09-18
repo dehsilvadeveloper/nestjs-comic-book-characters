@@ -15,6 +15,7 @@ export interface AppConfigProps {
   http: {
     url: string;
     port: number;
+    portExternal: number;
   };
   globalPrefix: string;
   versioning: {

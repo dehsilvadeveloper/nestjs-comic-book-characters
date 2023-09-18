@@ -10,6 +10,7 @@ export const appConfig = (): AppConfigProps => ({
   http: {
     url: process.env.APP_URL || 'http://localhost',
     port: process.env.APP_PORT ? parseInt(process.env.APP_PORT) : 3000,
+    portExternal: process.env.APP_PORT_EXTERNAL ? parseInt(process.env.APP_PORT_EXTERNAL) : 3333,
   },
   globalPrefix: process.env.API_GLOBAL_PREFIX || 'api',
   versioning: {
