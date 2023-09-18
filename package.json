@@ -32,10 +32,11 @@
     "prisma:migrate:run-prod": "prisma migrate deploy",
     "prisma:migrate:reset": "prisma migrate reset --skip-seed",
     "prisma:migrate:status": "prisma migrate status",
-    "prisma:seed": "prisma db seed" 
+    "prisma:seed": "prisma db seed"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^3.1.1",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
     "reflect-metadata": "^0.1.13",

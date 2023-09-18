@@ -32,7 +32,7 @@ RUN yarn cache clean --force
 COPY --chown=node:node . .
 
 # Generate Prisma files
-RUN yarn prisma generate
+RUN yarn run prisma:generate
 
 # Build the app
 RUN yarn run build
