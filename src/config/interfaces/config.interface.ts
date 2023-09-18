@@ -34,6 +34,7 @@ export interface PaginationConfigProps {
 
 export interface DatabaseConfigProps {
   mysql: {
+    type: string;
     host: string;
     port: number;
     portExternal: number;
