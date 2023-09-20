@@ -22,7 +22,9 @@ docker-compose up --build -d
 docker-compose exec main yarn run prisma:migrate:run-dev
 ```
 
-4. The next step is to run the seeders, filling the database tables with necessary data. For this you have to use the following command:
+4. The next step is to seed the database, filling the tables with necessary data. Usually the *migration process* immediately invoke the *seed process* on its conclusion, with no additional user action required.
+
+If you look at the database and see that no table has data (at least one of them should have), use the following command to run the seed process manually:
 
 ```
 docker-compose exec main yarn run prisma:seed

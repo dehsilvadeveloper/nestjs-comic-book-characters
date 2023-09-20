@@ -18,6 +18,45 @@ One workaround is to add an extra slash at the beginning of the path. This tells
 docker-compose exec main //bin/sh
 ```
 
+### Enter MySQL container
+
+To enter the container of *MySQL*, you can use the following command:
+
+```
+docker-compose exec mysql mysql -u root -p
+```
+
+The terminal will ask for the password and you should inform the answer *root*. After this you will be able to run any necessary SQL queries.
+
+You can, for example, see the databases created.
+
+```
+SHOW DATABASES;
+```
+
+This query is useful to see if the application created the related database with success. The name of the database is available on environment variable *DB_DATABASE*. The default database name for this project is *nestjs_comic_character*.
+
+You can also see the tables inside a database with the following query:
+
+```
+USE nestjs_comic_character; SHOW TABLES;
+```
+
+### Restarting the containers
+
+To restart a *Docker* container you can simply run:
+
+```
+docker restart <name-of-container>
+```
+
+Example:
+
+```
+docker restart nestjs-comic-characters-main
+```
+
+
 ### See watch messages of Nest
 
 You can see the watch messages of *Nest* without enter the container. For this use the following command:

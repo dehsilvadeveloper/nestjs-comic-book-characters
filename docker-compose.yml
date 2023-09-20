@@ -14,7 +14,10 @@ services:
       - /usr/src/app/node_modules
     ports:
       - ${APP_PORT_EXTERNAL}:${APP_PORT}
+      # Exposing NestJS debugging port
       - 9229:9229
+      # Exposing Prisma Studio port
+      - 5555:5555
     command: yarn run start:dev
     environment:
       TZ: "${APP_TIMEZONE}"
@@ -24,7 +27,8 @@ services:
     networks:
       - nestjs-comics-characters-network
     depends_on:
-    - mysql
+      mysql:
+        condition: service_healthy
 
   mysql:
     container_name: "${APP_NAME}-mysql"
@@ -42,6 +46,10 @@ services:
       MYSQL_DATABASE: ${DB_DATABASE}
     networks:
       - nestjs-comics-characters-network
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 10s
+      retries: 5
 
 networks:
   nestjs-comics-characters-network:
