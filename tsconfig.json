@@ -21,6 +21,7 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "useUnknownInCatchVariables": false,
+    "noEmit": false,
     "paths": {
       "@config/*": ["./src/config/*"],
       "@database/*": ["./src/database/*"],

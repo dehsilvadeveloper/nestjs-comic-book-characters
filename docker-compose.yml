@@ -4,6 +4,7 @@ services:
   main:
     container_name: "${APP_NAME}-main"
     build:
+      dockerfile: Dockerfile
       context: .
       target: development
     volumes:

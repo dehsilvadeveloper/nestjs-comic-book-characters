@@ -1,34 +1,74 @@
-## Getting Started
-
-Open a terminal on the root of the project and follow the instructions on this file.
+## Getting started
 
 ### Install
 
-For start, clone the repository to your local environment. After that, run the following script:
+These are the instructions to install the application, make it ready for use. Open a terminal on the root of the project and follow the steps.
 
-`make start-install`
+1. Duplicate the `.env.example` file, renaming the copy to `.env`. This file contains the environments variables that will be used for the application.
 
-This script will build the containers and install the dependencies. After that, the application is ready to use on the url provided for the script.
+```
+cp .env.example .env
+```
 
-You only need to make this procedure once.
+2. Startup containers via docker-compose.
+
+```
+docker-compose up --build -d
+```
+
+3. Now you need to run the migrations, creating the database structure for the application. For this you have to use the following command:
+
+```
+docker-compose exec main yarn run prisma:migrate:run-dev
+```
+
+4. The next step is to run the seeders, filling the database tables with necessary data. For this you have to use the following command:
+
+```
+docker-compose exec main yarn run prisma:seed
+```
+
+5. After following the setup steps, the application is ready to use on the following url:
+
+```
+http://localhost:3333/api/v1
+```
+
+The url may vary depending on the variables defined in the .env file.
+
+You only need to make the setup procedure once.
 
 ### Starting the application
 
-If you want to start the application, use the following script:
+If you want to start the application, use the following command:
 
-`make up`
+```
+docker-compose up -d
+```
 
-This script will get up all Docker containers, making the application ready to use on the url provided for the script.
+This command will get up all Docker containers, making the application ready to use.
 
-It won't be necessary to keep the terminal open for the application to keep running.
+The `-d` means that the terminal will be *detached*, in other words, it won't be necessary to keep the terminal open for the application to keep running. If you run the command without the `-d`, the terminal will have to be keep open.
+
+```
+docker-compose up
+```
+
+It will be possible to see the watch messages from the application live.
 
 ### Shutting down the application
 
-If you want to stop the application, use the following script:
+If you want to stop the application, use the following command:
 
-`make down`
+```
+docker-compose down
+```
 
-This script will get down all Docker containers and the application will not be available for use anymore.
+This command will get down all Docker containers and the application will not be available for use anymore.
+
+If you started the application without the `-d`, you will need to use the following key combination on the opened terminal:
+
+`ctrl + c`
 
 ### Testing the API enpoints
 

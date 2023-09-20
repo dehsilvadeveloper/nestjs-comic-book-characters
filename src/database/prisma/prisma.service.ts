@@ -12,11 +12,12 @@ export class PrismaService extends PrismaClient implements OnModuleInit {
     const database = configService.getOrThrow<string>('database.mysql.database');
     const username = configService.getOrThrow<string>('database.mysql.username');
     const password = configService.getOrThrow<string>('database.mysql.password');
+    const connectionTimeout = configService.getOrThrow<string>('database.mysql.connectionTimeout');
 
     super({
       datasources: {
         db: {
-          url: `${type}://${username}:${password}@${host}:${port}/${database}`,
+          url: `${type}://${username}:${password}@${host}:${port}/${database}?connect_timeout=${connectionTimeout}`,
         },
       },
     });

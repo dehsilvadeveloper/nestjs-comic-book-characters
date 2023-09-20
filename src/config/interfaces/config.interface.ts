@@ -42,5 +42,6 @@ export interface DatabaseConfigProps {
     database: string;
     username: string;
     password: string;
+    connectionTimeout: number;
   };
 }

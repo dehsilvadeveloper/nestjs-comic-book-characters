@@ -61,4 +61,4 @@ COPY --chown=node:node --from=development /usr/src/app/node_modules/.prisma/clie
 EXPOSE 3000
 
 # Execute command
-CMD ["node", "dist/main"]
+CMD ["yarn", "run", "start:prod"]

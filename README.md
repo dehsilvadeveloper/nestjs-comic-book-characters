@@ -32,39 +32,27 @@ The project was created for refinement of NestJS knowledge. It also work as a sk
 | Prisma | v5.x + |
 | MySQL | v8.0.x |
 
+## Features
+
+- [x] Database with **Prisma ORM**
+- [x] Seeding
+- [x] Config service (using **@nestjs/config**)
+- [x] Api documentation (using Scribe)
+- [x] Units tests
+- [x] Docker
+
 ## Objectives
 
-* Use separeted config files to define options of some parts of the application, avoiding direct access to environment variables
-* Use GraphQL with **code-first** approach using decorators
-* Enable or disable **GraphQL Playground** based on option of config file
-* Use SQLite for database type
-* Use Prisma for database modelling and migration
-* Seed initial data on the database after migration
-* Use modular approach to organize logic
-* Use Data Transfer Objects (DTOs) to transport groups of data between the application layers and to validate input data
-* Reuse DTO for create order on the DTO for update order using PartialType and/or OmitType
-* Use **transform** decorator to format dates of entity classes only when they are serialized to JSON
-* Use **interceptors** to convert errors to exceptions
-* Use concepts of service pattern, with short service classes
-* Throw custom errors based on the Prisma exceptions types
-* Only allow cancel action on pending orders
-* Only allow refund action on paid orders
-* Only allow remove action on pending orders
-* List orders with filter, pagination and sort
-* Use soft delete approach on the remove actions
-* Create a module for health check (using GraphQL and **Terminus**)
-* Create tests for the application using JEST
-* Use fixture classes as mocked data for tests
+SOON.
 
 ## Docs
 
 * [Getting Started](./docs/getting_started.md)
-* [Getting Started (For Windows users)](./docs/getting_started_for_windows.md)
+* [Development instructions](./docs/development_instructions.md)
 * [Database Structure](./docs/database_structure.md)
 * [CORS](./docs/cors.md)
 * [Running Tests](./docs/running_tests.md)
-* [Available Make Scripts](./docs/available_make_scripts.md)
-* [Available YARN Scripts](./docs/available_yarn_scripts.md)
+* [Available Yarn Scripts](./docs/available_yarn_scripts.md)
 
 <!-- Badge Shields -->
 [nestjs-shield]: https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white

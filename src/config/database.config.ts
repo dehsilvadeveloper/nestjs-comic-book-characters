@@ -9,5 +9,6 @@ export const databaseConfig = (): DatabaseConfigProps => ({
     database: process.env.DATABASE || 'nestjs_comic_character',
     username: process.env.DATABASE_USERNAME || 'root',
     password: process.env.DATABASE_PASSWORD || 'root',
+    connectionTimeout: process.env.DB_CONNECTION_TIMEOUT ? parseInt(process.env.DB_CONNECTION_TIMEOUT) : 30,
   },
 });
