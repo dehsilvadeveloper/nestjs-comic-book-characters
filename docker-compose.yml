@@ -10,7 +10,7 @@ services:
     volumes:
       # Allows changes made in the project directory to be accessed by the container and persist.
       - .:/usr/src/app
-      # Using anonymous volume to prevent the node_modules existing in the container to be overridden by the local version
+      # Using anonymous volume to prevent node_modules existing in the container to be overridden by the local version
       - /usr/src/app/node_modules
     ports:
       - ${APP_PORT_EXTERNAL}:${APP_PORT}

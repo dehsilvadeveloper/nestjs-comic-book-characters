@@ -56,7 +56,6 @@ Example:
 docker restart nestjs-comic-characters-main
 ```
 
-
 ### See watch messages of Nest
 
 You can see the watch messages of *Nest* without enter the container. For this use the following command:
@@ -97,7 +96,11 @@ The `--build` parameter will make sure the yarn install is run (during the build
 
 ### Database schema changes
 
-Soon.
+Database schema changes won't be immediately reflected on the MySQL database. It will be necessary to update the schema via *Prisma Client* with the following command:
+
+```
+docker-compose exec main yarn run prisma:migrate:run-dev
+```
 
 ### Using Prisma Studio
 
