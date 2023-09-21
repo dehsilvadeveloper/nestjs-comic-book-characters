@@ -7,9 +7,6 @@ coverage
 .github
 .vscode
 .cache
-.dockerignore
 .editorconfig
-Makefile
 README.md
-LICENSE
 docs
