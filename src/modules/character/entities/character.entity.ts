@@ -4,6 +4,7 @@ import { MaritalStatusEntity } from '@common/entities/marital-status.entity';
 import { LivingStatusEntity } from '@common/entities/living-status.entity';
 
 export class CharacterEntity {
+  id: number;
   name: string;
   civilName: string | null;
   gender: GenderEnum;
