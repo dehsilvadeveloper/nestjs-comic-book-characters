@@ -37,8 +37,9 @@ The project was created for refinement of NestJS knowledge. It also work as a sk
 - [x] Database with **Prisma ORM**
 - [x] Seeding
 - [x] Config service (using **@nestjs/config**)
+- [x] Request validation (using **class-validator**)
 - [x] Api documentation (using Scribe)
-- [x] Units tests
+- [x] Units tests (using Jest)
 - [x] Docker
 
 ## Objectives
