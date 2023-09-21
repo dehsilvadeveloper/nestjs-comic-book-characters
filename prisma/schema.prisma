@@ -150,16 +150,16 @@ model Team {
 // ENUMS
 
 enum Gender {
-  MALE
-  FEMALE
+  male
+  female
 }
 
 enum TeamMemberStatus {
-  CURRENT
-  FORMER
+  current
+  former
 }
 
 enum TeamMemberRole {
-  LEADER
-  MEMBER
+  leader
+  member
 }
