@@ -3,6 +3,7 @@ import { alignmentSeed } from './alignment/seeder';
 import { livingStatusSeed } from './living-status/seeder';
 import { maritalStatusSeed } from './marital-status/seeder';
 import { characterSeed } from './character/seeder';
+import { powerSeed } from './power/seeder';
 import { teamSeed } from './team/seeder';
 import { characterPowerSeed } from './character-power/seeder';
 import { characterTeamSeed } from './character-team/seeder';
@@ -19,7 +20,7 @@ async function main(): Promise<void> {
 }
 
 async function seedEssentialData(): Promise<void> {
-  console.info('Executing seeds for essential data.');
+  console.info('Executing seeds for essential data!');
   
   await alignmentSeed(prisma);
   await livingStatusSeed(prisma);
@@ -30,9 +31,10 @@ async function seedDevelopmentData(): Promise<void> {
   const canSeedDevelopmentData = process.env.APP_ENV == 'development';
 
   if (canSeedDevelopmentData) {
-    console.info('Executing seeds for development data.');
+    console.info('Executing seeds for development data!');
     
     await characterSeed(prisma);
+    await powerSeed(prisma);
     await teamSeed(prisma);
     await characterPowerSeed(prisma);
     await characterTeamSeed(prisma);
