@@ -21,30 +21,30 @@ model Alignment {
 }
 
 model Character {
-  id                  Int                 @id @default(autoincrement())
-  name                String              @db.VarChar(100)
-  civilName           String?             @db.VarChar(100)
-  gender              Gender
-  alignment           Alignment           @relation(fields: [alignmentTypeId], references: [id])
-  alignmentTypeId     Int
-  maritalStatus       MaritalStatus       @relation(fields: [maritalStatusTypeId], references: [id])
-  maritalStatusTypeId Int
-  livingStatus        LivingStatus        @relation(fields: [livingStatusTypeId], references: [id])
-  livingStatusTypeId  Int
-  createdAt           DateTime            @default(now())
-  updatedAt           DateTime            @updatedAt
-  powers              CharacterPower[]
-  teams               CharacterTeam[]
-  allies              CharacterAlly[]     @relation("allied_with")
-  allyOf              CharacterAlly[]     @relation("allied_to")
-  enemies             CharacterEnemy[]    @relation("enemy_of")
-  enemyOf             CharacterEnemy[]    @relation("enemy_to")
-  relatives           CharacterRelative[] @relation("relative_of")
-  relativeOf          CharacterRelative[] @relation("relative_to")
+  id              Int                 @id @default(autoincrement())
+  name            String              @db.VarChar(100)
+  civilName       String?             @db.VarChar(100)
+  gender          Gender
+  alignment       Alignment           @relation(fields: [alignmentId], references: [id])
+  alignmentId     Int
+  maritalStatus   MaritalStatus       @relation(fields: [maritalStatusId], references: [id])
+  maritalStatusId Int
+  livingStatus    LivingStatus        @relation(fields: [livingStatusId], references: [id])
+  livingStatusId  Int
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  powers          CharacterPower[]
+  teams           CharacterTeam[]
+  allies          CharacterAlly[]     @relation("allied_with")
+  allyOf          CharacterAlly[]     @relation("allied_to")
+  enemies         CharacterEnemy[]    @relation("enemy_of")
+  enemyOf         CharacterEnemy[]    @relation("enemy_to")
+  relatives       CharacterRelative[] @relation("relative_of")
+  relativeOf      CharacterRelative[] @relation("relative_to")
 
-  @@index([alignmentTypeId])
-  @@index([maritalStatusTypeId])
-  @@index([livingStatusTypeId])
+  @@index([alignmentId])
+  @@index([maritalStatusId])
+  @@index([livingStatusId])
   @@map(name: "character")
 }
 

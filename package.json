@@ -34,6 +34,9 @@
     "prisma:migrate:status": "prisma migrate status",
     "prisma:seed": "prisma db seed"
   },
+  "prisma": {
+    "seed": "ts-node prisma/seeders/index.ts"
+  },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.1.1",
