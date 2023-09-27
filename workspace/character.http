@@ -1,0 +1,14 @@
+### Variables
+@baseUrl=http://localhost:3333/api/v1
+@accept=application/json
+@contentType=application/json
+
+### POST characters
+POST {{baseUrl}}/characters
+Accept: {{accept}}
+Content-Type: {{contentType}}
+
+{
+    "name": "a",
+    "alignmentId": 1
+}

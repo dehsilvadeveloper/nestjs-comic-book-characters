@@ -24,8 +24,7 @@
     "noEmit": false,
     "paths": {
       "@config/*": ["./src/config/*"],
-      "@database/*": ["./src/database/*"],
-      "@common/*": ["./src/common/*"],
+      "@shared/*": ["./src/shared/*"],
       "@modules/*": ["./src/modules/*"],
       "@test/*": ["./test/*"]
     }

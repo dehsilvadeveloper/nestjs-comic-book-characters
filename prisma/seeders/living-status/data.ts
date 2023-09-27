@@ -1,4 +1,4 @@
-import { LivingStatusEnum } from '../../../src/common/enums/living-status.enum';
+import { LivingStatusEnum } from '../../../src/shared/enums/living-status.enum';
 
 export const livingStatusSeederData = [
   { id: LivingStatusEnum.alive, name: 'alive' },

@@ -1,4 +1,4 @@
-import { AlignmentEnum } from '../../../src/common/enums/alignment.enum';
+import { AlignmentEnum } from '../../../src/shared/enums/alignment.enum';
 
 export const alignmentSeederData = [
   { id: AlignmentEnum.good, name: 'good' },

@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
-import { AppModule } from '@modules/app/app.module';
 import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { useContainer } from 'class-validator';
+import { AppModule } from '@modules/app/app.module';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
@@ -24,6 +25,9 @@ async function bootstrap() {
 
   // Defining app full base url
   let appFullBaseUrl = `${appUrl}:${appPortExternal}/${appGlobalPrefix}`;
+
+  // Enabling service container for custom validator constraint classes (class-validator)
+  useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
   // API global prefix
   app.setGlobalPrefix(appGlobalPrefix);
