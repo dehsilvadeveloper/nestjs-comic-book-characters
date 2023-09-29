@@ -1,7 +1,7 @@
 import { Gender } from '@prisma/client';
-import { AlignmentEnum } from '../../../src/shared/enums/alignment.enum';
-import { LivingStatusEnum } from '../../../src/shared/enums/living-status.enum';
-import { MaritalStatusEnum } from '../../../src/shared/enums/marital-status.enum';
+import { AlignmentEnum } from '../../../src/modules/common/enums/alignment.enum';
+import { LivingStatusEnum } from '../../../src/modules/common/enums/living-status.enum';
+import { MaritalStatusEnum } from '../../../src/modules/common/enums/marital-status.enum';
 
 export const characterSeederData = [
   {

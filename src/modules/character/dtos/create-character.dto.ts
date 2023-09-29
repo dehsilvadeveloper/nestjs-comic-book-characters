@@ -1,5 +1,5 @@
 import { IsNotEmpty, MaxLength, MinLength } from 'class-validator';
-import { ExistsOnDatabase } from '@shared/decorators/exists-on-database.decorator';
+import { ExistsOnDatabase } from '@modules/common/decorators/exists-on-database.decorator';
 
 export class CreateCharacterDto {
   @IsNotEmpty()

@@ -1,4 +1,4 @@
-import { BaseRepository } from '@shared/repositories/base.repository.interface';
+import { BaseRepository } from '@modules/common/repositories/base.repository.interface';
 import { TeamEntity } from '../entities/team.entity';
 import { FindTeamDto } from '../dtos/find-team.dto';
 

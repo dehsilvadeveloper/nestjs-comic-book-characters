@@ -1,6 +1,6 @@
-import { AlignmentEntity } from '@shared/entities/alignment.entity';
-import { MaritalStatusEntity } from '@shared/entities/marital-status.entity';
-import { LivingStatusEntity } from '@shared/entities/living-status.entity';
+import { AlignmentEntity } from '@modules/common/entities/alignment.entity';
+import { MaritalStatusEntity } from '@modules/common/entities/marital-status.entity';
+import { LivingStatusEntity } from '@modules/common/entities/living-status.entity';
 
 export class CharacterEntity {
   id: number;

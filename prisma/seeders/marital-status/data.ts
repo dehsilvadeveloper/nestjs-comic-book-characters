@@ -1,4 +1,4 @@
-import { MaritalStatusEnum } from '../../../src/shared/enums/marital-status.enum';
+import { MaritalStatusEnum } from '../../../src/modules/common/enums/marital-status.enum';
 
 export const maritalStatusSeederData = [
   { id: MaritalStatusEnum.single, name: 'single' },

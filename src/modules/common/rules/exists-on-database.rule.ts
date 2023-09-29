@@ -12,7 +12,7 @@ export class ExistsOnDatabaseValidator implements ValidatorConstraintInterface {
     const { model: modelName, column: columnName } = property;
 
     const repository = this.repositoryService.getRepositoryByModelName(modelName);
-    const entity = await repository.findFirst(value);
+    const entity = await repository.firstWhere(value);
 
     return !!entity;
   }
