@@ -1,12 +1,29 @@
-dist
-node_modules
-coverage
+# Versioning and metadata
 .gitattributes
 .gitignore
 .git
 .github
-.vscode
-.cache
-.editorconfig
+
+# Dependencies build
+dist
+node_modules
+coverage
+
+# Docker
+.dockerignore
+*Dockerfile*
+*docker-compose*
+
+# MD files
 README.md
 docs
+
+# Editor files
+.editorconfig
+.vscode
+.prettierrc
+
+# Others
+workspace
+.cache
+.npmrc

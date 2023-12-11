@@ -14,7 +14,7 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
     throw new Error('Method not implemented.');
   }
 
-  async save(character: CharacterEntity): Promise<CharacterEntity> {
+  async update(character: CharacterEntity): Promise<CharacterEntity> {
     throw new Error('Method not implemented.');
   }
 
@@ -61,8 +61,34 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
         alignment: true,
         maritalStatus: true,
         livingStatus: true,
+        powers: {
+          select: {
+            power: {
+              select: {
+                id: true,
+                name: true,
+                createdAt: true,
+                updatedAt: true,
+              }
+            }
+          }
+        },
+        teams: {
+          select: {
+            team: {
+              select: {
+                id: true,
+                name: true,
+                createdAt: true,
+                updatedAt: true,
+              }
+            }
+          }
+        },
       },
     });
+
+    console.log(character);
 
     return plainToInstance(CharacterEntity, character);
   }

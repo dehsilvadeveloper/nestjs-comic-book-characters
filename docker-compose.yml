@@ -7,12 +7,16 @@ services:
       dockerfile: Dockerfile
       context: .
       target: development
+      args:
+        # Enabling Docker Buildkit
+        DOCKER_BUILDKIT: 1
     volumes:
-      # Allows changes made in the project directory to be accessed by the container and persist.
-      - .:/usr/src/app
-      # Using anonymous volume to prevent node_modules existing in the container to be overridden by the local version
+      # Allows changes made in the project directory to be accessed by the container and persist
+      - ./src:/usr/src/app/src
+      # Ensuring that the container manages the node_modules folder rather than synchronizes it with the host machine
       - /usr/src/app/node_modules
     ports:
+      # Exposing application port
       - ${APP_PORT_EXTERNAL}:${APP_PORT}
       # Exposing NestJS debugging port
       - 9229:9229
@@ -20,7 +24,10 @@ services:
       - 5555:5555
     command: yarn run start:dev
     environment:
+      # To configure timezone for the container
       TZ: "${APP_TIMEZONE}"
+      # To enable hot reload on docker for windows (WSL) in combination with a adjust on tsconfig.build.json file
+      WATCHPACK_POLLING: true
     env_file:
       - .env
     restart: unless-stopped

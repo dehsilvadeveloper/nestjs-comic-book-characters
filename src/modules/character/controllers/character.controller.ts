@@ -1,8 +1,11 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, NotFoundException } from '@nestjs/common';
 import { CreateCharacterDto } from '../dtos/create-character.dto';
 import { UpdateCharacterDto } from '../dtos/update-character.dto';
+import { CharacterEntity } from '../entities/character.entity';
 import { CharacterService } from '../services/character.service';
+import { NotFoundInterceptor } from '@modules/common/interceptors/not-found-interceptor';
 
+@UseInterceptors(NotFoundInterceptor)
 @Controller('characters')
 export class CharacterController {
   constructor(private readonly characterService: CharacterService) {}
@@ -12,23 +15,29 @@ export class CharacterController {
     return this.characterService.create(createCharacterDto);
   }
 
-  @Get()
-  findAll() {
-    return this.characterService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.characterService.findOne(+id);
-  }
-
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCharacterDto: UpdateCharacterDto) {
+  update(@Param('id') id: number, @Body() updateCharacterDto: UpdateCharacterDto) {
     return this.characterService.update(+id, updateCharacterDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.characterService.remove(+id);
+  delete(@Param('id') id: number) {
+    return this.characterService.delete(+id);
+  }
+
+  @Get()
+  getAll() {
+    return this.characterService.getAll();
+  }
+
+  @Get(':id')
+  async firstById(@Param('id') id: number): Promise<CharacterEntity> {
+    const character = await this.characterService.firstById(+id);
+
+    if (!character) {
+      throw new NotFoundException(`Character of ID ${id} does not exists.`);
+    }
+
+    return character;
   }
 }

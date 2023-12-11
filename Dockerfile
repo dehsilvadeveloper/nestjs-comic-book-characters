@@ -1,64 +1,72 @@
-# Development stage
+#
+# DEVELOPMENT
+#
 FROM node:19.8.1-alpine AS development
 
-# Create the working directory, including the node_modules folder for the sake of assigning ownership in the next command
-RUN mkdir -p /usr/src/app/node_modules
+# Labelling stage
+LABEL stage="development"
 
-# Change ownership of the working directory to the node:node user:group
-# This ensures that npm install can be executed successfully with the correct permissions
-RUN chown -R node:node /usr/src/app
-
-# Set the user to use when running this image
-# Non privilege mode for better security (this user comes with official NodeJS image).
-USER node
-
-# Set environment to development
+# Setting development environment
 ENV NODE_ENV=development
 
-# Set the default working directory for the app
-# It is a best practice to use the /usr/src/app directory
+# Creating work directory and changing his ownership (to avoid permission denied errors)
+RUN mkdir -p /usr/src/app && \
+    chown -R node:node /usr/src/app
+
+# Defining work directory for the build process
 WORKDIR /usr/src/app
 
-# Copy package files. A wildcard is used to ensure both package.json AND package-lock.json are copied
-COPY --chown=node:node package*.json ./
+# Copy dependency management files
+COPY --chown=node:node package*.json yarn.lock ./
+
+# Set the user to be used when building (the user "node" come with the node image)
+USER node
 
 # Install dependencies
 RUN yarn install
 
-# Necessary to run before adding application code to leverage Docker cache
-RUN yarn cache clean --force
-
-# Copy the source
+# Copy source code into work directory
 COPY --chown=node:node . .
 
-# Generate Prisma files
-RUN yarn run prisma:generate
+# Generate Prisma files and build the app
+RUN yarn run prisma:generate && yarn run build && yarn cache clean
 
-# Build the app
-RUN yarn run build
-
-# Production stage
+#
+# PRODUCTION
+#
 FROM node:19.8.1-alpine AS production
 
-# Set environment to production
+# Labelling stage
+LABEL stage="production"
+
+# Setting production environment
 ENV NODE_ENV=production
 
-# Set the default working directory for the app
+# Creating work directory and changing his ownership (to avoid permission denied errors)
+RUN mkdir -p /usr/src/app && \
+    chown -R node:node /usr/src/app
+
+# Defining work directory for the build process
 WORKDIR /usr/src/app
 
-# Copy files from development stage
+# Copy dependency management files
+COPY --chown=node:node --from=development package*.json ./
+
+# Set the user to be used when building (the user "node" come with the node image)
+USER node
+
+# Install dependencies, cleaning cache too
+RUN yarn install --production --ignore-scripts --prefer-offline && yarn cache clean --force
+
+# Copy final application code into work directory
 COPY --chown=node:node --from=development /usr/src/app/dist ./dist
-COPY --chown=node:node --from=development /usr/src/app/.env ./
-COPY --chown=node:node --from=development /usr/src/app/package*.json ./
+COPY --chown=node:node --from=development /usr/src/app/.env .env
 
-# Install dependencies
-RUN yarn install --only=production
-
-# Copy Prisma files
+# Copy Prisma files into work directory
 COPY --chown=node:node --from=development /usr/src/app/node_modules/.prisma/client  ./node_modules/.prisma/client
 
-# Expose API port
+# Expose port
 EXPOSE 3000
 
 # Execute command
-CMD ["yarn", "run", "start:prod"]
+CMD ["node", "dist/src/main"]

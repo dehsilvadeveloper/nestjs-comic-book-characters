@@ -43,7 +43,8 @@ The project was created for refinement of NestJS knowledge. It also work as a sk
 - [ ] Base repository interface using typescript *generics*
 - [ ] Api documentation (using Scribe)
 - [ ] Units tests (using Jest)
-- [x] Docker
+- [ ] Files inside folder *workspace* to be used to make requests on **Visual Studio Code** IDE with the extension **REST Client** (for when Postman or Insomnia is not available)
+- [x] Dockerfile with multi stage build
 
 ## Docs
 

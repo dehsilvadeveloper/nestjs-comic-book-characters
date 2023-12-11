@@ -56,6 +56,26 @@ Example:
 docker restart nestjs-comic-characters-main
 ```
 
+### Building the containers
+
+To remake the build of a container, considering the development stage, you can simply run:
+
+```
+docker build --target development .
+```
+
+or if you want more details of the steps been performed:
+
+```
+docker build --progress=plain --target development .
+```
+
+To remake the build for production stage, run:
+
+```
+docker build --target production .
+```
+
 ### See watch messages of Nest
 
 You can see the watch messages of *Nest* without enter the container. For this use the following command:

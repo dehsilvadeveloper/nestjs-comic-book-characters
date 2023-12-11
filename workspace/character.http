@@ -12,3 +12,8 @@ Content-Type: {{contentType}}
     "name": "a",
     "alignmentId": 1
 }
+
+### GET character
+GET {{baseUrl}}/characters/1
+Accept: {{accept}}
+Content-Type: {{contentType}}

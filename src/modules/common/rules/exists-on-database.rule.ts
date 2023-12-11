@@ -12,7 +12,8 @@ export class ExistsOnDatabaseValidator implements ValidatorConstraintInterface {
     const { model: modelName, column: columnName } = property;
 
     const repository = this.repositoryService.getRepositoryByModelName(modelName);
-    const entity = await repository.firstWhere(value);
+    const filter = { [columnName]: value };
+    const entity = await repository.firstWhere(filter);
 
     return !!entity;
   }
