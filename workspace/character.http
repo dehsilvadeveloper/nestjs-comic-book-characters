@@ -1,5 +1,5 @@
 ### Variables
-@baseUrl=http://localhost:3333/api/v1
+@baseUrl=http://localhost:3000/api/v1
 @accept=application/json
 @contentType=application/json
 
