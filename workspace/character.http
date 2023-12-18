@@ -14,6 +14,6 @@ Content-Type: {{contentType}}
 }
 
 ### GET character
-GET {{baseUrl}}/characters/1
+GET {{baseUrl}}/characters/16
 Accept: {{accept}}
 Content-Type: {{contentType}}

@@ -25,8 +25,6 @@ export class CharacterService {
   }
 
   async firstById(id: number): Promise<CharacterEntity | null> {
-    console.info(`The action CharacterService@firstById was called. It returns a #${id} character.`);
-
     return await this.characterRepository.firstById(id);
   }
 }

@@ -71,7 +71,12 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
                 updatedAt: true,
               }
             }
-          }
+          },
+          orderBy: {
+            power: {
+              name: 'asc',
+            },
+          },
         },
         teams: {
           select: {
@@ -81,14 +86,17 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
                 name: true,
                 createdAt: true,
                 updatedAt: true,
-              }
-            }
-          }
+              },
+            },
+          },
+          orderBy: {
+            team: {
+              name: 'asc',
+            },
+          },
         },
       },
     });
-
-    console.log(character);
 
     return plainToInstance(CharacterEntity, character);
   }

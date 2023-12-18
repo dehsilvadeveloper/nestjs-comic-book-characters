@@ -3,6 +3,7 @@ import { CreateCharacterDto } from '../dtos/create-character.dto';
 import { UpdateCharacterDto } from '../dtos/update-character.dto';
 import { CharacterEntity } from '../entities/character.entity';
 import { CharacterService } from '../services/character.service';
+import { CharacterViewModel } from '../view_models/character.view-model';
 import { NotFoundInterceptor } from '@modules/common/interceptors/not-found-interceptor';
 
 @UseInterceptors(NotFoundInterceptor)
@@ -31,13 +32,14 @@ export class CharacterController {
   }
 
   @Get(':id')
-  async firstById(@Param('id') id: number): Promise<CharacterEntity> {
+  async firstById(@Param('id') id: number) {
     const character = await this.characterService.firstById(+id);
 
     if (!character) {
       throw new NotFoundException(`Character of ID ${id} does not exists.`);
     }
 
-    return character;
+    //return character;
+    return CharacterViewModel.toHttp(character);
   }
 }
