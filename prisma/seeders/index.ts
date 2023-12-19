@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { alignmentSeed } from './alignment/seeder';
 import { livingStatusSeed } from './living-status/seeder';
 import { maritalStatusSeed } from './marital-status/seeder';
+import { relationshipTypeSeed } from './relationship-type/seeder';
 import { characterSeed } from './character/seeder';
 import { powerSeed } from './power/seeder';
 import { teamSeed } from './team/seeder';
@@ -28,6 +29,7 @@ async function seedEssentialData(): Promise<void> {
   await alignmentSeed(prisma);
   await livingStatusSeed(prisma);
   await maritalStatusSeed(prisma);
+  await relationshipTypeSeed(prisma);
 }
 
 async function seedDevelopmentData(): Promise<void> {
