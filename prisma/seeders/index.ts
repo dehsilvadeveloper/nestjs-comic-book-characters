@@ -7,6 +7,9 @@ import { powerSeed } from './power/seeder';
 import { teamSeed } from './team/seeder';
 import { characterPowerSeed } from './character-power/seeder';
 import { characterTeamSeed } from './character-team/seeder';
+import { characterRelativeSeed } from './character-relative/seeder';
+import { characterAllySeed } from './character-ally/seeder';
+import { characterEnemySeed } from './character-enemy/seeder';
 
 const prisma = new PrismaClient();
 
@@ -38,6 +41,9 @@ async function seedDevelopmentData(): Promise<void> {
     await teamSeed(prisma);
     await characterPowerSeed(prisma);
     await characterTeamSeed(prisma);
+    await characterRelativeSeed(prisma);
+    await characterAllySeed(prisma);
+    await characterEnemySeed(prisma);
   }
 }
 
