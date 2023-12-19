@@ -119,6 +119,30 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
             },
           },
         },
+        allies: {
+          select: {
+            id: true,
+            ally: {
+              select: {
+                id: true,
+                name: true,
+                civilName: true,
+              }
+            }
+          }
+        },
+        enemies: {
+          select: {
+            id: true,
+            enemy: {
+              select: {
+                id: true,
+                name: true,
+                civilName: true,
+              }
+            }
+          }
+        }
       },
     });
 
