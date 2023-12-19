@@ -1,5 +1,13 @@
 import { CharacterEntity } from '../entities/character.entity';
 
+interface CharacterRelativeProps {
+  id: number;
+  name: string;
+  civilName: string | null;
+  relationship: string;
+  relationshipAddedAt: string;
+}
+
 export interface CharacterProps {
   id: number;
   name: string;
@@ -10,8 +18,9 @@ export interface CharacterProps {
   livingStatus: string;
   powers: string[];
   teams: string[];
-  createdAt: any;
-  updatedAt: any;
+  relatives: CharacterRelativeProps[];
+  createdAt: string;
+  updatedAt: string;
 }
 
 export class CharacterViewModel {
@@ -20,6 +29,8 @@ export class CharacterViewModel {
   }
 
   public static toHttp(character: CharacterEntity): CharacterProps {
+    //console.debug('Entity Return: ', JSON.stringify(character, null, 4));
+    //console.debug('Relatives: ', JSON.stringify(character.relatives, null, 4));
     return {
       id: character.id,
       name: character.name,
@@ -30,8 +41,18 @@ export class CharacterViewModel {
       livingStatus: character.livingStatus.name,
       powers: (character.powers && character.powers.map(power => power.name)) || [],
       teams: (character.teams && character.teams.map(team => team.name)) || [],
-      createdAt: character.createdAt,
-      updatedAt: character.updatedAt,
+      relatives:
+        (character.relatives &&
+          character.relatives.map(relative => ({
+            id: relative.relative.id,
+            name: relative.relative.name,
+            civilName: relative.relative.civilName,
+            relationship: relative.relationship.name,
+            relationshipAddedAt: relative.addedAt.toISOString(),
+          }))) ||
+        [],
+      createdAt: character.createdAt.toISOString(),
+      updatedAt: character.updatedAt.toISOString(),
     };
   }
 }

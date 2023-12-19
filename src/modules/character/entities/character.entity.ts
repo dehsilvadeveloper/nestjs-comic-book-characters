@@ -4,6 +4,7 @@ import { MaritalStatusEntity } from '@modules/common/entities/marital-status.ent
 import { LivingStatusEntity } from '@modules/common/entities/living-status.entity';
 import { PowerEntity } from '@modules/power/entities/power.entity';
 import { TeamEntity } from '@modules/team/entities/team.entity';
+import { CharacterRelativeEntity } from './character-relative.entity';
 
 export class CharacterEntity {
   id: number;
@@ -22,6 +23,8 @@ export class CharacterEntity {
   @Type(() => TeamEntity)
   @Transform(({ value }) => value.map(teamItem => teamItem.team))
   teams: TeamEntity[] | null;
+  @Type(() => CharacterRelativeEntity)
+  relatives: CharacterRelativeEntity[] | null;
   createdAt: Date;
   updatedAt: Date;
 }

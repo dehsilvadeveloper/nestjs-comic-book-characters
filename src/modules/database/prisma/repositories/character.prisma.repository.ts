@@ -95,8 +95,34 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
             },
           },
         },
+        relatives: {
+          select: {
+            id: true,
+            addedAt: true,
+            relationship: {
+              select: {
+                id: true,
+                name: true,
+              },
+            },
+            relative: {
+              select: {
+                id: true,
+                name: true,
+                civilName: true,
+              },
+            },
+          },
+          orderBy: {
+            relative: {
+              name: 'asc',
+            },
+          },
+        },
       },
     });
+
+    console.debug('Prisma Return: ', JSON.stringify(character, null, 4));
 
     return plainToInstance(CharacterEntity, character);
   }

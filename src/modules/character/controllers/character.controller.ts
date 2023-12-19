@@ -39,7 +39,6 @@ export class CharacterController {
       throw new NotFoundException(`Character of ID ${id} does not exists.`);
     }
 
-    //return character;
     return CharacterViewModel.toHttp(character);
   }
 }
