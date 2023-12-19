@@ -49,12 +49,12 @@ model Character {
 }
 
 model CharacterAlly {
-  id          Int        @id @default(autoincrement())
-  character   Character? @relation("allied_with", fields: [characterId], references: [id])
-  characterId Int?
-  ally        Character? @relation("allied_to", fields: [allyId], references: [id])
-  allyId      Int?
-  addedAt     DateTime   @default(now())
+  id          Int       @id @default(autoincrement())
+  character   Character @relation("allied_with", fields: [characterId], references: [id])
+  characterId Int
+  ally        Character @relation("allied_to", fields: [allyId], references: [id])
+  allyId      Int
+  addedAt     DateTime  @default(now())
 
   @@index([characterId])
   @@index([allyId])
@@ -62,12 +62,12 @@ model CharacterAlly {
 }
 
 model CharacterEnemy {
-  id          Int        @id @default(autoincrement())
-  character   Character? @relation("enemy_of", fields: [characterId], references: [id])
-  characterId Int?
-  enemy       Character? @relation("enemy_to", fields: [enemyId], references: [id])
-  enemyId     Int?
-  addedAt     DateTime   @default(now())
+  id          Int       @id @default(autoincrement())
+  character   Character @relation("enemy_of", fields: [characterId], references: [id])
+  characterId Int
+  enemy       Character @relation("enemy_to", fields: [enemyId], references: [id])
+  enemyId     Int
+  addedAt     DateTime  @default(now())
 
   @@index([characterId])
   @@index([enemyId])
@@ -75,15 +75,18 @@ model CharacterEnemy {
 }
 
 model CharacterRelative {
-  id          Int        @id @default(autoincrement())
-  character   Character? @relation("relative_of", fields: [characterId], references: [id])
-  characterId Int?
-  relative    Character? @relation("relative_to", fields: [relativeId], references: [id])
-  relativeId  Int?
-  addedAt     DateTime   @default(now())
+  id                 Int              @id @default(autoincrement())
+  character          Character        @relation("relative_of", fields: [characterId], references: [id])
+  characterId        Int
+  relative           Character        @relation("relative_to", fields: [relativeId], references: [id])
+  relativeId         Int
+  relationship       RelationshipType @relation(fields: [relationshipTypeId], references: [id])
+  relationshipTypeId Int
+  addedAt            DateTime         @default(now())
 
   @@index([characterId])
   @@index([relativeId])
+  @@index([relationshipTypeId])
   @@map(name: "character_relative")
 }
 
@@ -135,6 +138,14 @@ model Power {
   characters CharacterPower[]
 
   @@map(name: "power")
+}
+
+model RelationshipType {
+  id                Int                 @id @default(autoincrement())
+  name              String              @db.VarChar(100)
+  CharacterRelative CharacterRelative[]
+
+  @@map(name: "relationship_type")
 }
 
 model Team {
