@@ -5,6 +5,8 @@ import { LivingStatusEntity } from '@modules/common/entities/living-status.entit
 import { PowerEntity } from '@modules/power/entities/power.entity';
 import { TeamEntity } from '@modules/team/entities/team.entity';
 import { CharacterRelativeEntity } from './character-relative.entity';
+import { CharacterAllyEntity } from './character-ally.entity';
+import { CharacterEnemyEntity } from './character-enemy.entity';
 
 export class CharacterEntity {
   id: number;
@@ -25,6 +27,10 @@ export class CharacterEntity {
   teams: TeamEntity[] | null;
   @Type(() => CharacterRelativeEntity)
   relatives: CharacterRelativeEntity[] | null;
+  @Type(() => CharacterAllyEntity)
+  allies: CharacterAllyEntity[] | null;
+  @Type(() => CharacterEnemyEntity)
+  enemies: CharacterEnemyEntity[] | null;
   createdAt: Date;
   updatedAt: Date;
 }
