@@ -146,8 +146,6 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
       },
     });
 
-    console.debug('Prisma Return: ', JSON.stringify(character, null, 4));
-
     return plainToInstance(CharacterEntity, character);
   }
 

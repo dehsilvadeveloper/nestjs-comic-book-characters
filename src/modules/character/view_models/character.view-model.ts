@@ -1,36 +1,12 @@
 import { CharacterEntity } from '../entities/character.entity';
-
-interface CharacterRelativeProps {
-  id: number;
-  name: string;
-  civilName: string | null;
-  relationship: string;
-  relationshipAddedAt: string;
-}
-
-export interface CharacterProps {
-  id: number;
-  name: string;
-  civilName: string | null;
-  gender: string;
-  alignment: string;
-  maritalStatus: string;
-  livingStatus: string;
-  powers: string[];
-  teams: string[];
-  relatives: CharacterRelativeProps[];
-  createdAt: string;
-  updatedAt: string;
-}
+import { CharacterType } from '../types/character.type';
 
 export class CharacterViewModel {
   private constructor() {
     throw new Error('CharacterViewModel is a static class and should not be instantiated');
   }
 
-  public static toHttp(character: CharacterEntity): CharacterProps {
-    //console.debug('Entity Return: ', JSON.stringify(character, null, 4));
-    //console.debug('Relatives: ', JSON.stringify(character.relatives, null, 4));
+  public static toHttp(character: CharacterEntity): CharacterType {
     return {
       id: character.id,
       name: character.name,
@@ -49,6 +25,18 @@ export class CharacterViewModel {
             civilName: relative.relative.civilName,
             relationship: relative.relationship.name,
             relationshipAddedAt: relative.addedAt.toISOString(),
+          }))) ||
+        [],
+      allies:
+        (character.allies &&
+          character.allies.map(ally => ({ id: ally.ally.id, name: ally.ally.name, civilName: ally.ally.civilName }))) ||
+        [],
+      enemies:
+        (character.enemies &&
+          character.enemies.map(enemy => ({
+            id: enemy.enemy.id,
+            name: enemy.enemy.name,
+            civilName: enemy.enemy.civilName,
           }))) ||
         [],
       createdAt: character.createdAt.toISOString(),

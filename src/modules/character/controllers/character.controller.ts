@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, NotFoundException } from '@nestjs/common';
 import { CreateCharacterDto } from '../dtos/create-character.dto';
 import { UpdateCharacterDto } from '../dtos/update-character.dto';
-import { CharacterEntity } from '../entities/character.entity';
 import { CharacterService } from '../services/character.service';
 import { CharacterViewModel } from '../view_models/character.view-model';
+import { CharacterType } from '../types/character.type';
 import { NotFoundInterceptor } from '@modules/common/interceptors/not-found-interceptor';
 
 @UseInterceptors(NotFoundInterceptor)
@@ -32,7 +32,7 @@ export class CharacterController {
   }
 
   @Get(':id')
-  async firstById(@Param('id') id: number) {
+  async firstById(@Param('id') id: number): Promise<CharacterType> {
     const character = await this.characterService.firstById(+id);
 
     if (!character) {
