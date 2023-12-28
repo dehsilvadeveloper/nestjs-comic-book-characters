@@ -4,6 +4,7 @@ import { PrismaService } from '../prisma.service';
 import { CharacterEntity } from '@modules/character/entities/character.entity';
 import { CharacterRepositoryInterface } from '@modules/character/repositories/character.repository.interface';
 import { FindCharacterDto } from '@modules/character/dtos/find-character.dto';
+import { characterInclude } from '../constants/character.constants';
 import { CharacterNotFoundError } from '@modules/character/errors/character-not-found.error';
 
 @Injectable()
@@ -35,19 +36,22 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
   }
 
   async getAll(): Promise<CharacterEntity[]> {
-    const characters = await this.prismaService.character.findMany();
+    const characters = await this.prismaService.character.findMany({ include: characterInclude });
 
     return plainToInstance(CharacterEntity, characters);
   }
 
   async getByField(field: string, value: any): Promise<CharacterEntity[]> {
-    const characters = await this.prismaService.character.findMany({ where: { [field]: value } });
+    const characters = await this.prismaService.character.findMany({
+      where: { [field]: value },
+      include: characterInclude,
+    });
 
     return plainToInstance(CharacterEntity, characters);
   }
 
   async getWhere(where: FindCharacterDto): Promise<CharacterEntity[]> {
-    const characters = await this.prismaService.character.findMany({ where: where });
+    const characters = await this.prismaService.character.findMany({ where: where, include: characterInclude });
 
     return plainToInstance(CharacterEntity, characters);
   }
@@ -57,106 +61,23 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
       where: {
         id: id,
       },
-      include: {
-        alignment: true,
-        maritalStatus: true,
-        livingStatus: true,
-        powers: {
-          select: {
-            power: {
-              select: {
-                id: true,
-                name: true,
-                createdAt: true,
-                updatedAt: true,
-              }
-            }
-          },
-          orderBy: {
-            power: {
-              name: 'asc',
-            },
-          },
-        },
-        teams: {
-          select: {
-            team: {
-              select: {
-                id: true,
-                name: true,
-                createdAt: true,
-                updatedAt: true,
-              },
-            },
-          },
-          orderBy: {
-            team: {
-              name: 'asc',
-            },
-          },
-        },
-        relatives: {
-          select: {
-            id: true,
-            addedAt: true,
-            relationship: {
-              select: {
-                id: true,
-                name: true,
-              },
-            },
-            relative: {
-              select: {
-                id: true,
-                name: true,
-                civilName: true,
-              },
-            },
-          },
-          orderBy: {
-            relative: {
-              name: 'asc',
-            },
-          },
-        },
-        allies: {
-          select: {
-            id: true,
-            ally: {
-              select: {
-                id: true,
-                name: true,
-                civilName: true,
-              }
-            }
-          }
-        },
-        enemies: {
-          select: {
-            id: true,
-            enemy: {
-              select: {
-                id: true,
-                name: true,
-                civilName: true,
-              }
-            }
-          }
-        }
-      },
+      include: characterInclude,
     });
 
     return plainToInstance(CharacterEntity, character);
   }
 
   async firstByField(field: string, value: any): Promise<CharacterEntity | null> {
-    const character = await this.prismaService.character.findFirst({ where: { [field]: value } });
+    const character = await this.prismaService.character.findFirst({
+      where: { [field]: value },
+      include: characterInclude,
+    });
 
     return plainToInstance(CharacterEntity, character);
   }
 
   async firstWhere(where: FindCharacterDto): Promise<CharacterEntity | null> {
-    const character = await this.prismaService.character.findFirst({ where: where });
+    const character = await this.prismaService.character.findFirst({ where: where, include: characterInclude });
 
     return plainToInstance(CharacterEntity, character);
   }
