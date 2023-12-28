@@ -3,6 +3,8 @@ export interface ConfigProps {
   cors: CorsConfigProps;
   pagination: PaginationConfigProps;
   database: DatabaseConfigProps;
+  password: PasswordConfigProps;
+  jwt: JwtConfigProps;
 }
 
 export interface AppConfigProps {
@@ -44,4 +46,13 @@ export interface DatabaseConfigProps {
     password: string;
     connectionTimeout: number;
   };
+}
+
+export interface PasswordConfigProps {
+  roundsOfHashing: number;
+}
+
+export interface JwtConfigProps {
+  secret: string;
+  expiration: string;
 }
