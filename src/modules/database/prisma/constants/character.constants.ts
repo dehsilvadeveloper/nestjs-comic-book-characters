@@ -74,6 +74,11 @@ export const characterInclude = {
         },
       },
     },
+    orderBy: {
+      ally: {
+        name: 'asc',
+      },
+    },
   },
   enemies: {
     select: {
@@ -84,6 +89,11 @@ export const characterInclude = {
           name: true,
           civilName: true,
         },
+      },
+    },
+    orderBy: {
+      enemy: {
+        name: 'asc',
       },
     },
   },
