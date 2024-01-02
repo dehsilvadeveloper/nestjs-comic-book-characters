@@ -158,6 +158,15 @@ model Team {
   @@map(name: "team")
 }
 
+model User {
+  id        Int      @id @default(autoincrement())
+  name      String?  @db.VarChar(70)
+  email     String   @unique @db.VarChar(70)
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
 // ENUMS
 
 enum Gender {
