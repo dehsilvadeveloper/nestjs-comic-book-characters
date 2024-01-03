@@ -1,4 +1,5 @@
 import { PrismaClient } from '@prisma/client';
+import { userSeed } from './user/seeder';
 import { alignmentSeed } from './alignment/seeder';
 import { livingStatusSeed } from './living-status/seeder';
 import { maritalStatusSeed } from './marital-status/seeder';
@@ -26,6 +27,7 @@ async function main(): Promise<void> {
 async function seedEssentialData(): Promise<void> {
   console.info('Executing seeds for essential data!');
   
+  await userSeed(prisma);
   await alignmentSeed(prisma);
   await livingStatusSeed(prisma);
   await maritalStatusSeed(prisma);
