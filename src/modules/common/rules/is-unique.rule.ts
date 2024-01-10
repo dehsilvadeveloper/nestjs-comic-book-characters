@@ -3,8 +3,8 @@ import { ValidatorConstraint, ValidatorConstraintInterface, ValidationArguments 
 import { RepositoryService } from '@modules/common/services/repository.service';
 
 @Injectable()
-@ValidatorConstraint({ name: 'existsOnDatabase', async: true })
-export class ExistsOnDatabaseValidator implements ValidatorConstraintInterface {
+@ValidatorConstraint({ name: 'isUnique', async: true })
+export class IsUniqueValidator implements ValidatorConstraintInterface {
   constructor(private readonly repositoryService: RepositoryService) {}
 
   async validate(value: any, args: ValidationArguments): Promise<boolean> {
@@ -15,12 +15,12 @@ export class ExistsOnDatabaseValidator implements ValidatorConstraintInterface {
     const filter = { [columnName]: value };
     const entity = await repository.firstWhere(filter);
 
-    return !!entity;
+    return !entity;
   }
 
   defaultMessage(args: ValidationArguments): string {
     const [property] = args.constraints;
     const { model: modelName, column: columnName } = property;
-    return `model ${modelName} with the ${columnName} provided does not exist on the database.`;
+    return `model ${modelName} with the ${columnName} provided already exists on the database.`;
   }
 }

@@ -3,16 +3,18 @@ import { PrismaService } from '../prisma.service';
 import { MaritalStatusEntity } from '@modules/common/entities/marital-status.entity';
 import { MaritalStatusRepositoryInterface } from '@modules/common/repositories/marital-status.repository.interface';
 import { FindMaritalStatusDto } from '@modules/common/dtos/find-marital-status.dto';
+import { CreateMaritalStatusDto } from '@modules/common/dtos/create-marital-status.dto';
+import { UpdateMaritalStatusDto } from '@modules/common/dtos/update-marital-status.dto';
 
 @Injectable()
 export class MaritalStatusPrismaRepository implements MaritalStatusRepositoryInterface {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(maritalStatus: MaritalStatusEntity): Promise<MaritalStatusEntity> {
+  async create(payload: CreateMaritalStatusDto): Promise<MaritalStatusEntity> {
     throw new Error('Method not implemented.');
   }
 
-  async update(maritalStatus: MaritalStatusEntity): Promise<MaritalStatusEntity> {
+  async update(id: number, payload: UpdateMaritalStatusDto): Promise<MaritalStatusEntity> {
     throw new Error('Method not implemented.');
   }
 

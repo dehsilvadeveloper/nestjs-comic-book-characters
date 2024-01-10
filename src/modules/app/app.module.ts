@@ -5,6 +5,7 @@ import { AppController } from './controllers/app.controller';
 import { DatabaseModule } from '@modules/database/database.module';
 import { CommonModule } from '@modules/common/common.module';
 import { CharacterModule } from '@modules/character/character.module';
+import { UserModule } from '@modules/user/user.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { CharacterModule } from '@modules/character/character.module';
     DatabaseModule,
     CommonModule,
     CharacterModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [],

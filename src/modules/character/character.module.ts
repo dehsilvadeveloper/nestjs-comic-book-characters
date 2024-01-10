@@ -4,8 +4,8 @@ import { CharacterService } from './services/character.service';
 import { DatabaseModule } from '@modules/database/database.module';
 
 @Module({
-  imports: [DatabaseModule],
   controllers: [CharacterController],
   providers: [CharacterService],
+  imports: [DatabaseModule],
 })
 export class CharacterModule {}

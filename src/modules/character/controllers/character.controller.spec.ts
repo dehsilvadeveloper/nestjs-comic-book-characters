@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { CharacterController } from './character.controller';
 import { CharacterService } from '../services/character.service';
 
-describe('CharactersController', () => {
+describe('CharacterController', () => {
   let controller: CharacterController;
 
   beforeEach(async () => {

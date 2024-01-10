@@ -44,8 +44,8 @@ async function bootstrap() {
     appFullBaseUrl = `${appFullBaseUrl}/${appVersionPrefix}${appVersion}`;
   }
 
-  // Validation pipeline
-  app.useGlobalPipes(new ValidationPipe());
+  // Global validation pipeline
+  app.useGlobalPipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }));
 
   // Enable shutdown hook explicitly
   app.enableShutdownHooks();

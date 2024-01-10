@@ -22,16 +22,16 @@ export class CreateCharacterDto {
 
   @IsNotEmpty()
   @IsNumber()
-  @ExistsOnDatabase({ model: 'alignment', column: 'id' }, { message: 'Alignment does not exists.' })
+  @ExistsOnDatabase({ model: 'alignment', column: 'id' }, { message: 'alignment provided does not exists' })
   alignmentId: number;
 
   @IsNotEmpty()
   @IsNumber()
-  @ExistsOnDatabase({ model: 'marital_status', column: 'id' }, { message: 'Marital Status does not exists.' })
+  @ExistsOnDatabase({ model: 'marital_status', column: 'id' }, { message: 'marital status provided does not exists' })
   maritalStatusId: number;
 
   @IsNotEmpty()
   @IsNumber()
-  @ExistsOnDatabase({ model: 'living_status', column: 'id' }, { message: 'Living Status does not exists.' })
+  @ExistsOnDatabase({ model: 'living_status', column: 'id' }, { message: 'living status provided does not exists' })
   livingStatusId: number;
 }

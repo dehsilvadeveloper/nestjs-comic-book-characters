@@ -3,16 +3,18 @@ import { PrismaService } from '../prisma.service';
 import { LivingStatusEntity } from '@modules/common/entities/living-status.entity';
 import { LivingStatusRepositoryInterface } from '@modules/common/repositories/living-status.repository.interface';
 import { FindLivingStatusDto } from '@modules/common/dtos/find-living-status.dto';
+import { CreateLivingStatusDto } from '@modules/common/dtos/create-living-status.dto';
+import { UpdateLivingStatusDto } from '@modules/common/dtos/update-living-status.dto';
 
 @Injectable()
 export class LivingStatusPrismaRepository implements LivingStatusRepositoryInterface {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(livingStatus: LivingStatusEntity): Promise<LivingStatusEntity> {
+  async create(payload: CreateLivingStatusDto): Promise<LivingStatusEntity> {
     throw new Error('Method not implemented.');
   }
 
-  async update(livingStatus: LivingStatusEntity): Promise<LivingStatusEntity> {
+  async update(id: number, payload: UpdateLivingStatusDto): Promise<LivingStatusEntity> {
     throw new Error('Method not implemented.');
   }
 

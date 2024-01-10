@@ -3,16 +3,18 @@ import { PrismaService } from '../prisma.service';
 import { AlignmentEntity } from '@modules/common/entities/alignment.entity';
 import { AlignmentRepositoryInterface } from '@modules/common/repositories/alignment.repository.interface';
 import { FindAlignmentDto } from '@modules/common/dtos/find-alignment.dto';
+import { CreateAlignmentDto } from '@modules/common/dtos/create-alignment.dto';
+import { UpdateAlignmentDto } from '@modules/common/dtos/update-alignment.dto';
 
 @Injectable()
 export class AlignmentPrismaRepository implements AlignmentRepositoryInterface {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(alignment: AlignmentEntity): Promise<AlignmentEntity> {
+  async create(payload: CreateAlignmentDto): Promise<AlignmentEntity> {
     throw new Error('Method not implemented.');
   }
 
-  async update(alignment: AlignmentEntity): Promise<AlignmentEntity> {
+  async update(id: number, payload: UpdateAlignmentDto): Promise<AlignmentEntity> {
     throw new Error('Method not implemented.');
   }
 

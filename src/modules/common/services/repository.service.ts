@@ -4,6 +4,7 @@ import { AlignmentRepositoryInterface } from '../repositories/alignment.reposito
 import { LivingStatusRepositoryInterface } from '../repositories/living-status.repository.interface';
 import { MaritalStatusRepositoryInterface } from '../repositories/marital-status.repository.interface';
 import { TeamRepositoryInterface } from '@modules/team/repositories/team.repository.interface';
+import { UserRepositoryInterface } from '@modules/user/repositories/user.repository.interface';
 
 @Injectable()
 export class RepositoryService {
@@ -13,6 +14,7 @@ export class RepositoryService {
     private readonly livingStatusRepository: LivingStatusRepositoryInterface,
     private readonly maritalStatusRepository: MaritalStatusRepositoryInterface,
     private readonly teamRepository: TeamRepositoryInterface,
+    private readonly userRepository: UserRepositoryInterface,
   ) {}
 
   getRepositoryByModelName(modelName: string) {
@@ -27,6 +29,8 @@ export class RepositoryService {
         return this.maritalStatusRepository;
       case 'team':
         return this.teamRepository;
+      case 'user':
+        return this.userRepository;
       default:
         throw new Error(`Could not found a repository related to the model name ${modelName}.`);
     }

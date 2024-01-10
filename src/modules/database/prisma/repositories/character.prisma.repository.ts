@@ -4,6 +4,8 @@ import { PrismaService } from '../prisma.service';
 import { CharacterEntity } from '@modules/character/entities/character.entity';
 import { CharacterRepositoryInterface } from '@modules/character/repositories/character.repository.interface';
 import { FindCharacterDto } from '@modules/character/dtos/find-character.dto';
+import { CreateCharacterDto } from '@modules/character/dtos/create-character.dto';
+import { UpdateCharacterDto } from '@modules/character/dtos/update-character.dto';
 import { characterInclude } from '../constants/character.constants';
 import { CharacterNotFoundError } from '@modules/character/errors/character-not-found.error';
 
@@ -11,11 +13,11 @@ import { CharacterNotFoundError } from '@modules/character/errors/character-not-
 export class CharacterPrismaRepository implements CharacterRepositoryInterface {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(character: CharacterEntity): Promise<CharacterEntity> {
+  async create(payload: CreateCharacterDto): Promise<CharacterEntity> {
     throw new Error('Method not implemented.');
   }
 
-  async update(character: CharacterEntity): Promise<CharacterEntity> {
+  async update(id: number, payload: UpdateCharacterDto): Promise<CharacterEntity> {
     throw new Error('Method not implemented.');
   }
 

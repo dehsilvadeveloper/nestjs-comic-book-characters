@@ -3,22 +3,27 @@
 @accept=application/json
 @contentType=application/json
 
-### POST characters
-POST {{baseUrl}}/characters
+### POST users
+POST {{baseUrl}}/users
 Accept: {{accept}}
 Content-Type: {{contentType}}
 
 {
-    "name": "a",
-    "alignmentId": 1
+    "name": "Generic App 1",
+    "email": "generic_1@app.com",
+    "password": "iamapassword"
 }
 
-### GET characters/:id
-GET {{baseUrl}}/characters/1
+### PATCH users/:id
+PATCH {{baseUrl}}/users/2
 Accept: {{accept}}
 Content-Type: {{contentType}}
 
-### GET characters/:id
-GET {{baseUrl}}/characters/19
+{
+    "name": "Generic App TTP1"
+}
+
+### GET users/:id
+GET {{baseUrl}}/users/2
 Accept: {{accept}}
 Content-Type: {{contentType}}

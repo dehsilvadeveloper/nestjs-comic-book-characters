@@ -2,6 +2,7 @@ import { Injectable, NestInterceptor, ExecutionContext, CallHandler, NotFoundExc
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CharacterNotFoundError } from '@modules/character/errors/character-not-found.error';
+import { UserNotFoundError } from '@modules/user/errors/user-not-found.error';
 
 @Injectable()
 export class NotFoundInterceptor implements NestInterceptor {
@@ -18,6 +19,6 @@ export class NotFoundInterceptor implements NestInterceptor {
   }
 
   private getMappableErrors(): any[] {
-    return [CharacterNotFoundError];
+    return [CharacterNotFoundError, UserNotFoundError];
   }
 }
