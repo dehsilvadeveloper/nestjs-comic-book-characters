@@ -33,4 +33,8 @@ export class UserService {
   async firstById(id: number): Promise<UserEntity | null> {
     return await this.userRepository.firstById(id);
   }
+
+  async firstByField(field: string, value: any): Promise<UserEntity | null> {
+    return await this.userRepository.firstByField(field, value);
+  }
 }

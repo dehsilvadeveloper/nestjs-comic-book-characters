@@ -4,6 +4,7 @@ import { config } from '@config/config';
 import { AppController } from './controllers/app.controller';
 import { DatabaseModule } from '@modules/database/database.module';
 import { CommonModule } from '@modules/common/common.module';
+import { AuthModule } from '@modules/auth/auth.module';
 import { CharacterModule } from '@modules/character/character.module';
 import { UserModule } from '@modules/user/user.module';
 
@@ -15,6 +16,7 @@ import { UserModule } from '@modules/user/user.module';
     }),
     DatabaseModule,
     CommonModule,
+    AuthModule,
     CharacterModule,
     UserModule,
   ],

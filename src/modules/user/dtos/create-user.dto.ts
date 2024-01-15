@@ -11,7 +11,7 @@ export class CreateUserDto {
   @IsNotEmpty()
   @IsString()
   @IsEmail()
-  @MinLength(2)
+  @MinLength(6)
   @MaxLength(70)
   @IsUnique({ model: 'user', column: 'email' }, { message: 'email provided already exists' })
   email: string;

@@ -4,7 +4,7 @@ export class UserEntity {
   id: number;
   name: string | null;
   email: string;
-  @Exclude()
+  @Exclude({ toPlainOnly: true })
   password: string;
   createdAt: Date;
   updatedAt: Date;
