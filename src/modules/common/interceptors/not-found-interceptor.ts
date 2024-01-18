@@ -7,9 +7,11 @@ import { UserNotFoundError } from '@modules/user/errors/user-not-found.error';
 @Injectable()
 export class NotFoundInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const errorTypes = this.getInterceptableErrors();
+
     return next.handle().pipe(
       catchError(error => {
-        if (error.constructor in this.getMappableErrors()) {
+        if (errorTypes.some(errorType => error instanceof errorType)) {
           throw new NotFoundException(error.message);
         }
 
@@ -18,7 +20,7 @@ export class NotFoundInterceptor implements NestInterceptor {
     );
   }
 
-  private getMappableErrors(): any[] {
+  private getInterceptableErrors(): any[] {
     return [CharacterNotFoundError, UserNotFoundError];
   }
 }

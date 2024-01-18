@@ -1,0 +1,100 @@
+########################################
+#
+#  GLOBAL VARIABLES
+#
+########################################
+
+@baseUrl=http://localhost:3000/api/v1
+@accept=application/json
+@contentType=application/json
+
+########################################
+#
+#  AUTHORIZATION
+#
+########################################
+
+### Login / Access Token Generation
+# @name authLogin
+
+POST {{baseUrl}}/auth/login
+Accept: {{accept}}
+Content-Type: {{contentType}}
+
+{
+    "email": "default@app.com",
+    "password": "defaultpassword"
+}
+
+### Access Token Definition
+
+@accessToken={{authLogin.response.body.accessToken}}
+
+########################################
+#
+#  CHARACTER
+#
+########################################
+
+### Create Character
+
+POST {{baseUrl}}/characters
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+{
+    "name": "a",
+    "alignmentId": 1
+}
+
+### Get Character By ID
+
+GET {{baseUrl}}/characters/1
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+### Get Character By ID
+
+GET {{baseUrl}}/characters/19
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
+#  USER
+#
+########################################
+
+### Create User
+
+POST {{baseUrl}}/users
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+{
+    "name": "Generic App 1",
+    "email": "generic_1@app.com",
+    "password": "iamapassword"
+}
+
+### Update User
+
+PATCH {{baseUrl}}/users/2
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+{
+    "name": "Generic App 1 Special"
+}
+
+### Get User By ID
+
+GET {{baseUrl}}/users/2
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}

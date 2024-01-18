@@ -4,11 +4,13 @@ import { catchError } from 'rxjs/operators';
 import { UnauthorizedError } from '../errors/unauthorized.error';
 
 @Injectable()
-export class UnautorizedInterceptor implements NestInterceptor {
+export class UnauthorizedInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const errorTypes = this.getInterceptableErrors();
+
     return next.handle().pipe(
       catchError(error => {
-        if (error.constructor in this.getMappableErrors()) {
+        if (errorTypes.some(errorType => error instanceof errorType)) {
           throw new UnauthorizedException(error.message);
         }
 
@@ -17,7 +19,7 @@ export class UnautorizedInterceptor implements NestInterceptor {
     );
   }
 
-  private getMappableErrors(): any[] {
+  private getInterceptableErrors(): any[] {
     return [UnauthorizedError];
   }
 }

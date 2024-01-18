@@ -15,17 +15,21 @@ export class AuthService {
   ) {}
 
   async login(payload: LoginDto): Promise<{ accessToken: string; expiresAt: Date }> {
-    const validatedUser = await this.validateUser(payload.email, payload.password);
+    try {
+      const validatedUser = await this.validateUser(payload.email, payload.password);
 
-    const accessToken = this.jwtService.sign({ sub: validatedUser.id, email: validatedUser.email });
+      const accessToken = this.jwtService.sign({ sub: validatedUser.id, email: validatedUser.email });
 
-    const decodedAccessToken = this.jwtService.decode(accessToken, { json: true });
-    const expiration = new Date(decodedAccessToken.exp * 1000);
+      const decodedAccessToken = this.jwtService.decode(accessToken, { json: true });
+      const expiration = new Date(decodedAccessToken.exp * 1000);
 
-    return {
-      accessToken: accessToken,
-      expiresAt: expiration,
-    };
+      return {
+        accessToken: accessToken,
+        expiresAt: expiration,
+      };
+    } catch (error) {
+      throw error;
+    }
   }
 
   async validateUser(email: string, password: string): Promise<UserEntity> {

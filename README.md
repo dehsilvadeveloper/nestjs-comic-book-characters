@@ -36,21 +36,25 @@ The project was created for refinement of NestJS knowledge. It also work as a sk
 
 - [x] Database with **Prisma ORM**
 - [x] Seeding
-- [x] Config service (using **@nestjs/config**)
-- [ ] Request validation with DTOs (using **class-validator**)
+- [x] Config variables (using **.env** file and **@nestjs/config**)
+- [X] Request validation with DTOs (using **class-validator**)
 - [ ] Service layer to hold business logic
-- [ ] Repository layer, allowing another ORM to be used if necessary as long as it respects the estabilished contracts
+- [ ] Repository layer, allowing another ORM to be used if necessary as long as it respects the established contracts
 - [ ] Base repository interface using typescript *generics*
+- [X] Authentication with *JWT* and *Passport* (the routes are protected with a *guard* using *jwt strategy* and *local strategy*)
+- [ ] Healthcheck route (to help validate the status of the api, indicating if available or not)
 - [ ] Api documentation (using Scribe)
 - [ ] Units tests (using Jest)
-- [ ] Files inside folder *workspace* to be used to make requests on **Visual Studio Code** IDE with the extension **REST Client** (for when Postman or Insomnia is not available)
+- [X] File with API endpoints inside folder *workspace* to be used to make requests on **Visual Studio Code** IDE with the extension **REST Client** (for when Postman or Insomnia are not available)
 - [x] Dockerfile with multi stage build
 
 ## Docs
 
 * [Getting Started](./docs/getting_started.md)
-* [Development instructions](./docs/development_instructions.md)
+* [Accessing Database With Prisma Studio](./docs/prisma_studio.md)
+* [Project Structure](./docs/project_structure.md)
 * [Database Structure](./docs/database_structure.md)
+* [Development instructions](./docs/development_instructions.md)
 * [CORS](./docs/cors.md)
 * [Running Tests](./docs/running_tests.md)
 * [Available Yarn Scripts](./docs/available_yarn_scripts.md)

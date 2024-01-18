@@ -38,13 +38,23 @@ If you look at the database and see that no table has data (at least one of them
 docker-compose exec main yarn run prisma:seed
 ```
 
+You can obtain more details about accessing the database with the following link:
+
+[Accessing Database With Prisma Studio](./docs/prisma_studio.md)
+
 5. After following the install steps, the application is ready to use on the following url:
 
 ```
 http://localhost:3333/api/v1
 ```
 
-The url can be different depending on the variables defined in the .env file.
+**Note:** The port, the global prefix and the default version used on the application can be changed using the following environment variables:
+
+```
+APP_PORT_EXTERNAL
+API_GLOBAL_PREFIX
+API_DEFAULT_VERSION
+```
 
 You only need to make the install procedure once.
 
@@ -87,3 +97,30 @@ To test the API endpoints you will need a program that can perform http requests
 [Postman](https://www.postman.com/downloads/)
 
 [Insomnia](https://insomnia.rest/download)
+
+You can get more details about the api endpoints on the following documentation:
+
+[Api Documentation](./docs/api_documentation.md)
+
+### Authentication
+
+This application uses **JSON Web Token (JWT)** to handle authentication. The *access token* is passed with each request using the Authorization header with token scheme.
+
+You get a *default user* that you have to use to generate the access token. The credentials of this user are these:
+
+```
+{
+  "email": "default@app.com",
+  "password": "defaultpassword"
+}
+```
+
+To know how to use the endpoints related to authentication, refer to the api endpoints documentation.
+
+[Api Documentation](./docs/api_documentation.md)
+
+### Accessing the database
+
+To access the application database, you can use the **Prisma Studio**. More details are available on the following link:
+
+[Accessing Database With Prisma Studio](./docs/prisma_studio.md)

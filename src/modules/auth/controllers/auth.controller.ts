@@ -3,9 +3,10 @@ import { AuthService } from '../services/auth.service';
 import { LoginDto } from '../dtos/login.dto';
 import { SuccessfulAuthViewModel } from '../view_models/successful-auth.view-model';
 import { SuccessfulAuthType } from '../types/successful-auth.type';
-import { UnautorizedInterceptor } from '../interceptors/unauthorized.interceptor';
+import { UnauthorizedInterceptor } from '../interceptors/unauthorized.interceptor';
+import { NotFoundInterceptor } from '@modules/common/interceptors/not-found-interceptor';
 
-@UseInterceptors(UnautorizedInterceptor)
+@UseInterceptors(UnauthorizedInterceptor, NotFoundInterceptor)
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
