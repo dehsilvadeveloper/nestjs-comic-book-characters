@@ -30,6 +30,14 @@ Content-Type: {{contentType}}
 
 @accessToken={{authLogin.response.body.accessToken}}
 
+### Get Authenticated User Data
+# @name authMe
+
+GET {{baseUrl}}/auth/me
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
 ########################################
 #
 #  CHARACTER

@@ -14,6 +14,22 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
+  async validateUser(email: string, password: string): Promise<UserEntity> {
+    const user = await this.userService.firstByField('email', email);
+
+    if (!user) {
+      throw new UserNotFoundError(`Could not found a valid user with the email: ${email} .`);
+    }
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      throw new UnauthorizedError('The password provided is invalid.');
+    }
+
+    return user;
+  }
+
   async login(payload: LoginDto): Promise<{ accessToken: string; expiresAt: Date }> {
     try {
       const validatedUser = await this.validateUser(payload.email, payload.password);
@@ -30,21 +46,5 @@ export class AuthService {
     } catch (error) {
       throw error;
     }
-  }
-
-  async validateUser(email: string, password: string): Promise<UserEntity> {
-    const user = await this.userService.firstByField('email', email);
-
-    if (!user) {
-      throw new UserNotFoundError(`Could not found a valid user with the email: ${email} .`);
-    }
-
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-
-    if (!isPasswordValid) {
-      throw new UnauthorizedError('The password provided is invalid.');
-    }
-
-    return user;
   }
 }
