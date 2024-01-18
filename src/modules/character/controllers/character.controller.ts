@@ -43,8 +43,8 @@ export class CharacterController {
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  getAll() {
-    return this.characterService.getAll();
+  async getAll() {
+    return await this.characterService.getAll();
   }
 
   @Get(':id')

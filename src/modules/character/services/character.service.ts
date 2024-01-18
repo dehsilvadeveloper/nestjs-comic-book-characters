@@ -20,8 +20,8 @@ export class CharacterService {
     return `This action removes a #${id} character`;
   }
 
-  getAll() {
-    return `This action returns all characters`;
+  async getAll() {
+    return await this.characterRepository.getAll();
   }
 
   async firstById(id: number): Promise<CharacterEntity | null> {

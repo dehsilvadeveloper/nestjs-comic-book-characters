@@ -56,6 +56,13 @@ Authorization: Bearer {{accessToken}}
     "alignmentId": 1
 }
 
+### Get List Of Characters
+
+GET {{baseUrl}}/characters
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
 ### Get Character By ID
 
 GET {{baseUrl}}/characters/1
