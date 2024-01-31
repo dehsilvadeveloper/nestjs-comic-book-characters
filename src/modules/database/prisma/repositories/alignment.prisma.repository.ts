@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { plainToInstance } from 'class-transformer';
 import { PrismaService } from '../prisma.service';
 import { AlignmentEntity } from '@modules/common/entities/alignment.entity';
 import { AlignmentRepositoryInterface } from '@modules/common/repositories/alignment.repository.interface';
@@ -49,6 +50,8 @@ export class AlignmentPrismaRepository implements AlignmentRepositoryInterface {
   }
 
   async firstWhere(where: FindAlignmentDto): Promise<AlignmentEntity | null> {
-    throw new Error('Method not implemented.');
+    const alignment = await this.prismaService.alignment.findFirst({ where: where });
+
+    return plainToInstance(AlignmentEntity, alignment);
   }
 }

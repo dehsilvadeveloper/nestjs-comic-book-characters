@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { plainToInstance } from 'class-transformer';
 import { PrismaService } from '../prisma.service';
 import { TeamEntity } from '@modules/team/entities/team.entity';
 import { TeamRepositoryInterface } from '@modules/team/repositories/team.repository.interface';
@@ -49,6 +50,8 @@ export class TeamPrismaRepository implements TeamRepositoryInterface {
   }
 
   async firstWhere(where: FindTeamDto): Promise<TeamEntity | null> {
-    throw new Error('Method not implemented.');
+    const team = await this.prismaService.team.findFirst({ where: where });
+
+    return plainToInstance(TeamEntity, team);
   }
 }

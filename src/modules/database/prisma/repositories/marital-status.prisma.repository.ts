@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { plainToInstance } from 'class-transformer';
 import { PrismaService } from '../prisma.service';
 import { MaritalStatusEntity } from '@modules/common/entities/marital-status.entity';
 import { MaritalStatusRepositoryInterface } from '@modules/common/repositories/marital-status.repository.interface';
@@ -49,6 +50,8 @@ export class MaritalStatusPrismaRepository implements MaritalStatusRepositoryInt
   }
 
   async firstWhere(where: FindMaritalStatusDto): Promise<MaritalStatusEntity | null> {
-    throw new Error('Method not implemented.');
+    const maritalStatus = await this.prismaService.maritalStatus.findFirst({ where: where });
+
+    return plainToInstance(MaritalStatusEntity, maritalStatus);
   }
 }

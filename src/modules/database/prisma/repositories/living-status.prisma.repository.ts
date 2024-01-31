@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { plainToInstance } from 'class-transformer';
 import { PrismaService } from '../prisma.service';
 import { LivingStatusEntity } from '@modules/common/entities/living-status.entity';
 import { LivingStatusRepositoryInterface } from '@modules/common/repositories/living-status.repository.interface';
@@ -49,6 +50,8 @@ export class LivingStatusPrismaRepository implements LivingStatusRepositoryInter
   }
 
   async firstWhere(where: FindLivingStatusDto): Promise<LivingStatusEntity | null> {
-    throw new Error('Method not implemented.');
+    const livingStatus = await this.prismaService.livingStatus.findFirst({ where: where });
+
+    return plainToInstance(LivingStatusEntity, livingStatus);
   }
 }

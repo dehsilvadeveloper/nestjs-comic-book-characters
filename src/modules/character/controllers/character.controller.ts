@@ -29,7 +29,8 @@ export class CharacterController {
   @Post()
   @UseGuards(JwtAuthGuard)
   create(@Body() createCharacterDto: CreateCharacterDto) {
-    return this.characterService.create(createCharacterDto);
+    return 'here I return the character created.';
+    //return this.characterService.create(createCharacterDto);
   }
 
   @Patch(':id')
