@@ -7,7 +7,10 @@ import { FindCharacterDto } from '@modules/character/dtos/find-character.dto';
 import { CreateCharacterDto } from '@modules/character/dtos/create-character.dto';
 import { UpdateCharacterDto } from '@modules/character/dtos/update-character.dto';
 import { characterInclude } from '../constants/character.constants';
+import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
 import { CharacterNotFoundError } from '@modules/character/errors/character-not-found.error';
+import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
+import { SortingOptions } from '@modules/common/value_objects/sorting-options';
 
 @Injectable()
 export class CharacterPrismaRepository implements CharacterRepositoryInterface {
@@ -52,10 +55,34 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
     return plainToInstance(CharacterEntity, characters);
   }
 
-  async getWhere(where: FindCharacterDto): Promise<CharacterEntity[]> {
-    const characters = await this.prismaService.character.findMany({ where: where, include: characterInclude });
+  async getWhere(
+    paginationOptions: PaginationOptions,
+    sortingOptions: SortingOptions,
+  ): Promise<PaginatedOutputType<CharacterEntity>> {
+    const [characters, count] = await this.prismaService.$transaction([
+      this.prismaService.character.findMany({
+        include: characterInclude,
+        orderBy: sortingOptions.orderBy,
+        take: paginationOptions.take,
+        skip: paginationOptions.skip,
+      }),
+      this.prismaService.character.count(),
+    ]);
 
-    return plainToInstance(CharacterEntity, characters);
+    const characterList = plainToInstance(CharacterEntity, characters);
+    const totalPages = Math.ceil(count / paginationOptions.pageSize);
+
+    return {
+      meta: {
+        total: count,
+        pageSize: paginationOptions.pageSize,
+        lastPage: totalPages,
+        currentPage: paginationOptions.page,
+        prevPage: paginationOptions.page > 1 ? paginationOptions.page - 1 : null,
+        nextPage: paginationOptions.page < totalPages ? paginationOptions.page + 1 : null,
+      },
+      data: characterList,
+    };
   }
 
   async firstById(id: number): Promise<CharacterEntity | null> {

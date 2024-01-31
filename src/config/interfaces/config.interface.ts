@@ -2,6 +2,7 @@ export interface ConfigProps {
   app: AppConfigProps;
   cors: CorsConfigProps;
   pagination: PaginationConfigProps;
+  sorting: SortingConfigProps;
   database: DatabaseConfigProps;
   password: PasswordConfigProps;
   jwt: JwtConfigProps;
@@ -33,6 +34,10 @@ export interface CorsConfigProps {
 
 export interface PaginationConfigProps {
   pageSize: number;
+}
+
+export interface SortingConfigProps {
+  sortOrder: string;
 }
 
 export interface DatabaseConfigProps {

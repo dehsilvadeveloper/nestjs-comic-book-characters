@@ -26,6 +26,8 @@ src/
 │   │   │   └── update-character.dto.ts
 │   │   ├── entities/ # Model classes
 │   │   │   └── character.entity.ts
+│   │   ├── enums/ # Enum classes
+│   │   │   └── character-sortable-fields.enum.ts
 │   │   ├── errors/ # Error classes used on some application layers, like the service layer
 │   │   │   └── character-not-found.error.ts
 │   │   ├── repositories/ # Established contracts for repositories classes related to the resource

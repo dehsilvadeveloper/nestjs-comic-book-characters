@@ -6,6 +6,9 @@ import { UserRepositoryInterface } from '@modules/user/repositories/user.reposit
 import { FindUserDto } from '@modules/user/dtos/find-user.dto';
 import { CreateUserDto } from '@modules/user/dtos/create-user.dto';
 import { UpdateUserDto } from '@modules/user/dtos/update-user.dto';
+import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
+import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
+import { SortingOptions } from '@modules/common/value_objects/sorting-options';
 import { UserNotFoundError } from '@modules/user/errors/user-not-found.error';
 
 @Injectable()
@@ -74,10 +77,11 @@ export class UserPrismaRepository implements UserRepositoryInterface {
     return plainToInstance(UserEntity, users);
   }
 
-  async getWhere(where: FindUserDto): Promise<UserEntity[]> {
-    const users = await this.prismaService.user.findMany({ where: where });
-
-    return plainToInstance(UserEntity, users);
+  async getWhere(
+    paginationOptions: PaginationOptions,
+    sortingOptions: SortingOptions,
+  ): Promise<PaginatedOutputType<UserEntity>> {
+    throw new Error('Method not implemented.');
   }
 
   async firstById(id: number): Promise<UserEntity | null> {

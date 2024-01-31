@@ -5,6 +5,9 @@ import { MaritalStatusRepositoryInterface } from '@modules/common/repositories/m
 import { FindMaritalStatusDto } from '@modules/common/dtos/find-marital-status.dto';
 import { CreateMaritalStatusDto } from '@modules/common/dtos/create-marital-status.dto';
 import { UpdateMaritalStatusDto } from '@modules/common/dtos/update-marital-status.dto';
+import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
+import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
+import { SortingOptions } from '@modules/common/value_objects/sorting-options';
 
 @Injectable()
 export class MaritalStatusPrismaRepository implements MaritalStatusRepositoryInterface {
@@ -30,7 +33,10 @@ export class MaritalStatusPrismaRepository implements MaritalStatusRepositoryInt
     throw new Error('Method not implemented.');
   }
 
-  async getWhere(where: FindMaritalStatusDto): Promise<MaritalStatusEntity[]> {
+  async getWhere(
+    paginationOptions: PaginationOptions,
+    sortingOptions: SortingOptions,
+  ): Promise<PaginatedOutputType<MaritalStatusEntity>> {
     throw new Error('Method not implemented.');
   }
 

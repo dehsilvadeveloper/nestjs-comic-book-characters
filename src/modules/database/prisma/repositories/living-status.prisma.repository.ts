@@ -5,6 +5,9 @@ import { LivingStatusRepositoryInterface } from '@modules/common/repositories/li
 import { FindLivingStatusDto } from '@modules/common/dtos/find-living-status.dto';
 import { CreateLivingStatusDto } from '@modules/common/dtos/create-living-status.dto';
 import { UpdateLivingStatusDto } from '@modules/common/dtos/update-living-status.dto';
+import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
+import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
+import { SortingOptions } from '@modules/common/value_objects/sorting-options';
 
 @Injectable()
 export class LivingStatusPrismaRepository implements LivingStatusRepositoryInterface {
@@ -30,7 +33,10 @@ export class LivingStatusPrismaRepository implements LivingStatusRepositoryInter
     throw new Error('Method not implemented.');
   }
 
-  async getWhere(where: FindLivingStatusDto): Promise<LivingStatusEntity[]> {
+  async getWhere(
+    paginationOptions: PaginationOptions,
+    sortingOptions: SortingOptions,
+  ): Promise<PaginatedOutputType<LivingStatusEntity>> {
     throw new Error('Method not implemented.');
   }
 

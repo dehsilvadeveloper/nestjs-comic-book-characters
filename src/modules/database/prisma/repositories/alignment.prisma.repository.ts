@@ -5,6 +5,9 @@ import { AlignmentRepositoryInterface } from '@modules/common/repositories/align
 import { FindAlignmentDto } from '@modules/common/dtos/find-alignment.dto';
 import { CreateAlignmentDto } from '@modules/common/dtos/create-alignment.dto';
 import { UpdateAlignmentDto } from '@modules/common/dtos/update-alignment.dto';
+import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
+import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
+import { SortingOptions } from '@modules/common/value_objects/sorting-options';
 
 @Injectable()
 export class AlignmentPrismaRepository implements AlignmentRepositoryInterface {
@@ -30,7 +33,10 @@ export class AlignmentPrismaRepository implements AlignmentRepositoryInterface {
     throw new Error('Method not implemented.');
   }
 
-  async getWhere(where: FindAlignmentDto): Promise<AlignmentEntity[]> {
+  async getWhere(
+    paginationOptions: PaginationOptions,
+    sortingOptions: SortingOptions,
+  ): Promise<PaginatedOutputType<AlignmentEntity>> {
     throw new Error('Method not implemented.');
   }
 

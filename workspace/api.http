@@ -59,6 +59,10 @@ Authorization: Bearer {{accessToken}}
 ### Get List Of Characters
 
 GET {{baseUrl}}/characters
+ ?page=1
+ &pageSize=5
+ &sortBy=name
+ &sortOrder=asc
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}

@@ -5,6 +5,9 @@ import { TeamRepositoryInterface } from '@modules/team/repositories/team.reposit
 import { FindTeamDto } from '@modules/team/dtos/find-team.dto';
 import { CreateTeamDto } from '@modules/team/dtos/create-team.dto';
 import { UpdateTeamDto } from '@modules/team/dtos/update-team.dto';
+import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
+import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
+import { SortingOptions } from '@modules/common/value_objects/sorting-options';
 
 @Injectable()
 export class TeamPrismaRepository implements TeamRepositoryInterface {
@@ -30,7 +33,10 @@ export class TeamPrismaRepository implements TeamRepositoryInterface {
     throw new Error('Method not implemented.');
   }
 
-  async getWhere(where: FindTeamDto): Promise<TeamEntity[]> {
+  async getWhere(
+    paginationOptions: PaginationOptions,
+    sortingOptions: SortingOptions,
+  ): Promise<PaginatedOutputType<TeamEntity>> {
     throw new Error('Method not implemented.');
   }
 

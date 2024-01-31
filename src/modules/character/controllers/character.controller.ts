@@ -1,5 +1,6 @@
 import {
   Controller,
+  Query,
   Get,
   Post,
   Body,
@@ -12,9 +13,11 @@ import {
 } from '@nestjs/common';
 import { CreateCharacterDto } from '../dtos/create-character.dto';
 import { UpdateCharacterDto } from '../dtos/update-character.dto';
+import { CharacterListOptionsDto } from '../dtos/character-list-options.dto';
 import { CharacterService } from '../services/character.service';
 import { CharacterViewModel } from '../view_models/character.view-model';
 import { CharacterType } from '../types/character.type';
+import { CharacterListType } from '../types/character-list.type';
 import { NotFoundInterceptor } from '@modules/common/interceptors/not-found-interceptor';
 import { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard';
 
@@ -43,8 +46,15 @@ export class CharacterController {
 
   @Get()
   @UseGuards(JwtAuthGuard)
-  async getAll() {
-    return await this.characterService.getAll();
+  async getWhere(@Query() options: CharacterListOptionsDto): Promise<CharacterListType> {
+    const characterPaginatedOutput = await this.characterService.getWhere(options);
+
+    const formatedCharacterList = characterPaginatedOutput.data.map(CharacterViewModel.toHttp);
+
+    return {
+      ...characterPaginatedOutput,
+      data: formatedCharacterList,
+    };
   }
 
   @Get(':id')
