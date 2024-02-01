@@ -20,8 +20,8 @@ export class CharacterService {
     return `This action updates a #${id} character`;
   }
 
-  delete(id: number) {
-    return `This action removes a #${id} character`;
+  async delete(id: number): Promise<boolean> {
+    return await this.characterRepository.delete(id);
   }
 
   async getByField(field: string, value: any): Promise<CharacterEntity[]> {

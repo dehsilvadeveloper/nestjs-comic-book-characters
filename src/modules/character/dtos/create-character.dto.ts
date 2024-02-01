@@ -19,7 +19,7 @@ export class CreateCharacterDto {
   @IsNotEmpty()
   @IsString()
   @IsEnum(GenderNameEnum)
-  gender: string;
+  gender: GenderNameEnum;
 
   @IsNotEmpty()
   @IsInt()

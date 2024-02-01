@@ -52,8 +52,12 @@ Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
 
 {
-    "name": "a",
-    "alignmentId": 1
+    "name": "Cyclops",
+    "civilName": "Scott Summers",
+    "gender": "male",
+    "alignmentId": 1,
+    "maritalStatusId": 6,
+    "livingStatusId": 1
 }
 
 ### Get List Of Characters
@@ -77,6 +81,13 @@ Authorization: Bearer {{accessToken}}
 ### Get Character By ID
 
 GET {{baseUrl}}/characters/19
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+### Delete Character By ID
+
+DELETE {{baseUrl}}/characters/23
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}

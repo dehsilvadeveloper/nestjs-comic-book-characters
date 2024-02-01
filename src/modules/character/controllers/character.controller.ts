@@ -28,9 +28,9 @@ export class CharacterController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  create(@Body() createCharacterDto: CreateCharacterDto) {
-    return 'here I return the character created.';
-    //return this.characterService.create(createCharacterDto);
+  async create(@Body() createCharacterDto: CreateCharacterDto) {
+    //return 'here I return the character created.';
+    return await this.characterService.create(createCharacterDto);
   }
 
   @Patch(':id')
@@ -41,8 +41,10 @@ export class CharacterController {
 
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
-  delete(@Param('id') id: number) {
-    return this.characterService.delete(+id);
+  async delete(@Param('id') id: number): Promise<{ message: string }> {
+    await this.characterService.delete(+id);
+
+    return { message: 'The character was deleted.' };
   }
 
   @Get()
