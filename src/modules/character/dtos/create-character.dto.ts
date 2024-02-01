@@ -41,4 +41,9 @@ export class CreateCharacterDto {
   @ExistsOnDatabase({ model: 'living_status', column: 'id' }, { message: 'living status provided does not exists' })
   @Transform(({ value }) => parseInt(value))
   livingStatusId: number;
+
+  @IsOptional()
+  @IsInt({ each: true })
+  @IsPositive({ each: true })
+  powers: number[];
 }

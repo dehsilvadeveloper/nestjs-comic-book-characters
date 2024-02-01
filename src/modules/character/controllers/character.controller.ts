@@ -18,10 +18,11 @@ import { CharacterService } from '../services/character.service';
 import { CharacterViewModel } from '../view_models/character.view-model';
 import { CharacterType } from '../types/character.type';
 import { CharacterListType } from '../types/character-list.type';
-import { NotFoundInterceptor } from '@modules/common/interceptors/not-found-interceptor';
+import { BadRequestInterceptor } from '@modules/common/interceptors/bad-request.interceptor';
+import { NotFoundInterceptor } from '@modules/common/interceptors/not-found.interceptor';
 import { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard';
 
-@UseInterceptors(NotFoundInterceptor)
+@UseInterceptors(BadRequestInterceptor, NotFoundInterceptor)
 @Controller('characters')
 export class CharacterController {
   constructor(private readonly characterService: CharacterService) {}

@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { Prisma } from '@prisma/client';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from '../prisma.service';
 import { CharacterEntity } from '@modules/character/entities/character.entity';
@@ -6,9 +7,11 @@ import { CharacterRepositoryInterface } from '@modules/character/repositories/ch
 import { FindCharacterDto } from '@modules/character/dtos/find-character.dto';
 import { CreateCharacterDto } from '@modules/character/dtos/create-character.dto';
 import { UpdateCharacterDto } from '@modules/character/dtos/update-character.dto';
+import { PrismaError } from '../constants/prisma_errors/all';
 import { characterInclude } from '../constants/character.constants';
 import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
 import { CharacterNotFoundError } from '@modules/character/errors/character-not-found.error';
+import { CharacterRelationshipInvalidError } from '../../../character/errors/character-relationship-invalid.error';
 import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
 import { SortingOptions } from '@modules/common/value_objects/sorting-options';
 
@@ -17,12 +20,55 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
   constructor(private readonly prismaService: PrismaService) {}
 
   async create(payload: CreateCharacterDto): Promise<CharacterEntity> {
-    const characterCreated = await this.prismaService.character.create({
-      data: payload,
-      include: characterInclude,
-    });
+    try {
+      const character = await this.prismaService.$transaction(async prisma => {
+        // Create the character
+        let characterCreated = await prisma.character.create({
+          data: {
+            name: payload.name,
+            civilName: payload.civilName,
+            gender: payload.gender,
+            alignmentId: payload.alignmentId,
+            maritalStatusId: payload.maritalStatusId,
+            livingStatusId: payload.livingStatusId,
+          },
+          include: characterInclude,
+        });
 
-    return plainToInstance(CharacterEntity, characterCreated);
+        // Connect character created to powers
+        await Promise.all(
+          payload.powers.map(async powerId => {
+            return prisma.characterPower.create({
+              data: {
+                characterId: characterCreated.id,
+                powerId: powerId,
+              },
+            });
+          }),
+        );
+
+        // Get the created character with associated relationships
+        return prisma.character.findFirst({
+          where: {
+            id: characterCreated.id,
+          },
+          include: characterInclude,
+        });
+      });
+
+      return plainToInstance(CharacterEntity, character);
+    } catch (error) {
+      if (
+        error instanceof Prisma.PrismaClientKnownRequestError &&
+        error.code === PrismaError.uniqueConstraintViolation
+      ) {
+        throw new CharacterRelationshipInvalidError(
+          'Some of the provided relationships for the character entity are invalid.',
+        );
+      }
+
+      throw error;
+    }
   }
 
   async update(id: number, payload: UpdateCharacterDto): Promise<CharacterEntity> {

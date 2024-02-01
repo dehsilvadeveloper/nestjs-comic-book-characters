@@ -14,7 +14,7 @@ import { UpdateUserDto } from '../dtos/update-user.dto';
 import { UserService } from '../services/user.service';
 import { UserViewModel } from '../view_models/user.view-model';
 import { UserType } from '../types/user.type';
-import { NotFoundInterceptor } from '@modules/common/interceptors/not-found-interceptor';
+import { NotFoundInterceptor } from '@modules/common/interceptors/not-found.interceptor';
 import { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard';
 
 @UseInterceptors(NotFoundInterceptor)

@@ -5,7 +5,7 @@ import { SuccessfulAuthViewModel } from '../view_models/successful-auth.view-mod
 import { SuccessfulAuthType } from '../types/successful-auth.type';
 import { AuthenticatedUserType } from '../types/authenticated-user.type';
 import { UnauthorizedInterceptor } from '../interceptors/unauthorized.interceptor';
-import { NotFoundInterceptor } from '@modules/common/interceptors/not-found-interceptor';
+import { NotFoundInterceptor } from '@modules/common/interceptors/not-found.interceptor';
 import { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard';
 
 @UseInterceptors(UnauthorizedInterceptor, NotFoundInterceptor)

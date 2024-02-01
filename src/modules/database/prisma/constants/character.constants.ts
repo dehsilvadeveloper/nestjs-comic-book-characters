@@ -7,6 +7,7 @@ export const characterInclude = {
   livingStatus: true,
   powers: {
     select: {
+      addedAt: true,
       power: {
         select: {
           id: true,
@@ -24,6 +25,7 @@ export const characterInclude = {
   },
   teams: {
     select: {
+      addedAt: true,
       team: {
         select: {
           id: true,
@@ -66,6 +68,7 @@ export const characterInclude = {
   allies: {
     select: {
       id: true,
+      addedAt: true,
       ally: {
         select: {
           id: true,
@@ -83,6 +86,7 @@ export const characterInclude = {
   enemies: {
     select: {
       id: true,
+      addedAt: true,
       enemy: {
         select: {
           id: true,
