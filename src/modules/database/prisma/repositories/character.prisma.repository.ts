@@ -17,7 +17,12 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
   constructor(private readonly prismaService: PrismaService) {}
 
   async create(payload: CreateCharacterDto): Promise<CharacterEntity> {
-    throw new Error('Method not implemented.');
+    const characterCreated = await this.prismaService.character.create({
+      data: payload,
+      include: characterInclude,
+    });
+
+    return plainToInstance(CharacterEntity, characterCreated);
   }
 
   async update(id: number, payload: UpdateCharacterDto): Promise<CharacterEntity> {

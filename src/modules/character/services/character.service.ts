@@ -12,8 +12,8 @@ import { SortingOptions } from '@modules/common/value_objects/sorting-options';
 export class CharacterService {
   constructor(private readonly characterRepository: CharacterRepositoryInterface) {}
 
-  create(createCharacterDto: CreateCharacterDto) {
-    return 'This action adds a new character';
+  async create(createCharacterDto: CreateCharacterDto): Promise<CharacterEntity> {
+    return await this.characterRepository.create(createCharacterDto);
   }
 
   update(id: number, updateCharacterDto: UpdateCharacterDto) {
