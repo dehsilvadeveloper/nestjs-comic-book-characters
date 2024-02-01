@@ -103,6 +103,10 @@ export class UserPrismaRepository implements UserRepositoryInterface {
   }
 
   async firstWhere(where: FindUserDto): Promise<UserEntity | null> {
+    if (Object.keys(where).length === 0) {
+      return null;
+    }
+
     const user = await this.prismaService.user.findFirst({ where: where });
 
     return plainToInstance(UserEntity, user);

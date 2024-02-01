@@ -50,6 +50,10 @@ export class TeamPrismaRepository implements TeamRepositoryInterface {
   }
 
   async firstWhere(where: FindTeamDto): Promise<TeamEntity | null> {
+    if (Object.keys(where).length === 0) {
+      return null;
+    }
+
     const team = await this.prismaService.team.findFirst({ where: where });
 
     return plainToInstance(TeamEntity, team);

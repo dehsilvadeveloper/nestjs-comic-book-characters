@@ -50,6 +50,10 @@ export class MaritalStatusPrismaRepository implements MaritalStatusRepositoryInt
   }
 
   async firstWhere(where: FindMaritalStatusDto): Promise<MaritalStatusEntity | null> {
+    if (Object.keys(where).length === 0) {
+      return null;
+    }
+
     const maritalStatus = await this.prismaService.maritalStatus.findFirst({ where: where });
 
     return plainToInstance(MaritalStatusEntity, maritalStatus);

@@ -106,6 +106,10 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
   }
 
   async firstWhere(where: FindCharacterDto): Promise<CharacterEntity | null> {
+    if (Object.keys(where).length === 0) {
+      return null;
+    }
+
     const character = await this.prismaService.character.findFirst({ where: where, include: characterInclude });
 
     return plainToInstance(CharacterEntity, character);

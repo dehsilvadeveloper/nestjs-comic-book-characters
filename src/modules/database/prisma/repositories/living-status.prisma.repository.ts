@@ -50,6 +50,10 @@ export class LivingStatusPrismaRepository implements LivingStatusRepositoryInter
   }
 
   async firstWhere(where: FindLivingStatusDto): Promise<LivingStatusEntity | null> {
+    if (Object.keys(where).length === 0) {
+      return null;
+    }
+
     const livingStatus = await this.prismaService.livingStatus.findFirst({ where: where });
 
     return plainToInstance(LivingStatusEntity, livingStatus);
