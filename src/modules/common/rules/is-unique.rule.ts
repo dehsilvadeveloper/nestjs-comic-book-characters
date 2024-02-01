@@ -8,6 +8,10 @@ export class IsUniqueValidator implements ValidatorConstraintInterface {
   constructor(private readonly repositoryService: RepositoryService) {}
 
   async validate(value: any, args: ValidationArguments): Promise<boolean> {
+    if (isNaN(value)) {
+      return false;
+    }
+
     const [property] = args.constraints;
     const { model: modelName, column: columnName } = property;
 
@@ -21,6 +25,7 @@ export class IsUniqueValidator implements ValidatorConstraintInterface {
   defaultMessage(args: ValidationArguments): string {
     const [property] = args.constraints;
     const { model: modelName, column: columnName } = property;
+
     return `model ${modelName} with the ${columnName} provided already exists on the database.`;
   }
 }

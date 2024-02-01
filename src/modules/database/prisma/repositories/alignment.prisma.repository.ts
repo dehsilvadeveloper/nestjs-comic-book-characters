@@ -50,6 +50,10 @@ export class AlignmentPrismaRepository implements AlignmentRepositoryInterface {
   }
 
   async firstWhere(where: FindAlignmentDto): Promise<AlignmentEntity | null> {
+    if (Object.keys(where).length === 0) {
+      return null;
+    }
+
     const alignment = await this.prismaService.alignment.findFirst({ where: where });
 
     return plainToInstance(AlignmentEntity, alignment);

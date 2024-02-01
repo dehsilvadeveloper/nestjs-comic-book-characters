@@ -1,4 +1,5 @@
-import { IsOptional, IsNotEmpty, MaxLength, MinLength, IsEnum, IsNumber, IsString } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsOptional, IsNotEmpty, MaxLength, MinLength, IsEnum, IsString, IsInt, IsPositive } from 'class-validator';
 import { ExistsOnDatabase } from '@modules/common/decorators/exists-on-database.decorator';
 import { GenderNameEnum } from '@modules/common/enums/gender-name.enum';
 
@@ -21,17 +22,23 @@ export class CreateCharacterDto {
   gender: string;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsInt()
+  @IsPositive()
   @ExistsOnDatabase({ model: 'alignment', column: 'id' }, { message: 'alignment provided does not exists' })
+  @Transform(({ value }) => parseInt(value))
   alignmentId: number;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsInt()
+  @IsPositive()
   @ExistsOnDatabase({ model: 'marital_status', column: 'id' }, { message: 'marital status provided does not exists' })
+  @Transform(({ value }) => parseInt(value))
   maritalStatusId: number;
 
   @IsNotEmpty()
-  @IsNumber()
+  @IsInt()
+  @IsPositive()
   @ExistsOnDatabase({ model: 'living_status', column: 'id' }, { message: 'living status provided does not exists' })
+  @Transform(({ value }) => parseInt(value))
   livingStatusId: number;
 }
