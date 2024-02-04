@@ -58,6 +58,7 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
 
       return plainToInstance(CharacterEntity, character);
     } catch (error) {
+      console.log(JSON.stringify(error, null, 4));
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === PrismaError.uniqueConstraintViolation

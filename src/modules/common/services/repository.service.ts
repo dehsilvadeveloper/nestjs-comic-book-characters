@@ -3,6 +3,7 @@ import { CharacterRepositoryInterface } from '@modules/character/repositories/ch
 import { AlignmentRepositoryInterface } from '../repositories/alignment.repository.interface';
 import { LivingStatusRepositoryInterface } from '../repositories/living-status.repository.interface';
 import { MaritalStatusRepositoryInterface } from '../repositories/marital-status.repository.interface';
+import { PowerRepositoryInterface } from '@modules/power/repositories/power.repository.interface';
 import { TeamRepositoryInterface } from '@modules/team/repositories/team.repository.interface';
 import { UserRepositoryInterface } from '@modules/user/repositories/user.repository.interface';
 
@@ -13,6 +14,7 @@ export class RepositoryService {
     private readonly alignmentRepository: AlignmentRepositoryInterface,
     private readonly livingStatusRepository: LivingStatusRepositoryInterface,
     private readonly maritalStatusRepository: MaritalStatusRepositoryInterface,
+    private readonly powerRepository: PowerRepositoryInterface,
     private readonly teamRepository: TeamRepositoryInterface,
     private readonly userRepository: UserRepositoryInterface,
   ) {}
@@ -27,6 +29,8 @@ export class RepositoryService {
         return this.livingStatusRepository;
       case 'marital_status':
         return this.maritalStatusRepository;
+        case 'power':
+        return this.powerRepository;
       case 'team':
         return this.teamRepository;
       case 'user':

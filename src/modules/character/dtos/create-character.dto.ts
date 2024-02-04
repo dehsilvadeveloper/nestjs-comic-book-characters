@@ -1,7 +1,8 @@
 import { Transform } from 'class-transformer';
-import { IsOptional, IsNotEmpty, MaxLength, MinLength, IsEnum, IsString, IsInt, IsPositive } from 'class-validator';
+import { IsOptional, IsNotEmpty, MaxLength, MinLength, IsEnum, IsString, IsInt, IsPositive, IsDefined, IsIn, IsArray } from 'class-validator';
 import { ExistsOnDatabase } from '@modules/common/decorators/exists-on-database.decorator';
 import { GenderNameEnum } from '@modules/common/enums/gender-name.enum';
+import { isComputedPropertyName } from 'typescript';
 
 export class CreateCharacterDto {
   @IsNotEmpty()
@@ -45,5 +46,9 @@ export class CreateCharacterDto {
   @IsOptional()
   @IsInt({ each: true })
   @IsPositive({ each: true })
+  @ExistsOnDatabase(
+    { model: 'power', column: 'id' },
+    { each: true, message: 'some of the powers provided does not exists' },
+  )
   powers: number[];
 }
