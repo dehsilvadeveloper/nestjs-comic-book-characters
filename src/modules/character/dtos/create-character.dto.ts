@@ -67,5 +67,13 @@ export class CreateCharacterDto {
   )
   allies?: number[];
 
-  //enemies?: number[];
+  @IsOptional()
+  @AreArrayValuesUnique()
+  @IsInt({ each: true })
+  @IsPositive({ each: true })
+  @ExistsOnDatabase(
+    { model: 'character', column: 'id' },
+    { each: true, message: 'some of the enemies provided does not exists' },
+  )
+  enemies?: number[];
 }

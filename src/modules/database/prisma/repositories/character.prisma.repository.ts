@@ -63,6 +63,20 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
           );
         }
 
+        // Connect character created to enemies, if needed
+        if (payload.enemies?.length) {
+          await Promise.all(
+            payload.enemies.map(async characterId => {
+              return prisma.characterEnemy.create({
+                data: {
+                  characterId: characterCreated.id,
+                  enemyId: characterId,
+                },
+              });
+            }),
+          );
+        }
+
         // Get the created character with associated relationships
         return await prisma.character.findFirst({
           where: {
@@ -113,6 +127,13 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
 
         // Disconnect allies of character
         await prisma.characterAlly.deleteMany({
+          where: {
+            characterId: id,
+          },
+        });
+
+        // Disconnect enemies of character
+        await prisma.characterEnemy.deleteMany({
           where: {
             characterId: id,
           },
