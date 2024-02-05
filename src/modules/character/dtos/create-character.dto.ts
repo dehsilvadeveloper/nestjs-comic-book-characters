@@ -15,7 +15,7 @@ export class CreateCharacterDto {
   @IsString()
   @MinLength(2)
   @MaxLength(100)
-  civilName: string;
+  civilName?: string;
 
   @IsNotEmpty()
   @IsString()
@@ -51,5 +51,21 @@ export class CreateCharacterDto {
     { model: 'power', column: 'id' },
     { each: true, message: 'some of the powers provided does not exists' },
   )
-  powers: number[];
+  powers?: number[];
+
+  //teams?: number[];
+
+  //relatives?: number[];
+
+  @IsOptional()
+  @AreArrayValuesUnique()
+  @IsInt({ each: true })
+  @IsPositive({ each: true })
+  @ExistsOnDatabase(
+    { model: 'character', column: 'id' },
+    { each: true, message: 'some of the allies provided does not exists' },
+  )
+  allies?: number[];
+
+  //enemies?: number[];
 }

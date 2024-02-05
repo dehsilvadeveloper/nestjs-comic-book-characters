@@ -201,5 +201,14 @@ export const characterSeederData = [
     alignmentId: AlignmentEnum.neutral,
     maritalStatusId: MaritalStatusEnum.separated,
     livingStatusId: LivingStatusEnum.alive,
-  }
+  },
+  {
+    id: 23,
+    name: 'Magneto',
+    civilName: 'Max Eisenhardt',
+    gender: Gender.male,
+    alignmentId: AlignmentEnum.evil,
+    maritalStatusId: MaritalStatusEnum.widowed,
+    livingStatusId: LivingStatusEnum.deceased,
+  },
 ];

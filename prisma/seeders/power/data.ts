@@ -99,4 +99,24 @@ export const powerSeederData = [
     id: 25,
     name: 'Wallcrawling',
   },
+  {
+    id: 26,
+    name: 'Force Field',
+  },
+  {
+    id: 27,
+    name: 'Magnetism Manipulation',
+  },
+  {
+    id: 28,
+    name: 'Optic Blast',
+  },
+  {
+    id: 29,
+    name: 'Energy Resistance',
+  },
+  {
+    id: 30,
+    name: 'Electricity Generation',
+  }
 ];

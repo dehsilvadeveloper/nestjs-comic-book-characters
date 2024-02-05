@@ -182,4 +182,14 @@ export const characterPowerSeederData = [
     characterId: 22,
     powerId: 11,
   },
+
+  // Magneto
+  {
+    characterId: 23,
+    powerId: 26,
+  },
+  {
+    characterId: 23,
+    powerId: 27,
+  },
 ];

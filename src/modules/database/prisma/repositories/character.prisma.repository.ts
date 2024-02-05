@@ -35,17 +35,33 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
           include: characterInclude,
         });
 
-        // Connect character created to powers
-        await Promise.all(
-          payload.powers.map(async powerId => {
-            return prisma.characterPower.create({
-              data: {
-                characterId: characterCreated.id,
-                powerId: powerId,
-              },
-            });
-          }),
-        );
+        // Connect character created to powers, if needed
+        if (payload.powers?.length) {
+          await Promise.all(
+            payload.powers.map(async powerId => {
+              return prisma.characterPower.create({
+                data: {
+                  characterId: characterCreated.id,
+                  powerId: powerId,
+                },
+              });
+            }),
+          );
+        }
+
+        // Connect character created to allies, if needed
+        if (payload.allies?.length) {
+          await Promise.all(
+            payload.allies.map(async characterId => {
+              return prisma.characterAlly.create({
+                data: {
+                  characterId: characterCreated.id,
+                  allyId: characterId,
+                },
+              });
+            }),
+          );
+        }
 
         // Get the created character with associated relationships
         return prisma.character.findFirst({

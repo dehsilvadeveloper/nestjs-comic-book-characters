@@ -58,7 +58,8 @@ Authorization: Bearer {{accessToken}}
     "alignmentId": 1,
     "maritalStatusId": 6,
     "livingStatusId": 1,
-    "powers": [1, 1, 1]
+    "powers": [28, 29],
+    "allies": [16, 17, 18]
 }
 
 ### Get List Of Characters
@@ -88,7 +89,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Delete Character By ID
 
-DELETE {{baseUrl}}/characters/23
+DELETE {{baseUrl}}/characters/24
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
