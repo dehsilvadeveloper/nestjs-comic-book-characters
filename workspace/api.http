@@ -82,7 +82,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Get Character By ID
 
-GET {{baseUrl}}/characters/19
+GET {{baseUrl}}/characters/24
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}

@@ -64,7 +64,7 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
         }
 
         // Get the created character with associated relationships
-        return prisma.character.findFirst({
+        return await prisma.character.findFirst({
           where: {
             id: characterCreated.id,
           },
@@ -74,7 +74,6 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
 
       return plainToInstance(CharacterEntity, character);
     } catch (error) {
-      console.log(JSON.stringify(error, null, 4));
       if (
         error instanceof Prisma.PrismaClientKnownRequestError &&
         error.code === PrismaError.uniqueConstraintViolation
@@ -93,19 +92,40 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
   }
 
   async delete(id: number): Promise<boolean> {
-    const character = await this.prismaService.character.findFirst({
-      where: {
-        id: id,
-      },
-    });
+    try {
+      const character = await this.prismaService.character.findFirst({
+        where: {
+          id: id,
+        },
+      });
 
-    if (!character) {
-      throw new CharacterNotFoundError(`Cannot proceed. The character of ID ${id} does not exists.`);
+      if (!character) {
+        throw new CharacterNotFoundError(`Cannot proceed. The character of ID ${id} does not exists.`);
+      }
+
+      await this.prismaService.$transaction(async prisma => {
+        // Disconnect powers of character
+        await prisma.characterPower.deleteMany({
+          where: {
+            characterId: id,
+          },
+        });
+
+        // Disconnect allies of character
+        await prisma.characterAlly.deleteMany({
+          where: {
+            characterId: id,
+          },
+        });
+
+        // Delete character
+        await prisma.character.delete({ where: { id: id } });
+      });
+
+      return true;
+    } catch (error) {
+      throw error;
     }
-
-    await this.prismaService.character.delete({ where: { id: id } });
-
-    return true;
   }
 
   async getAll(): Promise<CharacterEntity[]> {
