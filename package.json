@@ -1,7 +1,7 @@
 {
   "name": "nestjs-comic-characters",
-  "version": "0.0.1",
-  "description": "⛵ A NestJS v9.x api to manipulate data about comic book characters.",
+  "version": "1.0",
+  "description": "⛵ A NestJS v10.x api to manipulate data about comic book characters.",
   "author": "André Silva <andreluis_x@msn.com>",
   "private": true,
   "license": "UNLICENSED",
@@ -10,7 +10,8 @@
     "prisma",
     "prisma client",
     "typescript",
-    "mysql"
+    "mysql",
+    "api"
   ],
   "scripts": {
     "build": "nest build",

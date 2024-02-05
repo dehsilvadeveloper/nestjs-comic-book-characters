@@ -15,7 +15,7 @@
 
 # NestJS Comic Book Characters
 
-This is a NestJS v9.x application built to interact with data of comic book characters with full CRUD functionality.
+This is a NestJS v10.x application built to interact with data of comic book characters with full CRUD functionality.
 
 The project was created for refinement of NestJS knowledge. It also work as a skills showcase.
 
@@ -25,9 +25,9 @@ The project was created for refinement of NestJS knowledge. It also work as a sk
 
 | Name       | Version  |
 | ---------- | -------- |
-| NestJs | v9.x |
-| NodeJs | v19.8.x + |
-| Typescript | v4.9.x + |
+| NestJs | v10.x + |
+| NodeJs | v20.11.x + |
+| Typescript | v5.3.x + |
 | Yarn | v1.22.x + |
 | Prisma | v5.x + |
 | MySQL | v8.0.x |
@@ -38,9 +38,9 @@ The project was created for refinement of NestJS knowledge. It also work as a sk
 - [x] Seeding
 - [x] Config variables (using **.env** file and **@nestjs/config**)
 - [X] Request validation with DTOs (using **class-validator**)
-- [ ] Service layer to hold business logic
-- [ ] Repository layer, allowing another ORM to be used if necessary as long as it respects the established contracts
-- [ ] Base repository interface using typescript *generics*
+- [X] Service layer to hold business logic
+- [X] Repository layer, allowing another ORM to be used if necessary as long as it respects the established contracts
+- [X] Base repository interface using typescript *generics*
 - [X] Authentication with *JWT* and *Passport* (the routes are protected with a *guard* using *jwt strategy* and *local strategy*)
 - [ ] Healthcheck route (to help validate the status of the api, indicating if available or not)
 - [ ] Api documentation (using Scribe)
