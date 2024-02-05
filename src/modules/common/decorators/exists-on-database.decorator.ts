@@ -6,6 +6,14 @@ interface existsOnDatabaseOptions {
   column: string;
 }
 
+/**
+ * Check if the value already exists for a entity on database.
+ * Usage:
+ *   export class CreateCharacterDto {
+ *     @ExistsOnDatabase({ model: 'marital_status', column: 'id' })
+ *     powers: number[];
+ *   }
+ */
 export function ExistsOnDatabase(
   existsOnDatabaseOptions: existsOnDatabaseOptions,
   validationOptions?: ValidationOptions,

@@ -6,10 +6,15 @@ interface isUniqueOptions {
   column: string;
 }
 
-export function IsUnique(
-  isUniqueOptions: isUniqueOptions,
-  validationOptions?: ValidationOptions,
-) {
+/**
+ * Check if the value is unique for a entity on database.
+ * Usage:
+ *   export class CreateCharacterDto {
+ *     @IsUnique({ model: 'user', column: 'email' }, { message: 'email provided already exists' })
+ *     powers: number[];
+ *   }
+ */
+export function IsUnique(isUniqueOptions: isUniqueOptions, validationOptions?: ValidationOptions) {
   return function (object: Object, propertyName: string) {
     registerDecorator({
       target: object.constructor,

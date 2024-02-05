@@ -1,8 +1,8 @@
 import { Transform } from 'class-transformer';
-import { IsOptional, IsNotEmpty, MaxLength, MinLength, IsEnum, IsString, IsInt, IsPositive, IsDefined, IsIn, IsArray } from 'class-validator';
-import { ExistsOnDatabase } from '@modules/common/decorators/exists-on-database.decorator';
+import { IsOptional, IsNotEmpty, MaxLength, MinLength, IsEnum, IsString, IsInt, IsPositive } from 'class-validator';
 import { GenderNameEnum } from '@modules/common/enums/gender-name.enum';
-import { isComputedPropertyName } from 'typescript';
+import { AreArrayValuesUnique } from '@modules/common/decorators/are-array-values-unique.decorator';
+import { ExistsOnDatabase } from '@modules/common/decorators/exists-on-database.decorator';
 
 export class CreateCharacterDto {
   @IsNotEmpty()
@@ -44,6 +44,7 @@ export class CreateCharacterDto {
   livingStatusId: number;
 
   @IsOptional()
+  @AreArrayValuesUnique()
   @IsInt({ each: true })
   @IsPositive({ each: true })
   @ExistsOnDatabase(
