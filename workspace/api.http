@@ -59,6 +59,7 @@ Authorization: Bearer {{accessToken}}
     "maritalStatusId": 6,
     "livingStatusId": 1,
     "powers": [28, 29],
+    "teams": [],
     "allies": [16, 17, 18],
     "enemies": [23]
 }
