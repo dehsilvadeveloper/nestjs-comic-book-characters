@@ -24,7 +24,6 @@ export class CharacterViewModel {
             name: relative.relative.name,
             civilName: relative.relative.civilName,
             relationship: relative.relationship.name,
-            relationshipAddedAt: relative.addedAt.toISOString(),
           }))) ||
         [],
       allies:

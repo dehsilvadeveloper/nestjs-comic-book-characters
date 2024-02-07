@@ -65,6 +65,21 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
           );
         }
 
+        // Connect character created to relatives, if needed
+        if (payload.relatives?.length) {
+          await Promise.all(
+            payload.relatives.map(async characterRelativeData => {
+              return prisma.characterRelative.create({
+                data: {
+                  characterId: characterCreated.id,
+                  relativeId: characterRelativeData.relativeId,
+                  relationshipTypeId: characterRelativeData.relationshipTypeId,
+                },
+              });
+            }),
+          );
+        }
+
         // Connect character created to allies, if needed
         if (payload.allies?.length) {
           await Promise.all(
@@ -135,32 +150,19 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
 
       await this.prismaService.$transaction(async prisma => {
         // Disconnect powers of character
-        await prisma.characterPower.deleteMany({
-          where: {
-            characterId: id,
-          },
-        });
+        await prisma.characterPower.deleteMany({ where: { characterId: id } });
 
         // Disconnect teams of character
-        await prisma.characterTeam.deleteMany({
-          where: {
-            characterId: id,
-          },
-        });
+        await prisma.characterTeam.deleteMany({ where: { characterId: id } });
+
+        // Disconnect relatives of character
+        await prisma.characterRelative.deleteMany({ where: { characterId: id } });
 
         // Disconnect allies of character
-        await prisma.characterAlly.deleteMany({
-          where: {
-            characterId: id,
-          },
-        });
+        await prisma.characterAlly.deleteMany({ where: { characterId: id } });
 
         // Disconnect enemies of character
-        await prisma.characterEnemy.deleteMany({
-          where: {
-            characterId: id,
-          },
-        });
+        await prisma.characterEnemy.deleteMany({ where: { characterId: id } });
 
         // Delete character
         await prisma.character.delete({ where: { id: id } });

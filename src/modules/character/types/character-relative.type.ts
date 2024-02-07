@@ -3,5 +3,4 @@ export type CharacterRelativeType = {
   name: string;
   civilName: string | null;
   relationship: string;
-  relationshipAddedAt: string;
 };

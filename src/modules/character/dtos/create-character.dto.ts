@@ -15,6 +15,7 @@ import { GenderNameEnum } from '@modules/common/enums/gender-name.enum';
 import { AreArrayValuesUnique } from '@modules/common/decorators/are-array-values-unique.decorator';
 import { ExistsOnDatabase } from '@modules/common/decorators/exists-on-database.decorator';
 import { CharacterTeamDto } from './character-team.dto';
+import { CharacterRelativeDto } from './character-relative.dto';
 
 export class CreateCharacterDto {
   @IsNotEmpty()
@@ -72,7 +73,11 @@ export class CreateCharacterDto {
   @Type(() => CharacterTeamDto)
   teams?: CharacterTeamDto[];
 
-  //relatives?: number[];
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CharacterRelativeDto)
+  relatives?: CharacterRelativeDto[];
 
   @IsOptional()
   @IsArray()

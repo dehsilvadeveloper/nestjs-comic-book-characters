@@ -74,6 +74,12 @@ Authorization: Bearer {{accessToken}}
             "role": "member"
         }
     ],
+    "relatives": [
+        {
+            "relativeId": 18,
+            "relationshipTypeId": 5
+        }
+    ],
     "allies": [
         16,
         17,
