@@ -49,6 +49,22 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
           );
         }
 
+        // Connect character created to teams, if needed
+        if (payload.teams?.length) {
+          await Promise.all(
+            payload.teams.map(async characterTeamData => {
+              return prisma.characterTeam.create({
+                data: {
+                  characterId: characterCreated.id,
+                  teamId: characterTeamData.teamId,
+                  status: characterTeamData.status,
+                  role: characterTeamData.role,
+                },
+              });
+            }),
+          );
+        }
+
         // Connect character created to allies, if needed
         if (payload.allies?.length) {
           await Promise.all(
@@ -120,6 +136,13 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
       await this.prismaService.$transaction(async prisma => {
         // Disconnect powers of character
         await prisma.characterPower.deleteMany({
+          where: {
+            characterId: id,
+          },
+        });
+
+        // Disconnect teams of character
+        await prisma.characterTeam.deleteMany({
           where: {
             characterId: id,
           },

@@ -1,8 +1,20 @@
-import { Transform } from 'class-transformer';
-import { IsOptional, IsNotEmpty, MaxLength, MinLength, IsEnum, IsString, IsInt, IsPositive } from 'class-validator';
+import { Transform, Type } from 'class-transformer';
+import {
+  IsOptional,
+  IsNotEmpty,
+  MaxLength,
+  MinLength,
+  IsEnum,
+  IsString,
+  IsInt,
+  IsPositive,
+  IsArray,
+  ValidateNested,
+} from 'class-validator';
 import { GenderNameEnum } from '@modules/common/enums/gender-name.enum';
 import { AreArrayValuesUnique } from '@modules/common/decorators/are-array-values-unique.decorator';
 import { ExistsOnDatabase } from '@modules/common/decorators/exists-on-database.decorator';
+import { CharacterTeamDto } from './character-team.dto';
 
 export class CreateCharacterDto {
   @IsNotEmpty()
@@ -44,6 +56,7 @@ export class CreateCharacterDto {
   livingStatusId: number;
 
   @IsOptional()
+  @IsArray()
   @AreArrayValuesUnique()
   @IsInt({ each: true })
   @IsPositive({ each: true })
@@ -53,11 +66,16 @@ export class CreateCharacterDto {
   )
   powers?: number[];
 
-  //teams?: number[];
+  @IsOptional()
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CharacterTeamDto)
+  teams?: CharacterTeamDto[];
 
   //relatives?: number[];
 
   @IsOptional()
+  @IsArray()
   @AreArrayValuesUnique()
   @IsInt({ each: true })
   @IsPositive({ each: true })
@@ -68,6 +86,7 @@ export class CreateCharacterDto {
   allies?: number[];
 
   @IsOptional()
+  @IsArray()
   @AreArrayValuesUnique()
   @IsInt({ each: true })
   @IsPositive({ each: true })

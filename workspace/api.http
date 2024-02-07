@@ -58,10 +58,30 @@ Authorization: Bearer {{accessToken}}
     "alignmentId": 1,
     "maritalStatusId": 6,
     "livingStatusId": 1,
-    "powers": [28, 29],
-    "teams": [],
-    "allies": [16, 17, 18],
-    "enemies": [23]
+    "powers": [
+        28,
+        29
+    ],
+    "teams": [
+        {
+            "teamId": 4,
+            "status": "current",
+            "role": "leader"
+        },
+        {
+            "teamId": 1,
+            "status": "former",
+            "role": "member"
+        }
+    ],
+    "allies": [
+        16,
+        17,
+        18
+    ],
+    "enemies": [
+        23
+    ]
 }
 
 ### Get List Of Characters
