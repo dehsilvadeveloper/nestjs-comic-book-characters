@@ -30,8 +30,9 @@ export class CharacterController {
   @Post()
   @UseGuards(JwtAuthGuard)
   async create(@Body() createCharacterDto: CreateCharacterDto) {
-    //return 'here I return the character created.';
-    return await this.characterService.create(createCharacterDto);
+    const character = await this.characterService.create(createCharacterDto);
+
+    return CharacterViewModel.toHttp(character);
   }
 
   @Patch(':id')
