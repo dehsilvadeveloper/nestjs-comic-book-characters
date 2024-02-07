@@ -1,6 +1,7 @@
 import { CharacterRelativeType } from "./character-relative.type";
 import { CharacterAllyType } from "./character-ally.type";
 import { CharacterEnemyType } from "./character-enemy.type";
+import { CharacterTeamType } from "./character-team.type";
 
 export type CharacterType = {
   id: number;
@@ -11,7 +12,7 @@ export type CharacterType = {
   maritalStatus: string;
   livingStatus: string;
   powers: string[];
-  teams: string[];
+  teams: CharacterTeamType[];
   relatives: CharacterRelativeType[];
   allies: CharacterAllyType[];
   enemies: CharacterEnemyType[];

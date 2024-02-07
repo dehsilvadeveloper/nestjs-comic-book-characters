@@ -25,6 +25,8 @@ export const characterInclude = {
   },
   teams: {
     select: {
+      status: true,
+      role: true,
       addedAt: true,
       team: {
         select: {

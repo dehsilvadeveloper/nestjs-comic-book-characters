@@ -3,10 +3,10 @@ import { AlignmentEntity } from '@modules/common/entities/alignment.entity';
 import { MaritalStatusEntity } from '@modules/common/entities/marital-status.entity';
 import { LivingStatusEntity } from '@modules/common/entities/living-status.entity';
 import { PowerEntity } from '@modules/power/entities/power.entity';
-import { TeamEntity } from '@modules/team/entities/team.entity';
 import { CharacterRelativeEntity } from './character-relative.entity';
 import { CharacterAllyEntity } from './character-ally.entity';
 import { CharacterEnemyEntity } from './character-enemy.entity';
+import { CharacterTeamEntity } from './character-team.entity';
 
 export class CharacterEntity {
   id: number;
@@ -22,9 +22,8 @@ export class CharacterEntity {
   @Type(() => PowerEntity)
   @Transform(({ value }) => value.map(powerItem => powerItem.power))
   powers: PowerEntity[] | null;
-  @Type(() => TeamEntity)
-  @Transform(({ value }) => value.map(teamItem => teamItem.team))
-  teams: TeamEntity[] | null;
+  @Type(() => CharacterTeamEntity)
+  teams: CharacterTeamEntity[] | null;
   @Type(() => CharacterRelativeEntity)
   relatives: CharacterRelativeEntity[] | null;
   @Type(() => CharacterAllyEntity)

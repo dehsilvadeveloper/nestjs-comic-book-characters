@@ -16,7 +16,15 @@ export class CharacterViewModel {
       maritalStatus: character.maritalStatus.name,
       livingStatus: character.livingStatus.name,
       powers: (character.powers && character.powers.map(power => power.name)) || [],
-      teams: (character.teams && character.teams.map(team => team.name)) || [],
+      teams:
+        (character.teams &&
+          character.teams.map(team => ({
+            id: team.team.id,
+            name: team.team.name,
+            status: team.status,
+            role: team.role,
+          }))) ||
+        [],
       relatives:
         (character.relatives &&
           character.relatives.map(relative => ({
