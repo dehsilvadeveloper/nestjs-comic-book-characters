@@ -3,6 +3,7 @@ import { ConfigModule } from '@nestjs/config';
 import { config } from '@config/config';
 import { AppController } from './controllers/app.controller';
 import { DatabaseModule } from '@modules/database/database.module';
+import { HealthcheckModule } from '@modules/healthcheck/healthcheck.module';
 import { CommonModule } from '@modules/common/common.module';
 import { AuthModule } from '@modules/auth/auth.module';
 import { CharacterModule } from '@modules/character/character.module';
@@ -15,6 +16,7 @@ import { UserModule } from '@modules/user/user.module';
       load: [config],
     }),
     DatabaseModule,
+    HealthcheckModule,
     CommonModule,
     AuthModule,
     CharacterModule,

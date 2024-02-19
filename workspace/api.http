@@ -4,7 +4,7 @@
 #
 ########################################
 
-@baseUrl=http://localhost:3000/api/v1
+@baseUrl=http://localhost:{{$dotenv APP_PORT_EXTERNAL}}/api/v1
 @accept=application/json
 @contentType=application/json
 
@@ -118,6 +118,19 @@ Authorization: Bearer {{accessToken}}
 ### Delete Character By ID
 
 DELETE {{baseUrl}}/characters/24
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
+#  HEALTHCHECK
+#
+########################################
+
+### Health check
+
+GET {{baseUrl}}/healthcheck
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}

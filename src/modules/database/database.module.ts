@@ -48,6 +48,7 @@ import { UserPrismaRepository } from './prisma/repositories/user.prisma.reposito
     },
   ],
   exports: [
+    PrismaService,
     CharacterRepositoryInterface,
     AlignmentRepositoryInterface,
     LivingStatusRepositoryInterface,
