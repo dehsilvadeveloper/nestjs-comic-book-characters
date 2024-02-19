@@ -16,8 +16,8 @@ export class CharacterService {
     return await this.characterRepository.create(createCharacterDto);
   }
 
-  update(id: number, updateCharacterDto: UpdateCharacterDto) {
-    return `This action updates a #${id} character`;
+  async update(id: number, updateCharacterDto: UpdateCharacterDto): Promise<CharacterEntity> {
+    return await this.characterRepository.update(id, updateCharacterDto);
   }
 
   async delete(id: number): Promise<boolean> {

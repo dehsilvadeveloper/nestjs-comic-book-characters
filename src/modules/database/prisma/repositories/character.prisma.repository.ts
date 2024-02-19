@@ -133,7 +133,28 @@ export class CharacterPrismaRepository implements CharacterRepositoryInterface {
   }
 
   async update(id: number, payload: UpdateCharacterDto): Promise<CharacterEntity> {
-    throw new Error('Method not implemented.');
+    const character = await this.prismaService.character.findFirst({
+      where: {
+        id: id,
+      },
+    });
+
+    if (!character) {
+      throw new CharacterNotFoundError(`Cannot proceed. The character of ID ${id} does not exists.`);
+    }
+
+    // Remove unknown properties before updating with Prisma
+    const filteredPayload = Object.fromEntries(
+      Object.entries(payload).filter(([key]) => key in character),
+    );
+
+    const updatedCharacter = this.prismaService.character.update({
+      where: { id },
+      data: filteredPayload,
+      include: characterInclude,
+    });
+
+    return plainToInstance(CharacterEntity, updatedCharacter);
   }
 
   async delete(id: number): Promise<boolean> {

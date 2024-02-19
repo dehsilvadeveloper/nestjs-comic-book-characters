@@ -55,9 +55,9 @@ Authorization: Bearer {{accessToken}}
     "name": "Cyclops",
     "civilName": "Scott Summers",
     "gender": "male",
-    "alignmentId": 1,
-    "maritalStatusId": 6,
-    "livingStatusId": 1,
+    "alignmentId": 3,
+    "maritalStatusId": 1,
+    "livingStatusId": 2,
     "powers": [
         28,
         29
@@ -88,6 +88,19 @@ Authorization: Bearer {{accessToken}}
     "enemies": [
         23
     ]
+}
+
+### Update Character
+
+PATCH {{baseUrl}}/characters/24
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+{
+    "alignmentId": 1,
+    "maritalStatusId": 6,
+    "livingStatusId": 1
 }
 
 ### Get List Of Characters

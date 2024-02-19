@@ -37,8 +37,10 @@ export class CharacterController {
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
-  update(@Param('id') id: number, @Body() updateCharacterDto: UpdateCharacterDto) {
-    return this.characterService.update(+id, updateCharacterDto);
+  async update(@Param('id') id: number, @Body() updateCharacterDto: UpdateCharacterDto) {
+    const updatedCharacter = await this.characterService.update(+id, updateCharacterDto);
+
+    return CharacterViewModel.toHttp(updatedCharacter);
   }
 
   @Delete(':id')
