@@ -2,6 +2,8 @@ import { Module } from '@nestjs/common';
 import { PrismaService } from './prisma/prisma.service';
 import { CharacterRepositoryInterface } from '@modules/character/repositories/character.repository.interface';
 import { CharacterPrismaRepository } from './prisma/repositories/character.prisma.repository';
+import { CharacterPowerRepositoryInterface } from '@modules/character/repositories/character-power.repository.interface';
+import { CharacterPowerPrismaRepository } from './prisma/repositories/character-power.prisma.repository';
 import { AlignmentRepositoryInterface } from '@modules/common/repositories/alignment.repository.interface';
 import { AlignmentPrismaRepository } from './prisma/repositories/alignment.prisma.repository';
 import { LivingStatusRepositoryInterface } from '@modules/common/repositories/living-status.repository.interface';
@@ -21,6 +23,10 @@ import { UserPrismaRepository } from './prisma/repositories/user.prisma.reposito
     {
       provide: CharacterRepositoryInterface,
       useClass: CharacterPrismaRepository,
+    },
+    {
+      provide: CharacterPowerRepositoryInterface,
+      useClass: CharacterPowerPrismaRepository,
     },
     {
       provide: AlignmentRepositoryInterface,
@@ -50,6 +56,7 @@ import { UserPrismaRepository } from './prisma/repositories/user.prisma.reposito
   exports: [
     PrismaService,
     CharacterRepositoryInterface,
+    CharacterPowerRepositoryInterface,
     AlignmentRepositoryInterface,
     LivingStatusRepositoryInterface,
     MaritalStatusRepositoryInterface,

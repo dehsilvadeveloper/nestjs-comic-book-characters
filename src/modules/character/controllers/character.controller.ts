@@ -29,7 +29,7 @@ export class CharacterController {
 
   @Post()
   @UseGuards(JwtAuthGuard)
-  async create(@Body() createCharacterDto: CreateCharacterDto) {
+  async create(@Body() createCharacterDto: CreateCharacterDto): Promise<CharacterType> {
     const character = await this.characterService.create(createCharacterDto);
 
     return CharacterViewModel.toHttp(character);
@@ -37,7 +37,7 @@ export class CharacterController {
 
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
-  async update(@Param('id') id: number, @Body() updateCharacterDto: UpdateCharacterDto) {
+  async update(@Param('id') id: number, @Body() updateCharacterDto: UpdateCharacterDto): Promise<CharacterType> {
     const updatedCharacter = await this.characterService.update(+id, updateCharacterDto);
 
     return CharacterViewModel.toHttp(updatedCharacter);

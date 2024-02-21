@@ -92,7 +92,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Update Character
 
-PATCH {{baseUrl}}/characters/24
+PATCH {{baseUrl}}/characters/25
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
@@ -101,6 +101,17 @@ Authorization: Bearer {{accessToken}}
     "alignmentId": 1,
     "maritalStatusId": 6,
     "livingStatusId": 1
+}
+
+### Update Character Powers
+
+PUT {{baseUrl}}/characters/25/powers
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+{
+    "powers": [28, 29, 4]
 }
 
 ### Get List Of Characters
@@ -123,7 +134,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Get Character By ID
 
-GET {{baseUrl}}/characters/24
+GET {{baseUrl}}/characters/25
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
