@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { EventEmitter2 } from '@nestjs/event-emitter';
 import { CreateCharacterDto } from '../dtos/create-character.dto';
 import { UpdateCharacterDto } from '../dtos/update-character.dto';
 import { CharacterListOptionsDto } from '../dtos/character-list-options.dto';
@@ -7,13 +8,27 @@ import { CharacterRepositoryInterface } from '../repositories/character.reposito
 import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
 import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
 import { SortingOptions } from '@modules/common/value_objects/sorting-options';
+import { CharacterCreatedEvent } from '../events/character-created.event';
 
 @Injectable()
 export class CharacterService {
-  constructor(private readonly characterRepository: CharacterRepositoryInterface) {}
+  constructor(
+    private readonly eventEmitter: EventEmitter2,
+    private readonly characterRepository: CharacterRepositoryInterface,
+  ) {}
 
   async create(createCharacterDto: CreateCharacterDto): Promise<CharacterEntity> {
-    return await this.characterRepository.create(createCharacterDto);
+    const character = await this.characterRepository.create(createCharacterDto);
+
+    this.eventEmitter.emit(
+      'character.created',
+      new CharacterCreatedEvent({
+        id: character.id,
+        name: character.name,
+      }),
+    );
+    
+    return character;
   }
 
   async update(id: number, updateCharacterDto: UpdateCharacterDto): Promise<CharacterEntity> {

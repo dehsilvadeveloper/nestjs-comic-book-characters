@@ -58,6 +58,7 @@
   "devDependencies": {
     "@nestjs/axios": "^3.0.2",
     "@nestjs/cli": "^10.0.0",
+    "@nestjs/event-emitter": "^2.0.4",
     "@nestjs/passport": "^10.0.3",
     "@nestjs/schematics": "^10.0.0",
     "@nestjs/terminus": "^10.2.2",
