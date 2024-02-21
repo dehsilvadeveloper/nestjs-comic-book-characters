@@ -1,5 +1,6 @@
-import { Controller, Body, Put, Param, UseInterceptors, UseGuards } from '@nestjs/common';
+import { Controller, Body, Get, Put, Param, UseInterceptors, UseGuards } from '@nestjs/common';
 import { UpdateCharacterPowerDto } from '../dtos/update-character-power.dto';
+import { CharacterPowerListType } from '../types/character-power-list.type';
 import { CharacterPowerType } from '../types/character-power.type';
 import { CharacterPowerService } from '../services/character-power.service';
 import { CharacterPowerViewModel } from '../view_models/character-power.view-model';
@@ -17,9 +18,25 @@ export class CharacterPowerController {
   async update(
     @Param('id') characterId: number,
     @Body() updateCharacterPowerDto: UpdateCharacterPowerDto,
-  ): Promise<CharacterPowerType[]> {
+  ): Promise<CharacterPowerListType> {
     const updatedCharacterPowers = await this.characterPowerService.update(+characterId, updateCharacterPowerDto);
 
-    return updatedCharacterPowers.map(CharacterPowerViewModel.toHttp);
+    const formatedCharacterPowersList = updatedCharacterPowers.map(CharacterPowerViewModel.toHttp);
+
+    return {
+      powers: formatedCharacterPowersList,
+    };
+  }
+
+  @Get(':id/powers')
+  @UseGuards(JwtAuthGuard)
+  async getByCharacter(@Param('id') characterId: number): Promise<CharacterPowerListType> {
+    const characterPowers = await this.characterPowerService.getByCharacter(+characterId);
+
+    const formatedCharacterPowersList = characterPowers.map(CharacterPowerViewModel.toHttp);
+
+    return {
+      powers: formatedCharacterPowersList,
+    };
   }
 }

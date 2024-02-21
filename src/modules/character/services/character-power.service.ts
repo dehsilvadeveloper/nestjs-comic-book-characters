@@ -12,4 +12,10 @@ export class CharacterPowerService {
 
     return updatedCharacterPowers;
   }
+
+  async getByCharacter(characterId: number): Promise<CharacterPowerEntity[]> {
+    const characterPowers = await this.characterPowerRepository.getByCharacter(characterId);
+
+    return characterPowers;
+  }
 }
