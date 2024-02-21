@@ -9,6 +9,7 @@ import { PaginatedOutputType } from '@modules/common/types/paginated-output.type
 import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
 import { SortingOptions } from '@modules/common/value_objects/sorting-options';
 import { CharacterCreatedEvent } from '../events/character-created.event';
+import { CharacterUpdatedEvent } from '../events/character-updated.event';
 
 @Injectable()
 export class CharacterService {
@@ -32,7 +33,17 @@ export class CharacterService {
   }
 
   async update(id: number, updateCharacterDto: UpdateCharacterDto): Promise<CharacterEntity> {
-    return await this.characterRepository.update(id, updateCharacterDto);
+    const character = await this.characterRepository.update(id, updateCharacterDto);
+
+    this.eventEmitter.emit(
+      'character.updated',
+      new CharacterUpdatedEvent({
+        id: character.id,
+        name: character.name,
+      }),
+    );
+    
+    return character;
   }
 
   async delete(id: number): Promise<boolean> {
