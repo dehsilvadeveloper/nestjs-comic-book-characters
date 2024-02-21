@@ -137,13 +137,37 @@ Authorization: Bearer {{accessToken}}
 
 ########################################
 #
+#  CHARACTER ALLIES
+#
+########################################
+
+### Update Character Allies
+
+PUT {{baseUrl}}/characters/25/allies
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+{
+    "allies": [16, 17, 18, 1]
+}
+
+### Get Character Allies
+
+GET {{baseUrl}}/characters/25/allies
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
 #  CHARACTER POWERS
 #
 ########################################
 
 ### Update Character Powers
 
-PUT {{baseUrl}}/characters/25/powers
+PUT {{baseUrl}}/characters/24/powers
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
@@ -154,7 +178,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Get Character Powers
 
-GET {{baseUrl}}/characters/25/powers
+GET {{baseUrl}}/characters/24/powers
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}

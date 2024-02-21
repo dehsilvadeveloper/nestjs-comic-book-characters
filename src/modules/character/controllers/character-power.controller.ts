@@ -1,7 +1,6 @@
 import { Controller, Body, Get, Put, Param, UseInterceptors, UseGuards } from '@nestjs/common';
 import { UpdateCharacterPowerDto } from '../dtos/update-character-power.dto';
 import { CharacterPowerListType } from '../types/character-power-list.type';
-import { CharacterPowerType } from '../types/character-power.type';
 import { CharacterPowerService } from '../services/character-power.service';
 import { CharacterPowerViewModel } from '../view_models/character-power.view-model';
 import { BadRequestInterceptor } from '@modules/common/interceptors/bad-request.interceptor';
