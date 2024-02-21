@@ -130,7 +130,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Delete Character By ID
 
-DELETE {{baseUrl}}/characters/34
+DELETE {{baseUrl}}/characters/24
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}

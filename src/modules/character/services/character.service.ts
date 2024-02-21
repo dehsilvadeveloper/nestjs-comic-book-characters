@@ -10,6 +10,7 @@ import { PaginationOptions } from '@modules/common/value_objects/pagination-opti
 import { SortingOptions } from '@modules/common/value_objects/sorting-options';
 import { CharacterCreatedEvent } from '../events/character-created.event';
 import { CharacterUpdatedEvent } from '../events/character-updated.event';
+import { CharacterDeletedEvent } from '../events/character-deleted.event';
 
 @Injectable()
 export class CharacterService {
@@ -47,7 +48,18 @@ export class CharacterService {
   }
 
   async delete(id: number): Promise<boolean> {
-    return await this.characterRepository.delete(id);
+    const result = await this.characterRepository.delete(id);
+
+    if (result === true) {
+      this.eventEmitter.emit(
+        'character.deleted',
+        new CharacterDeletedEvent({
+          id: id
+        }),
+      );
+    }
+
+    return result;
   }
 
   async getByField(field: string, value: any): Promise<CharacterEntity[]> {
