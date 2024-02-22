@@ -143,7 +143,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Update Character Allies
 
-PUT {{baseUrl}}/characters/25/allies
+PUT {{baseUrl}}/characters/24/allies
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
@@ -154,7 +154,31 @@ Authorization: Bearer {{accessToken}}
 
 ### Get Character Allies
 
-GET {{baseUrl}}/characters/25/allies
+GET {{baseUrl}}/characters/24/allies
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
+#  CHARACTER ENEMIES
+#
+########################################
+
+### Update Character Enemies
+
+PUT {{baseUrl}}/characters/25/enemies
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+{
+    "enemies": [23, 8]
+}
+
+### Get Character Enemies
+
+GET {{baseUrl}}/characters/25/enemies
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}

@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CharacterRelationshipInvalidError } from '@modules/character/errors/character-relationship-invalid.error';
 import { CharacterAlliesEmptyError } from '@modules/character/errors/character-allies-empty.error';
+import { CharacterEnemiesEmptyError } from '../../character/errors/character-enemies-empty.error';
 import { CharacterPowersEmptyError } from '@modules/character/errors/character-powers-empty.error';
 
 @Injectable()
@@ -22,6 +23,11 @@ export class BadRequestInterceptor implements NestInterceptor {
   }
 
   private getInterceptableErrors(): any[] {
-    return [CharacterRelationshipInvalidError, CharacterAlliesEmptyError, CharacterPowersEmptyError];
+    return [
+      CharacterRelationshipInvalidError,
+      CharacterAlliesEmptyError,
+      CharacterEnemiesEmptyError,
+      CharacterPowersEmptyError,
+    ];
   }
 }

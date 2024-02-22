@@ -4,6 +4,8 @@ import { CharacterRepositoryInterface } from '@modules/character/repositories/ch
 import { CharacterPrismaRepository } from './prisma/repositories/character.prisma.repository';
 import { CharacterAllyRepositoryInterface } from '@modules/character/repositories/character-ally.repository.interface';
 import { CharacterAllyPrismaRepository } from './prisma/repositories/character-ally.prisma.repository';
+import { CharacterEnemyRepositoryInterface } from '@modules/character/repositories/character-enemy.repository.interface';
+import { CharacterEnemyPrismaRepository } from './prisma/repositories/character-enemy.prisma.repository';
 import { CharacterPowerRepositoryInterface } from '@modules/character/repositories/character-power.repository.interface';
 import { CharacterPowerPrismaRepository } from './prisma/repositories/character-power.prisma.repository';
 import { AlignmentRepositoryInterface } from '@modules/common/repositories/alignment.repository.interface';
@@ -29,6 +31,10 @@ import { UserPrismaRepository } from './prisma/repositories/user.prisma.reposito
     {
       provide: CharacterAllyRepositoryInterface,
       useClass: CharacterAllyPrismaRepository,
+    },
+    {
+      provide: CharacterEnemyRepositoryInterface,
+      useClass: CharacterEnemyPrismaRepository,
     },
     {
       provide: CharacterPowerRepositoryInterface,
@@ -63,6 +69,7 @@ import { UserPrismaRepository } from './prisma/repositories/user.prisma.reposito
     PrismaService,
     CharacterRepositoryInterface,
     CharacterAllyRepositoryInterface,
+    CharacterEnemyRepositoryInterface,
     CharacterPowerRepositoryInterface,
     AlignmentRepositoryInterface,
     LivingStatusRepositoryInterface,
