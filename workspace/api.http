@@ -167,7 +167,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Update Character Enemies
 
-PUT {{baseUrl}}/characters/25/enemies
+PUT {{baseUrl}}/characters/24/enemies
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
@@ -178,7 +178,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Get Character Enemies
 
-GET {{baseUrl}}/characters/25/enemies
+GET {{baseUrl}}/characters/24/enemies
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
@@ -203,6 +203,39 @@ Authorization: Bearer {{accessToken}}
 ### Get Character Powers
 
 GET {{baseUrl}}/characters/24/powers
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
+#  CHARACTER RELATIVES
+#
+########################################
+
+### Update Character Relatives
+
+PUT {{baseUrl}}/characters/25/relatives
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+{
+    "relatives": [
+        {
+            "relativeId": 18,
+            "relationshipTypeId": 5
+        },
+        {
+            "relativeId": 17,
+            "relationshipTypeId": 22
+        }
+    ]
+}
+
+### Get Character Relatives
+
+GET {{baseUrl}}/characters/25/relatives
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}

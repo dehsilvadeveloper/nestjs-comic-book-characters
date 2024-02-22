@@ -5,6 +5,7 @@ import { CharacterRelationshipInvalidError } from '@modules/character/errors/cha
 import { CharacterAlliesEmptyError } from '@modules/character/errors/character-allies-empty.error';
 import { CharacterEnemiesEmptyError } from '../../character/errors/character-enemies-empty.error';
 import { CharacterPowersEmptyError } from '@modules/character/errors/character-powers-empty.error';
+import { CharacterRelativesEmptyError } from '../../character/errors/character-relatives-empty.error';
 
 @Injectable()
 export class BadRequestInterceptor implements NestInterceptor {
@@ -28,6 +29,7 @@ export class BadRequestInterceptor implements NestInterceptor {
       CharacterAlliesEmptyError,
       CharacterEnemiesEmptyError,
       CharacterPowersEmptyError,
+      CharacterRelativesEmptyError,
     ];
   }
 }
