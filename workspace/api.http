@@ -255,6 +255,19 @@ Authorization: Bearer {{accessToken}}
 
 ########################################
 #
+#  RELATIONSHIP TYPES
+#
+########################################
+
+### Get List Of Relationship Types
+
+GET {{baseUrl}}/relationship-types
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
 #  USER
 #
 ########################################

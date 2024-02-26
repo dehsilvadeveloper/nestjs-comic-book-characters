@@ -8,6 +8,7 @@ import { HealthcheckModule } from '@modules/healthcheck/healthcheck.module';
 import { CommonModule } from '@modules/common/common.module';
 import { AuthModule } from '@modules/auth/auth.module';
 import { CharacterModule } from '@modules/character/character.module';
+import { RelationshipTypeModule } from '../relationship-type/relationship-type.module';
 import { UserModule } from '@modules/user/user.module';
 
 @Module({
@@ -25,6 +26,7 @@ import { UserModule } from '@modules/user/user.module';
     CommonModule,
     AuthModule,
     CharacterModule,
+    RelationshipTypeModule,
     UserModule,
   ],
   controllers: [AppController],

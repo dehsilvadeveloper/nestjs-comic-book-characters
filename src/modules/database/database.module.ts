@@ -18,6 +18,8 @@ import { MaritalStatusRepositoryInterface } from '@modules/common/repositories/m
 import { MaritalStatusPrismaRepository } from './prisma/repositories/marital-status.prisma.repository';
 import { PowerRepositoryInterface } from '../power/repositories/power.repository.interface';
 import { PowerPrismaRepository } from './prisma/repositories/power.prisma.repository';
+import { RelationshipTypeRepositoryInterface } from '@modules/relationship-type/repositories/relationship-type.repository.interface';
+import { RelationshipTypePrismaRepository } from './prisma/repositories/relationship-type.prisma.repository';
 import { TeamRepositoryInterface } from '@modules/team/repositories/team.repository.interface';
 import { TeamPrismaRepository } from './prisma/repositories/team.prisma.repository';
 import { UserRepositoryInterface } from '@modules/user/repositories/user.repository.interface';
@@ -63,6 +65,10 @@ import { UserPrismaRepository } from './prisma/repositories/user.prisma.reposito
       useClass: PowerPrismaRepository,
     },
     {
+      provide: RelationshipTypeRepositoryInterface,
+      useClass: RelationshipTypePrismaRepository,
+    },
+    {
       provide: TeamRepositoryInterface,
       useClass: TeamPrismaRepository,
     },
@@ -82,6 +88,7 @@ import { UserPrismaRepository } from './prisma/repositories/user.prisma.reposito
     LivingStatusRepositoryInterface,
     MaritalStatusRepositoryInterface,
     PowerRepositoryInterface,
+    RelationshipTypeRepositoryInterface,
     TeamRepositoryInterface,
     UserRepositoryInterface,
   ],
