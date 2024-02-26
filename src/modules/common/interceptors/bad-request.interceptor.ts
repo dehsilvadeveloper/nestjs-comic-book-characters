@@ -3,9 +3,10 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CharacterRelationshipInvalidError } from '@modules/character/errors/character-relationship-invalid.error';
 import { CharacterAlliesEmptyError } from '@modules/character/errors/character-allies-empty.error';
-import { CharacterEnemiesEmptyError } from '../../character/errors/character-enemies-empty.error';
+import { CharacterEnemiesEmptyError } from '@modules/character/errors/character-enemies-empty.error';
 import { CharacterPowersEmptyError } from '@modules/character/errors/character-powers-empty.error';
-import { CharacterRelativesEmptyError } from '../../character/errors/character-relatives-empty.error';
+import { CharacterRelativesEmptyError } from '@modules/character/errors/character-relatives-empty.error';
+import { CharacterTeamsEmptyError } from '@modules/character/errors/character-teams-empty.error';
 
 @Injectable()
 export class BadRequestInterceptor implements NestInterceptor {
@@ -30,6 +31,7 @@ export class BadRequestInterceptor implements NestInterceptor {
       CharacterEnemiesEmptyError,
       CharacterPowersEmptyError,
       CharacterRelativesEmptyError,
+      CharacterTeamsEmptyError,
     ];
   }
 }

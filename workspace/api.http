@@ -215,7 +215,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Update Character Relatives
 
-PUT {{baseUrl}}/characters/25/relatives
+PUT {{baseUrl}}/characters/24/relatives
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
@@ -235,7 +235,47 @@ Authorization: Bearer {{accessToken}}
 
 ### Get Character Relatives
 
-GET {{baseUrl}}/characters/25/relatives
+GET {{baseUrl}}/characters/24/relatives
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
+#  CHARACTER TEAMS
+#
+########################################
+
+### Update Character Teams
+
+PUT {{baseUrl}}/characters/25/teams
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+{
+    "teams": [
+        {
+            "teamId": 4,
+            "status": "current",
+            "role": "leader"
+        },
+        {
+            "teamId": 1,
+            "status": "former",
+            "role": "member"
+        },
+        {
+            "teamId": 2,
+            "status": "former",
+            "role": "member"
+        }
+    ]
+}
+
+### Get Character teams
+
+GET {{baseUrl}}/characters/25/teams
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
