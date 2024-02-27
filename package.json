@@ -1,5 +1,5 @@
 {
-  "name": "nestjs-comic-characters",
+  "name": "nestjs-comic-book-characters",
   "version": "1.0",
   "description": "⛵ A NestJS v10.x api to manipulate data about comic book characters.",
   "author": "André Silva <andreluis_x@msn.com>",

@@ -74,7 +74,7 @@ The `-d` means that the terminal will be *detached*, in other words, it won't be
 docker-compose up
 ```
 
-It will be possible to see the watch messages from the application live.
+It will be possible to see the watch messages from the application on real time.
 
 ### Shutting down the application
 
@@ -98,7 +98,7 @@ To test the API endpoints you will need a program that can perform http requests
 
 [Insomnia](https://insomnia.rest/download)
 
-You can get more details about the api endpoints on the following documentation:
+You can get more details about the api endpoints on the following link:
 
 [Api Documentation](./docs/api_documentation.md)
 
@@ -115,7 +115,7 @@ You get a *default user* that you have to use to generate the access token. The 
 }
 ```
 
-To know how to use the endpoints related to authentication, refer to the api endpoints documentation.
+To know how to use the endpoints related to authentication, refer to the api endpoints link:
 
 [Api Documentation](./docs/api_documentation.md)
 

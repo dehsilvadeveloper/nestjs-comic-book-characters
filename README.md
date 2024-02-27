@@ -45,7 +45,7 @@ The project was created for refinement of NestJS knowledge. It also work as a sk
 - [X] Healthcheck route (to help validate the status of the api, indicating if available or not)
 - [X] Decorator that allows to get id of authenticated user
 - [X] Events and listeners for when character is *created*, *updated* or *deleted*. These events print messages to the console
-- [ ] Api documentation (using Scribe)
+- [ ] Api documentation (using **Swagger**)
 - [ ] Units tests (using Jest)
 - [X] File with API endpoints inside folder *workspace* to be used to make requests on **Visual Studio Code** IDE with the extension **REST Client** (for when Postman or Insomnia are not available)
 - [x] Dockerfile with multi stage build
@@ -60,6 +60,12 @@ The project was created for refinement of NestJS knowledge. It also work as a sk
 * [CORS](./docs/cors.md)
 * [Running Tests](./docs/running_tests.md)
 * [Available Yarn Scripts](./docs/available_yarn_scripts.md)
+
+## API Documentation
+
+You can get more details about the api endpoints on the following link:
+
+[Api Documentation](./docs/api_documentation.md)
 
 <!-- Badge Shields -->
 [nestjs-shield]: https://img.shields.io/badge/nestjs-%23E0234E.svg?style=for-the-badge&logo=nestjs&logoColor=white
