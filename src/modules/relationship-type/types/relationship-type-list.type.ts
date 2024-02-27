@@ -1,5 +1,11 @@
-import { RelationshipTypeEntity } from '../entities/relationship-type.entity';
+import { ApiProperty } from '@nestjs/swagger';
+import { RelationshipTypeType } from './relationship-type.type';
 
-export type RelationshipTypeListType = {
-  relationship_types: RelationshipTypeEntity[];
+export class RelationshipTypeListType {
+  @ApiProperty({
+    type: RelationshipTypeType,
+    isArray: true,
+    description: 'An array of relationship type objects.',
+  })
+  relationship_types: RelationshipTypeType[];
 };

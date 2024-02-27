@@ -1,5 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { HttpStatus, ValidationPipe, VersioningType } from '@nestjs/common';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { useContainer } from 'class-validator';
 import { AppModule } from '@modules/app/app.module';
 import { ConfigService } from '@nestjs/config';
@@ -63,9 +64,24 @@ async function bootstrap() {
     app.enableCors();
   }
 
+  // API documentation generated with Swagger
+  const SwaggerOptions = new DocumentBuilder()
+    .setTitle('Comic Book Characters Api')
+    .setDescription('A api to manipulate data about comic book characters.')
+    .setVersion('1.0')
+    .addBearerAuth({ in: 'header', type: 'http' }) // For JWT authentication
+    .build();
+  const SwaggerDocument = SwaggerModule.createDocument(app, SwaggerOptions);
+
+  SwaggerModule.setup('api-docs', app, SwaggerDocument, {
+    customCss: '.swagger-ui .topbar { display: none }', // Custom CSS for the documentation webpage
+    customSiteTitle: 'API Documentation - Comic Book Characters', // Custom title for the documentation webpage
+  });
+
   // Application port
   await app.listen(appPort, () => {
-    console.info(`Server ready at: ${appFullBaseUrl}`);
+    // Adding colors to startup message with control characters ( \x1b ) and ANSI colors
+    console.info(`🚀 \x1b[96m Server ready at:\x1b[0m \x1b[95m ${appFullBaseUrl} \x1b[0m`);
   });
 }
 

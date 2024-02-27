@@ -1,5 +1,11 @@
+import { ApiProperty } from '@nestjs/swagger';
 import { CharacterTeamType } from './character-team.type';
 
-export type CharacterTeamListType = {
+export class CharacterTeamListType {
+  @ApiProperty({
+    type: CharacterTeamType,
+    isArray: true,
+    description: 'An array of character team objects.'
+  })
   teams: CharacterTeamType[];
-};
+}

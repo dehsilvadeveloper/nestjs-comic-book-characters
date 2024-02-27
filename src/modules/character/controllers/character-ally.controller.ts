@@ -1,4 +1,5 @@
-import { Controller, Body, Get, Put, Param, UseInterceptors, UseGuards } from '@nestjs/common';
+import { Controller, Body, Get, Put, Param, UseInterceptors, UseGuards, HttpStatus } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { UpdateCharacterAllyDto } from '../dtos/update-character-ally.dto';
 import { CharacterAllyListType } from '../types/character-ally-list.type';
 import { CharacterAllyService } from '../services/character-ally.service';
@@ -7,11 +8,26 @@ import { BadRequestInterceptor } from '@modules/common/interceptors/bad-request.
 import { NotFoundInterceptor } from '@modules/common/interceptors/not-found.interceptor';
 import { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard';
 
+@ApiTags('character ally')
+@ApiResponse({ status: 401, description: 'Unauthorized.' })
+@ApiResponse({ status: 403, description: 'Forbidden.' })
+@ApiResponse({ status: 404, description: 'Character with the provided ID does not exists.' })
 @UseInterceptors(BadRequestInterceptor, NotFoundInterceptor)
 @Controller('characters')
 export class CharacterAllyController {
   constructor(private readonly characterAllyService: CharacterAllyService) {}
 
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Update the allies related to the character.',
+    description: 'Update the allies related to the character.',
+  })
+  @ApiParam({ name: 'id', description: 'Character ID.' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'The relationship between character and ally has been successfully updated.',
+    type: CharacterAllyListType,
+  })
   @Put(':id/allies')
   @UseGuards(JwtAuthGuard)
   async update(
@@ -27,6 +43,17 @@ export class CharacterAllyController {
     };
   }
 
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Retrieve the list of allies of a character.',
+    description: 'Retrieve the list of allies of a character.',
+  })
+  @ApiParam({ name: 'id', description: 'Character ID.' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Return the found records.',
+    type: CharacterAllyListType,
+  })
   @Get(':id/allies')
   @UseGuards(JwtAuthGuard)
   async getByCharacter(@Param('id') characterId: number): Promise<CharacterAllyListType> {

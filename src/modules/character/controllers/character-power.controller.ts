@@ -1,4 +1,5 @@
-import { Controller, Body, Get, Put, Param, UseInterceptors, UseGuards } from '@nestjs/common';
+import { Controller, Body, Get, Put, Param, UseInterceptors, UseGuards, HttpStatus } from '@nestjs/common';
+import { ApiTags, ApiOperation, ApiParam, ApiResponse, ApiBearerAuth } from '@nestjs/swagger';
 import { UpdateCharacterPowerDto } from '../dtos/update-character-power.dto';
 import { CharacterPowerListType } from '../types/character-power-list.type';
 import { CharacterPowerService } from '../services/character-power.service';
@@ -7,11 +8,26 @@ import { BadRequestInterceptor } from '@modules/common/interceptors/bad-request.
 import { NotFoundInterceptor } from '@modules/common/interceptors/not-found.interceptor';
 import { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard';
 
+@ApiTags('character power')
+@ApiResponse({ status: 401, description: 'Unauthorized.' })
+@ApiResponse({ status: 403, description: 'Forbidden.' })
+@ApiResponse({ status: 404, description: 'Character with the provided ID does not exists.' })
 @UseInterceptors(BadRequestInterceptor, NotFoundInterceptor)
 @Controller('characters')
 export class CharacterPowerController {
   constructor(private readonly characterPowerService: CharacterPowerService) {}
 
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Update the powers related to the character.',
+    description: 'Update the powers related to the character.',
+  })
+  @ApiParam({ name: 'id', description: 'Character ID.' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'The relationship between character and powers has been successfully updated.',
+    type: CharacterPowerListType,
+  })
   @Put(':id/powers')
   @UseGuards(JwtAuthGuard)
   async update(
@@ -27,6 +43,17 @@ export class CharacterPowerController {
     };
   }
 
+  @ApiBearerAuth()
+  @ApiOperation({
+    summary: 'Retrieve the list of powers of a character.',
+    description: 'Retrieve the list of powers of a character.',
+  })
+  @ApiParam({ name: 'id', description: 'Character ID.' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    description: 'Return the found records.',
+    type: CharacterPowerListType,
+  })
   @Get(':id/powers')
   @UseGuards(JwtAuthGuard)
   async getByCharacter(@Param('id') characterId: number): Promise<CharacterPowerListType> {
