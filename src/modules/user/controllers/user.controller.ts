@@ -20,8 +20,8 @@ import { NotFoundInterceptor } from '@modules/common/interceptors/not-found.inte
 import { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard';
 
 @ApiTags('user')
-@ApiResponse({ status: 401, description: 'Unauthorized.' })
-@ApiResponse({ status: 403, description: 'Forbidden.' })
+@ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized.' })
+@ApiResponse({ status: HttpStatus.FORBIDDEN, description: 'Forbidden.' })
 @UseInterceptors(NotFoundInterceptor)
 @Controller('users')
 export class UserController {
