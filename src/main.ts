@@ -76,6 +76,10 @@ async function bootstrap() {
   SwaggerModule.setup('api-docs', app, SwaggerDocument, {
     customCss: '.swagger-ui .topbar { display: none }', // Custom CSS for the documentation webpage
     customSiteTitle: 'API Documentation - Comic Book Characters', // Custom title for the documentation webpage
+    swaggerOptions: {
+      tagsSorter: 'alpha', // To ordering tags on ASC order
+      operationsSorter: 'alpha', // To ordering tags on ASC order
+    },
   });
 
   // Application port
