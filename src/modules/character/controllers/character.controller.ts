@@ -26,8 +26,8 @@ import { NotFoundInterceptor } from '@modules/common/interceptors/not-found.inte
 import { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard';
 
 @ApiTags('character')
-@ApiResponse({ status: 401, description: 'Unauthorized.' })
-@ApiResponse({ status: 403, description: 'Forbidden.' })
+@ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized.' })
+@ApiResponse({ status: HttpStatus.FORBIDDEN, description: 'Forbidden.' })
 @UseInterceptors(BadRequestInterceptor, NotFoundInterceptor)
 @Controller('characters')
 export class CharacterController {
@@ -61,7 +61,7 @@ export class CharacterController {
     description: 'The character has been successfully updated.',
     type: CharacterType,
   })
-  @ApiResponse({ status: 404, description: 'Character with the provided ID does not exists.' })
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Character with the provided ID does not exists.' })
   @Patch(':id')
   @UseGuards(JwtAuthGuard)
   async update(@Param('id') id: number, @Body() updateCharacterDto: UpdateCharacterDto): Promise<CharacterType> {
@@ -80,7 +80,7 @@ export class CharacterController {
     description: 'The character has been successfully deleted.',
     type: CharacterDeletedSuccessfullyType
   })
-  @ApiResponse({ status: 404, description: 'Character with the provided ID does not exists.' })
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Character with the provided ID does not exists.' })
   @Delete(':id')
   @UseGuards(JwtAuthGuard)
   async delete(@Param('id') id: number): Promise<CharacterDeletedSuccessfullyType> {
@@ -123,7 +123,7 @@ export class CharacterController {
     description: 'Return the character data found.',
     type: CharacterType,
   })
-  @ApiResponse({ status: 404, description: 'Character with the provided ID does not exists.' })
+  @ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Character with the provided ID does not exists.' })
   @Get(':id')
   @UseGuards(JwtAuthGuard)
   async firstById(@Param('id') id: number): Promise<CharacterType> {

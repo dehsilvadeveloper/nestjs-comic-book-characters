@@ -9,9 +9,9 @@ import { NotFoundInterceptor } from '@modules/common/interceptors/not-found.inte
 import { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard';
 
 @ApiTags('character ally')
-@ApiResponse({ status: 401, description: 'Unauthorized.' })
-@ApiResponse({ status: 403, description: 'Forbidden.' })
-@ApiResponse({ status: 404, description: 'Character with the provided ID does not exists.' })
+@ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized.' })
+@ApiResponse({ status: HttpStatus.FORBIDDEN, description: 'Forbidden.' })
+@ApiResponse({ status: HttpStatus.NOT_FOUND, description: 'Character with the provided ID does not exists.' })
 @UseInterceptors(BadRequestInterceptor, NotFoundInterceptor)
 @Controller('characters')
 export class CharacterAllyController {

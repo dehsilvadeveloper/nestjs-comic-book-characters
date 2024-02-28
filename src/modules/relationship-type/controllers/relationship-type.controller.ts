@@ -7,8 +7,8 @@ import { NotFoundInterceptor } from '@modules/common/interceptors/not-found.inte
 import { JwtAuthGuard } from '@modules/auth/guards/jwt-auth.guard';
 
 @ApiTags('relationship type')
-@ApiResponse({ status: 401, description: 'Unauthorized.' })
-@ApiResponse({ status: 403, description: 'Forbidden.' })
+@ApiResponse({ status: HttpStatus.UNAUTHORIZED, description: 'Unauthorized.' })
+@ApiResponse({ status: HttpStatus.FORBIDDEN, description: 'Forbidden.' })
 @UseInterceptors(BadRequestInterceptor, NotFoundInterceptor)
 @Controller('relationship-types')
 export class RelationshipTypeController {

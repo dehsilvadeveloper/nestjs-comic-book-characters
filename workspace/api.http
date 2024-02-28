@@ -248,7 +248,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Update Character Teams
 
-PUT {{baseUrl}}/characters/25/teams
+PUT {{baseUrl}}/characters/24/teams
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
@@ -275,7 +275,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Get Character teams
 
-GET {{baseUrl}}/characters/25/teams
+GET {{baseUrl}}/characters/4/teams
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}
