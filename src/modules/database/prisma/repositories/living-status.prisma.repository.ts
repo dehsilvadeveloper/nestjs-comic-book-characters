@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from '../prisma.service';
-import { LivingStatusEntity } from '@modules/common/entities/living-status.entity';
-import { LivingStatusRepositoryInterface } from '@modules/common/repositories/living-status.repository.interface';
-import { FindLivingStatusDto } from '@modules/common/dtos/find-living-status.dto';
-import { CreateLivingStatusDto } from '@modules/common/dtos/create-living-status.dto';
-import { UpdateLivingStatusDto } from '@modules/common/dtos/update-living-status.dto';
+import { LivingStatusEntity } from '@modules/living-status/entities/living-status.entity';
+import { LivingStatusRepositoryInterface } from '@modules/living-status/repositories/living-status.repository.interface';
+import { FindLivingStatusDto } from '@modules/living-status/dtos/find-living-status.dto';
+import { CreateLivingStatusDto } from '@modules/living-status/dtos/create-living-status.dto';
+import { UpdateLivingStatusDto } from '@modules/living-status/dtos/update-living-status.dto';
 import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
 import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
 import { SortingOptions } from '@modules/common/value_objects/sorting-options';
@@ -27,7 +27,9 @@ export class LivingStatusPrismaRepository implements LivingStatusRepositoryInter
   }
 
   async getAll(): Promise<LivingStatusEntity[]> {
-    throw new Error('Method not implemented.');
+    const livingStatuses = await this.prismaService.livingStatus.findMany();
+
+    return plainToInstance(LivingStatusEntity, livingStatuses);
   }
 
   async getByField(field: string, value: any): Promise<LivingStatusEntity[]> {

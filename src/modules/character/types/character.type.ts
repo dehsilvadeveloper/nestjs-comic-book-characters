@@ -5,7 +5,7 @@ import { CharacterEnemyType } from "./character-enemy.type";
 import { CharacterTeamType } from "./character-team.type";
 import { AlignmentStringEnum } from '@modules/alignment/enums/alignment-string.enum';
 import { GenderStringEnum } from '@modules/common/enums/gender-string.enum';
-import { LivingStatusStringEnum } from '@modules/common/enums/living-status-string.enum';
+import { LivingStatusStringEnum } from '@modules/living-status/enums/living-status-string.enum';
 import { MaritalStatusStringEnum } from '@modules/common/enums/marital-status-string.enum';
 
 export class CharacterType {

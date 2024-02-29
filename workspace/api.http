@@ -308,6 +308,19 @@ Authorization: Bearer {{accessToken}}
 
 ########################################
 #
+#  LIVING STATUS
+#
+########################################
+
+### Get List Of Living Statuses
+
+GET {{baseUrl}}/living-statuses
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
 #  RELATIONSHIP TYPE
 #
 ########################################

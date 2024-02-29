@@ -9,4 +9,6 @@ export abstract class LivingStatusRepositoryInterface extends BaseRepositoryInte
   CreateLivingStatusDto,
   UpdateLivingStatusDto,
   FindLivingStatusDto
-> {}
+> {
+  abstract getAll(): Promise<LivingStatusEntity[]>;
+}

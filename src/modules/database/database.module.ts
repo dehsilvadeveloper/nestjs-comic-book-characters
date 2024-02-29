@@ -14,7 +14,7 @@ import { CharacterTeamRepositoryInterface } from '@modules/character/repositorie
 import { CharacterTeamPrismaRepository } from './prisma/repositories/character-team.prisma.repository';
 import { AlignmentRepositoryInterface } from '@modules/alignment/repositories/alignment.repository.interface';
 import { AlignmentPrismaRepository } from './prisma/repositories/alignment.prisma.repository';
-import { LivingStatusRepositoryInterface } from '@modules/common/repositories/living-status.repository.interface';
+import { LivingStatusRepositoryInterface } from '@modules/living-status/repositories/living-status.repository.interface';
 import { LivingStatusPrismaRepository } from './prisma/repositories/living-status.prisma.repository';
 import { MaritalStatusRepositoryInterface } from '@modules/common/repositories/marital-status.repository.interface';
 import { MaritalStatusPrismaRepository } from './prisma/repositories/marital-status.prisma.repository';

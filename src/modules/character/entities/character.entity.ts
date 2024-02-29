@@ -1,7 +1,7 @@
 import { Transform, Type } from 'class-transformer';
 import { AlignmentEntity } from '@modules/alignment/entities/alignment.entity';
 import { MaritalStatusEntity } from '@modules/common/entities/marital-status.entity';
-import { LivingStatusEntity } from '@modules/common/entities/living-status.entity';
+import { LivingStatusEntity } from '@modules/living-status/entities/living-status.entity';
 import { PowerEntity } from '@modules/power/entities/power.entity';
 import { CharacterRelativeEntity } from './character-relative.entity';
 import { CharacterAllyEntity } from './character-ally.entity';
