@@ -3,7 +3,7 @@ import { CharacterRelativeType } from "./character-relative.type";
 import { CharacterAllyType } from "./character-ally.type";
 import { CharacterEnemyType } from "./character-enemy.type";
 import { CharacterTeamType } from "./character-team.type";
-import { AlignmentStringEnum } from '@modules/common/enums/alignment-string.enum';
+import { AlignmentStringEnum } from '@modules/alignment/enums/alignment-string.enum';
 import { GenderStringEnum } from '@modules/common/enums/gender-string.enum';
 import { LivingStatusStringEnum } from '@modules/common/enums/living-status-string.enum';
 import { MaritalStatusStringEnum } from '@modules/common/enums/marital-status-string.enum';

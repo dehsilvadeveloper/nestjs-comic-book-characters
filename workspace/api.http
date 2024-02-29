@@ -40,6 +40,19 @@ Authorization: Bearer {{accessToken}}
 
 ########################################
 #
+#  ALIGNMENT
+#
+########################################
+
+### Get List Of Alignments
+
+GET {{baseUrl}}/alignments
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
 #  CHARACTER
 #
 ########################################
@@ -295,7 +308,7 @@ Authorization: Bearer {{accessToken}}
 
 ########################################
 #
-#  RELATIONSHIP TYPES
+#  RELATIONSHIP TYPE
 #
 ########################################
 

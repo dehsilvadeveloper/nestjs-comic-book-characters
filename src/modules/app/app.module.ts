@@ -7,6 +7,7 @@ import { DatabaseModule } from '@modules/database/database.module';
 import { HealthcheckModule } from '@modules/healthcheck/healthcheck.module';
 import { CommonModule } from '@modules/common/common.module';
 import { AuthModule } from '@modules/auth/auth.module';
+import { AlignmentModule } from '../alignment/alignment.module';
 import { CharacterModule } from '@modules/character/character.module';
 import { RelationshipTypeModule } from '../relationship-type/relationship-type.module';
 import { UserModule } from '@modules/user/user.module';
@@ -21,11 +22,12 @@ import { UserModule } from '@modules/user/user.module';
       verboseMemoryLeak: true,
       ignoreErrors: true,
     }),
-    DatabaseModule,
-    HealthcheckModule,
-    CommonModule,
+    AlignmentModule,
     AuthModule,
     CharacterModule,
+    CommonModule,
+    DatabaseModule,
+    HealthcheckModule,
     RelationshipTypeModule,
     UserModule,
   ],

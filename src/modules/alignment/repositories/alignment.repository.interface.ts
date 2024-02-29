@@ -9,4 +9,6 @@ export abstract class AlignmentRepositoryInterface extends BaseRepositoryInterfa
   CreateAlignmentDto,
   UpdateAlignmentDto,
   FindAlignmentDto
-> {}
+> {
+  abstract getAll(): Promise<AlignmentEntity[]>;
+}

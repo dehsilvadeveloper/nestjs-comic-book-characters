@@ -1,5 +1,5 @@
 import { Gender } from '@prisma/client';
-import { AlignmentEnum } from '../../../src/modules/common/enums/alignment.enum';
+import { AlignmentEnum } from '../../../src/modules/alignment/enums/alignment.enum';
 import { LivingStatusEnum } from '../../../src/modules/common/enums/living-status.enum';
 import { MaritalStatusEnum } from '../../../src/modules/common/enums/marital-status.enum';
 

@@ -12,7 +12,7 @@ import { CharacterRelativeRepositoryInterface } from '@modules/character/reposit
 import { CharacterRelativePrismaRepository } from './prisma/repositories/character-relative.prisma.repository';
 import { CharacterTeamRepositoryInterface } from '@modules/character/repositories/character-team.repository.interface';
 import { CharacterTeamPrismaRepository } from './prisma/repositories/character-team.prisma.repository';
-import { AlignmentRepositoryInterface } from '@modules/common/repositories/alignment.repository.interface';
+import { AlignmentRepositoryInterface } from '@modules/alignment/repositories/alignment.repository.interface';
 import { AlignmentPrismaRepository } from './prisma/repositories/alignment.prisma.repository';
 import { LivingStatusRepositoryInterface } from '@modules/common/repositories/living-status.repository.interface';
 import { LivingStatusPrismaRepository } from './prisma/repositories/living-status.prisma.repository';

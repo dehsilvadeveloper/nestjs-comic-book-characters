@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from '../prisma.service';
-import { AlignmentEntity } from '@modules/common/entities/alignment.entity';
-import { AlignmentRepositoryInterface } from '@modules/common/repositories/alignment.repository.interface';
-import { FindAlignmentDto } from '@modules/common/dtos/find-alignment.dto';
-import { CreateAlignmentDto } from '@modules/common/dtos/create-alignment.dto';
-import { UpdateAlignmentDto } from '@modules/common/dtos/update-alignment.dto';
+import { AlignmentEntity } from '@modules/alignment/entities/alignment.entity';
+import { AlignmentRepositoryInterface } from '@modules/alignment/repositories/alignment.repository.interface';
+import { FindAlignmentDto } from '@modules/alignment/dtos/find-alignment.dto';
+import { CreateAlignmentDto } from '@modules/alignment/dtos/create-alignment.dto';
+import { UpdateAlignmentDto } from '@modules/alignment/dtos/update-alignment.dto';
 import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
 import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
 import { SortingOptions } from '@modules/common/value_objects/sorting-options';
@@ -27,7 +27,9 @@ export class AlignmentPrismaRepository implements AlignmentRepositoryInterface {
   }
 
   async getAll(): Promise<AlignmentEntity[]> {
-    throw new Error('Method not implemented.');
+    const relationships = await this.prismaService.alignment.findMany();
+
+    return plainToInstance(AlignmentEntity, relationships);
   }
 
   async getByField(field: string, value: any): Promise<AlignmentEntity[]> {
