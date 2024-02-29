@@ -9,4 +9,6 @@ export abstract class MaritalStatusRepositoryInterface extends BaseRepositoryInt
   CreateMaritalStatusDto,
   UpdateMaritalStatusDto,
   FindMaritalStatusDto
-> {}
+> {
+  abstract getAll(): Promise<MaritalStatusEntity[]>;
+}

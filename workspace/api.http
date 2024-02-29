@@ -321,6 +321,19 @@ Authorization: Bearer {{accessToken}}
 
 ########################################
 #
+#  MARITAL STATUS
+#
+########################################
+
+### Get List Of Marital Statuses
+
+GET {{baseUrl}}/marital-statuses
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
 #  RELATIONSHIP TYPE
 #
 ########################################

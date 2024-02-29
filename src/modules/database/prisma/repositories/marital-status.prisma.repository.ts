@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { plainToInstance } from 'class-transformer';
 import { PrismaService } from '../prisma.service';
-import { MaritalStatusEntity } from '@modules/common/entities/marital-status.entity';
-import { MaritalStatusRepositoryInterface } from '@modules/common/repositories/marital-status.repository.interface';
-import { FindMaritalStatusDto } from '@modules/common/dtos/find-marital-status.dto';
-import { CreateMaritalStatusDto } from '@modules/common/dtos/create-marital-status.dto';
-import { UpdateMaritalStatusDto } from '@modules/common/dtos/update-marital-status.dto';
+import { MaritalStatusEntity } from '@modules/marital-status/entities/marital-status.entity';
+import { MaritalStatusRepositoryInterface } from '@modules/marital-status/repositories/marital-status.repository.interface';
+import { FindMaritalStatusDto } from '@modules/marital-status/dtos/find-marital-status.dto';
+import { CreateMaritalStatusDto } from '@modules/marital-status/dtos/create-marital-status.dto';
+import { UpdateMaritalStatusDto } from '@modules/marital-status/dtos/update-marital-status.dto';
 import { PaginatedOutputType } from '@modules/common/types/paginated-output.type';
 import { PaginationOptions } from '@modules/common/value_objects/pagination-options';
 import { SortingOptions } from '@modules/common/value_objects/sorting-options';
@@ -27,7 +27,9 @@ export class MaritalStatusPrismaRepository implements MaritalStatusRepositoryInt
   }
 
   async getAll(): Promise<MaritalStatusEntity[]> {
-    throw new Error('Method not implemented.');
+    const maritalStatuses = await this.prismaService.maritalStatus.findMany();
+
+    return plainToInstance(MaritalStatusEntity, maritalStatuses);
   }
 
   async getByField(field: string, value: any): Promise<MaritalStatusEntity[]> {

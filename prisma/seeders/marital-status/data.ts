@@ -1,10 +1,11 @@
-import { MaritalStatusEnum } from '../../../src/modules/common/enums/marital-status.enum';
+import { MaritalStatusStringEnum } from '../../../src/modules/marital-status/enums/marital-status-string.enum';
+import { MaritalStatusEnum } from '../../../src/modules/marital-status/enums/marital-status.enum';
 
 export const maritalStatusSeederData = [
-  { id: MaritalStatusEnum.single, name: 'single' },
-  { id: MaritalStatusEnum.married, name: 'married' },
-  { id: MaritalStatusEnum.engaged, name: 'engaged' },
-  { id: MaritalStatusEnum.separated, name: 'separated' },
-  { id: MaritalStatusEnum.divorced, name: 'divorced' },
-  { id: MaritalStatusEnum.widowed, name: 'widowed' },
+  { id: MaritalStatusEnum.single, name: MaritalStatusStringEnum.single },
+  { id: MaritalStatusEnum.married, name: MaritalStatusStringEnum.married },
+  { id: MaritalStatusEnum.engaged, name: MaritalStatusStringEnum.engaged },
+  { id: MaritalStatusEnum.separated, name: MaritalStatusStringEnum.separated },
+  { id: MaritalStatusEnum.divorced, name: MaritalStatusStringEnum.divorced },
+  { id: MaritalStatusEnum.widowed, name: MaritalStatusStringEnum.widowed },
 ];

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { CharacterRepositoryInterface } from '@modules/character/repositories/character.repository.interface';
 import { AlignmentRepositoryInterface } from '@modules/alignment/repositories/alignment.repository.interface';
 import { LivingStatusRepositoryInterface } from '@modules/living-status/repositories/living-status.repository.interface';
-import { MaritalStatusRepositoryInterface } from '../repositories/marital-status.repository.interface';
+import { MaritalStatusRepositoryInterface } from '@modules/marital-status/repositories/marital-status.repository.interface';
 import { PowerRepositoryInterface } from '@modules/power/repositories/power.repository.interface';
 import { TeamRepositoryInterface } from '@modules/team/repositories/team.repository.interface';
 import { UserRepositoryInterface } from '@modules/user/repositories/user.repository.interface';
@@ -29,7 +29,7 @@ export class RepositoryService {
         return this.livingStatusRepository;
       case 'marital_status':
         return this.maritalStatusRepository;
-        case 'power':
+      case 'power':
         return this.powerRepository;
       case 'team':
         return this.teamRepository;

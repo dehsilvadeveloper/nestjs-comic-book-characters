@@ -16,7 +16,7 @@ import { AlignmentRepositoryInterface } from '@modules/alignment/repositories/al
 import { AlignmentPrismaRepository } from './prisma/repositories/alignment.prisma.repository';
 import { LivingStatusRepositoryInterface } from '@modules/living-status/repositories/living-status.repository.interface';
 import { LivingStatusPrismaRepository } from './prisma/repositories/living-status.prisma.repository';
-import { MaritalStatusRepositoryInterface } from '@modules/common/repositories/marital-status.repository.interface';
+import { MaritalStatusRepositoryInterface } from '@modules/marital-status/repositories/marital-status.repository.interface';
 import { MaritalStatusPrismaRepository } from './prisma/repositories/marital-status.prisma.repository';
 import { PowerRepositoryInterface } from '../power/repositories/power.repository.interface';
 import { PowerPrismaRepository } from './prisma/repositories/power.prisma.repository';
