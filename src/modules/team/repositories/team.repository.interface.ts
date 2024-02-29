@@ -9,4 +9,6 @@ export abstract class TeamRepositoryInterface extends BaseRepositoryInterface<
   CreateTeamDto,
   UpdateTeamDto,
   FindTeamDto
-> {}
+> {
+  abstract getAll(): Promise<TeamEntity[]>;
+}

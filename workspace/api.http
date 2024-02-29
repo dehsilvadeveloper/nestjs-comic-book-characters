@@ -360,6 +360,19 @@ Authorization: Bearer {{accessToken}}
 
 ########################################
 #
+#  TEAM
+#
+########################################
+
+### Get List Of Teams
+
+GET {{baseUrl}}/teams
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
 #  USER
 #
 ########################################

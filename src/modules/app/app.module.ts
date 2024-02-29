@@ -13,6 +13,7 @@ import { LivingStatusModule } from '@modules/living-status/living-status.module'
 import { MaritalStatusModule } from '@modules/marital-status/marital-status.module';
 import { PowerModule } from '@modules/power/power.module';
 import { RelationshipTypeModule } from '@modules/relationship-type/relationship-type.module';
+import { TeamModule } from '@modules/team/team.module';
 import { UserModule } from '@modules/user/user.module';
 
 @Module({
@@ -35,6 +36,7 @@ import { UserModule } from '@modules/user/user.module';
     MaritalStatusModule,
     PowerModule,
     RelationshipTypeModule,
+    TeamModule,
     UserModule,
   ],
   controllers: [AppController],

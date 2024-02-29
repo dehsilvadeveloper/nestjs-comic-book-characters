@@ -27,7 +27,9 @@ export class TeamPrismaRepository implements TeamRepositoryInterface {
   }
 
   async getAll(): Promise<TeamEntity[]> {
-    throw new Error('Method not implemented.');
+    const teams = await this.prismaService.team.findMany();
+
+    return plainToInstance(TeamEntity, teams);
   }
 
   async getByField(field: string, value: any): Promise<TeamEntity[]> {

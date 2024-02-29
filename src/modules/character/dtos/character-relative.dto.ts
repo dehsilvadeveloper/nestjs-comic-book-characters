@@ -6,7 +6,7 @@ import { RelationshipTypeEnum } from '@modules/relationship-type/enums/relations
 export class CharacterRelativeDto {
   @ApiProperty({
     type: Number,
-    description: 'Relative ID.',
+    description: 'Character ID of the relative.',
     example: 1,
   })
   @IsNotEmpty()

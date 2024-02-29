@@ -98,6 +98,7 @@ async function bootstrap() {
       'relationship type',
       'Endpoints to manipulate possible relationship types for the character, like father or brother, for example.',
     )
+    .addTag('team', 'Endpoints to manipulate team data.')
     .addTag('user', 'Endpoints to manipulate user data.')
     .build();
   const SwaggerDocument = SwaggerModule.createDocument(app, SwaggerOptions);
