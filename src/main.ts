@@ -70,6 +70,30 @@ async function bootstrap() {
     .setDescription('A api to manipulate data about comic book characters.')
     .setVersion('1.0')
     .addBearerAuth({ in: 'header', type: 'http' }) // For JWT authentication
+    .addTag(
+      'alignment',
+      'Endpoints to manipulate possible alignments for the character, like good or evil, for example.',
+    )
+    .addTag('auth', 'Endpoints to manipulate API authentication.')
+    .addTag('character', 'Endpoints to manipulate character data.')
+    .addTag('character ally', 'Endpoints to manipulate data related to the connection between character and ally.')
+    .addTag('character enemy', 'Endpoints to manipulate data related to the connection between character and enemy.')
+    .addTag('character power', 'Endpoints to manipulate data related to the connection between character and power.')
+    .addTag(
+      'character relative',
+      'Endpoints to manipulate data related to the connection between character and relative.',
+    )
+    .addTag('character team', 'Endpoints to manipulate data related to the connection between character and team.')
+    .addTag('healthcheck', 'Endpoints related to the healthcheck of the application.')
+    .addTag(
+      'living status',
+      'Endpoints to manipulate possible living statuses for the character, like alive or deceased, for example.',
+    )
+    .addTag(
+      'relationship type',
+      'Endpoints to manipulate possible relationship types for the character, like father or brother, for example.',
+    )
+    .addTag('user', 'Endpoints to manipulate user data.')
     .build();
   const SwaggerDocument = SwaggerModule.createDocument(app, SwaggerOptions);
 
