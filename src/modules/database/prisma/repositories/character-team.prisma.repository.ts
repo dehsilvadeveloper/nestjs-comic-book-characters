@@ -83,6 +83,16 @@ export class CharacterTeamPrismaRepository implements CharacterTeamRepositoryInt
   }
 
   async getByCharacter(characterId: number): Promise<CharacterTeamEntity[]> {
+    const character = await this.prismaService.character.findFirst({
+      where: {
+        id: characterId,
+      },
+    });
+
+    if (!character) {
+      throw new CharacterNotFoundError(`Cannot proceed. The character of ID ${characterId} does not exists.`);
+    }
+
     const characterTeams = await this.prismaService.characterTeam.findMany({
       where: { characterId: characterId },
       include: {

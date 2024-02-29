@@ -80,6 +80,16 @@ export class CharacterAllyPrismaRepository implements CharacterAllyRepositoryInt
   }
 
   async getByCharacter(characterId: number): Promise<CharacterAllyEntity[]> {
+    const character = await this.prismaService.character.findFirst({
+      where: {
+        id: characterId,
+      },
+    });
+
+    if (!character) {
+      throw new CharacterNotFoundError(`Cannot proceed. The character of ID ${characterId} does not exists.`);
+    }
+
     const characterAllies = await this.prismaService.characterAlly.findMany({
       where: { characterId: characterId },
       include: {

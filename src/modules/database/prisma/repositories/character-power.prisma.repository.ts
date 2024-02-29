@@ -79,6 +79,16 @@ export class CharacterPowerPrismaRepository implements CharacterPowerRepositoryI
   }
 
   async getByCharacter(characterId: number): Promise<CharacterPowerEntity[]> {
+    const character = await this.prismaService.character.findFirst({
+      where: {
+        id: characterId,
+      },
+    });
+
+    if (!character) {
+      throw new CharacterNotFoundError(`Cannot proceed. The character of ID ${characterId} does not exists.`);
+    }
+    
     const characterPowers = await this.prismaService.characterPower.findMany({
       where: { characterId: characterId },
       include: {

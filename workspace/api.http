@@ -288,7 +288,7 @@ Authorization: Bearer {{accessToken}}
 
 ### Get Character teams
 
-GET {{baseUrl}}/characters/4/teams
+GET {{baseUrl}}/characters/24/teams
 Accept: {{accept}}
 Content-Type: {{contentType}}
 Authorization: Bearer {{accessToken}}

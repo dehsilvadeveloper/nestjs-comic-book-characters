@@ -89,6 +89,16 @@ export class CharacterRelativePrismaRepository implements CharacterRelativeRepos
   }
 
   async getByCharacter(characterId: number): Promise<CharacterRelativeEntity[]> {
+    const character = await this.prismaService.character.findFirst({
+      where: {
+        id: characterId,
+      },
+    });
+
+    if (!character) {
+      throw new CharacterNotFoundError(`Cannot proceed. The character of ID ${characterId} does not exists.`);
+    }
+
     const characterRelatives = await this.prismaService.characterRelative.findMany({
       where: { characterId: characterId },
       include: {
