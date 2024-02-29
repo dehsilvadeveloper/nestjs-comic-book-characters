@@ -7,5 +7,5 @@ export class RelationshipTypeListType {
     isArray: true,
     description: 'An array of relationship type objects.',
   })
-  relationship_types: RelationshipTypeType[];
+  relationshipTypes: RelationshipTypeType[];
 };

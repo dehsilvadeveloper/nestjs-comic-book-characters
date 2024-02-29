@@ -93,6 +93,7 @@ async function bootstrap() {
       'marital status',
       'Endpoints to manipulate possible marital statuses for the character, like single or married, for example.',
     )
+    .addTag('power', 'Endpoints to manipulate power data.')
     .addTag(
       'relationship type',
       'Endpoints to manipulate possible relationship types for the character, like father or brother, for example.',

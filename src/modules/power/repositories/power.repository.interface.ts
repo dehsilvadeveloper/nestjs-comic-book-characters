@@ -9,4 +9,6 @@ export abstract class PowerRepositoryInterface extends BaseRepositoryInterface<
   CreatePowerDto,
   UpdatePowerDto,
   FindPowerDto
-> {}
+> {
+  abstract getAll(): Promise<PowerEntity[]>;
+}

@@ -27,7 +27,9 @@ export class PowerPrismaRepository implements PowerRepositoryInterface {
   }
 
   async getAll(): Promise<PowerEntity[]> {
-    throw new Error('Method not implemented.');
+    const powers = await this.prismaService.power.findMany();
+
+    return plainToInstance(PowerEntity, powers);
   }
 
   async getByField(field: string, value: any): Promise<PowerEntity[]> {

@@ -30,7 +30,7 @@ export class LivingStatusController {
     const livingStatuses = await this.livingStatusService.getAll();
 
     return {
-      livingStatuses: livingStatuses,
+      livingStatuses: livingStatuses.map(livingStatus => ({ id: livingStatus.id, name: livingStatus.name })),
     };
   }
 }

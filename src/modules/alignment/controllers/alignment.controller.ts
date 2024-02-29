@@ -30,7 +30,7 @@ export class AlignmentController {
     const alignments = await this.alignmentService.getAll();
 
     return {
-      alignments: alignments,
+      alignments: alignments.map(alignment => ({ id: alignment.id, name: alignment.name })),
     };
   }
 }

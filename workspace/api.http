@@ -334,6 +334,19 @@ Authorization: Bearer {{accessToken}}
 
 ########################################
 #
+#  POWERS
+#
+########################################
+
+### Get List Of Powers
+
+GET {{baseUrl}}/powers
+Accept: {{accept}}
+Content-Type: {{contentType}}
+Authorization: Bearer {{accessToken}}
+
+########################################
+#
 #  RELATIONSHIP TYPE
 #
 ########################################

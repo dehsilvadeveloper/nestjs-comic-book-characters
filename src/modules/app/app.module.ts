@@ -11,6 +11,7 @@ import { DatabaseModule } from '@modules/database/database.module';
 import { HealthcheckModule } from '@modules/healthcheck/healthcheck.module';
 import { LivingStatusModule } from '@modules/living-status/living-status.module';
 import { MaritalStatusModule } from '@modules/marital-status/marital-status.module';
+import { PowerModule } from '@modules/power/power.module';
 import { RelationshipTypeModule } from '@modules/relationship-type/relationship-type.module';
 import { UserModule } from '@modules/user/user.module';
 
@@ -32,6 +33,7 @@ import { UserModule } from '@modules/user/user.module';
     HealthcheckModule,
     LivingStatusModule,
     MaritalStatusModule,
+    PowerModule,
     RelationshipTypeModule,
     UserModule,
   ],

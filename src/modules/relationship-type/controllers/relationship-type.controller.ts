@@ -30,7 +30,10 @@ export class RelationshipTypeController {
     const relationshipTypes = await this.relationshipTypeService.getAll();
 
     return {
-      relationship_types: relationshipTypes,
+      relationshipTypes: relationshipTypes.map(relationshipType => ({
+        id: relationshipType.id,
+        name: relationshipType.name,
+      })),
     };
   }
 }
