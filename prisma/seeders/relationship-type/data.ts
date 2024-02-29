@@ -1,5 +1,5 @@
-import { RelationshipTypeEnum } from '../../../src/modules/common/enums/relationship-type.enum';
-import { RelationshipTypeStringEnum } from '../../../src/modules/common/enums/relationship-type-string.enum';
+import { RelationshipTypeEnum } from '../../../src/modules/relationship-type/enums/relationship-type.enum';
+import { RelationshipTypeStringEnum } from '../../../src/modules/relationship-type/enums/relationship-type-string.enum';
 
 export const relationshipTypeSeederData = [
   { id: RelationshipTypeEnum.mother, name: RelationshipTypeStringEnum.mother },

@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsEnum, IsInt, IsPositive } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { ExistsOnDatabase } from '@modules/common/decorators/exists-on-database.decorator';
-import { RelationshipTypeEnum } from '@modules/common/enums/relationship-type.enum';
+import { RelationshipTypeEnum } from '@modules/relationship-type/enums/relationship-type.enum';
 
 export class CharacterRelativeDto {
   @ApiProperty({

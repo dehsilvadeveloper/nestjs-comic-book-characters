@@ -1,4 +1,4 @@
-import { RelationshipTypeEnum } from '../../../src/modules/common/enums/relationship-type.enum';
+import { RelationshipTypeEnum } from '../../../src/modules/relationship-type/enums/relationship-type.enum';
 
 export const characterRelativeSeederData = [
   {
