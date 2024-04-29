@@ -49,4 +49,5 @@ prisma/*.db
 prisma/*.db-journal
 
 # Docker
-.docker/mysql/dbdata
+.docker/mysql/dbdata/*
+!.docker/mysql/dbdata/.gitkeep 
